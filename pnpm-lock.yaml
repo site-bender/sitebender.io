@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^0.4.4
     version: 0.4.4
   '@sitebender/components':
-    specifier: ^0.1.85
-    version: 0.1.85
+    specifier: ^0.1.86
+    version: 0.1.86
   '@tgwf/co2':
     specifier: ^0.13.9
     version: 0.13.9
@@ -1016,8 +1016,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /@sitebender/components@0.1.85:
-    resolution: {integrity: sha512-zmsqH1oC2QgbZUAkYCKuMfTmpBl9xBVSSHjzXYXxoryqcRaLvYislWCoK2w06QsPUXW+9eRjVvqml2w09R/ylg==}
+  /@sitebender/components@0.1.86:
+    resolution: {integrity: sha512-g73D/r9ZZpsC/lUsE0Vl1oV5jChqMUm9kbES7sUOGmXGPtg806Iv/+uTA+R8Wq8aaIT5JVWpKGE22gvny5//Kw==}
     dev: true
 
   /@tgwf/co2@0.13.9:

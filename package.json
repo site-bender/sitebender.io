@@ -1,6 +1,6 @@
 {
   "name": "sitebender.io",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "homepage": "https://sitebender.io/",
   "license": "MIT",
@@ -40,7 +40,7 @@
     "@astrojs/vercel": "^6.0.2",
     "@biomejs/biome": "1.4.1",
     "@js-temporal/polyfill": "^0.4.4",
-    "@sitebender/components": "^0.1.85",
+    "@sitebender/components": "^0.1.86",
     "@tgwf/co2": "^0.13.9",
     "@types/qrcode": "^1.5.5",
     "@vercel/node": "^3.0.12",
