@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <title>Simple PubSub</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				font-family: sans-serif;
+				margin: 0;
+				padding: 0;
+				min-height: 100vh;
+			}
+
+			header {
+				align-items: flex-start;
+				background-color: darkslategray;
+				color: ghostwhite;
+				display: flex;
+				justify-content: flex-start;
+				padding: 1rem;
+			}
+
+			header h1 {
+				font-family: sans-serif;
+				font-size: 2.4rem;
+				font-weight: 400;
+			}
+
+			main {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				gap: 2rem;
+				justify-content: flex-start;
+				padding-top: 6rem;
+			}
+
+			button {
+				align-items: center;
+				background-color: ghostwhite;
+				border: 2px solid firebrick;
+				border-radius: 5px;
+				color: firebrick;
+				display: flex;
+				font-family: sans-serif;
+				font-size: 2rem;
+				font-variant: small-caps;
+				justify-content: center;
+				padding: 1rem;
+			}
+
+			main div {
+				align-items: center;
+				display: flex;
+				gap: 2rem;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Simple PubSub</h1>
+		</header>
+		<main>
+			<button id="do-it">Do it!</button>
+			<div>
+				<button id="subscribe">Subscribe</button>
+				<button id="unsubscribe">Unsubscribe</button>
+			</div>
+		</main>
+		<script src="./index.js" type="module"></script>
+		<script>
+			globalThis.addEventListener("DOMContentLoaded", () => {
+				const subscribe = document.querySelector("#subscribe")
+				const unsubscribe = document.querySelector("#unsubscribe")
+
+				subscribe.addEventListener("click", async () => {
+					globalThis._xx?.subscribe(
+						"click",
+						"do-it",
+						(await import("./modules/click-test.js")).default
+					)
+				})
+
+				unsubscribe.addEventListener(
+					"click",
+					() => globalThis._xx.unsubscribe("click", "do-it")
+				)
+
+				globalThis._xx.subscribe("focus", "subscribe", (event) => {
+					console.log(`Caught ${event.type} on ${event.target.id} button.`)
+				})
+
+				globalThis._xx.subscribe("blur", "subscribe", (event) => {
+					console.log(`Caught ${event.type} on ${event.target.id} button.`)
+				})
+			})
+		</script>
+	</body>
+</html>

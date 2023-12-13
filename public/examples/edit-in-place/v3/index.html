@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta
+			content="An example form permitting edit-in-place on individual cells (which are aware of the datatype of the cell content)."
+			name="description"
+		>
+    <title>Edit-in-place table</title>
+    <style media="screen">
+			h1 {
+				font-family: sans-serif;
+				font-size: 2.4rem;
+				font-weight: 500;
+				margin: 1rem;
+			}
+      table {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: auto;
+        max-width: min(80rem, 92vw);
+      }
+
+      caption {
+        font-size: 2rem;
+        font-weight: 400;
+				font-variant-caps: all-petite-caps;
+        padding: 1rem 9px 0 0;
+				text-align: left;
+      }
+
+			thead th:first-child {
+				border-radius: 9px 0 0;
+			}
+
+			thead th:last-child {
+				border-radius: 0 9px 0 0;
+			}
+
+			tbody tr:last-child th:first-child {
+				border-radius: 0 0 0 9px;
+			}
+
+			tbody tr:last-child td:last-child {
+				border-radius: 0 0 9px 0;
+			}
+
+			tbody tr:nth-child(even) {
+				background-color: aliceblue;
+			}
+
+      th {
+        background-color: darkslateblue;
+        color: white;
+        padding: 1rem;
+        text-align: left;
+      }
+
+			th[scope=row] {
+				background-color: inherit;
+				color: inherit;
+				font-weight: normal;
+        padding: 0.5rem 1rem;
+				vertical-align: top;
+			}
+
+      td {
+        padding: 0.5rem 0 0.5rem 0.5rem;
+        vertical-align: top;
+      }
+
+      td p:first-child {
+        margin-top: 0;
+      }
+
+      th.name {
+        width: 20%;
+      }
+
+      th.wins {
+        text-align: right;
+        width: 10%;
+      }
+
+      th.dob {
+        width: 16%;
+      }
+
+      th.is_living {
+        width: 10%;
+      }
+
+			td:nth-child(2) {
+				text-align: right;
+			}
+
+      th.bio {
+        width: auto;
+      }
+
+			table *:has(input) form label {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				gap: 0.25rem;
+				justify-content: flex-start;
+			}
+
+			table td:has(form),
+			table th[scope=row]:has(form) {
+				padding: 0 0 0 0.25rem;
+			}
+
+			table form {
+				align-items: flex-start;
+				display: flex;
+				gap: 0.25rem;
+				justify-content: flex-start;
+				width: 100%;
+			}
+
+      table form input:not([type="hidden"]),
+      table form select,
+      table form textarea {
+				background-color: white;
+				border: 1px solid lightblue;
+				border-radius: 5px;
+        font-family: sans-serif;
+        font-size: 1rem;
+        height: 100%;
+				margin-top: 8px;
+        padding: 0.5rem;
+        width: 100%;
+      }
+
+			table form input[type=checkbox] {
+				border-radius: 5px;
+				display: inline-block;
+				height: 1.5rem;
+				margin: 0.75rem 0.25rem 0.5rem 0;
+				width: 1.5rem;
+			}
+
+			textarea {
+				min-height: 6rem;
+				resize: vertical;
+			}
+
+			form button {
+				align-items: center;
+				background-color: transparent;
+				border: none;
+				box-sizing: border-box;
+				display: flex;
+				gap: 0;
+				height: 48px;
+				justify-content: center;
+				padding: 0;
+				margin: 0;
+				width: 48px;
+			}
+    </style>
+  </head>
+  <body>
+		<header>
+			<h1>Example no-JS edit-in-place form</h1>
+		</header>
+		<main>
+			<table class="hugo-winners" data-edit-in-place>
+				<caption>Hugo winners</caption>
+				<colgroup>
+					<col data-type="string">
+					<col data-type="integer">
+					<col data-type="date">
+					<col data-type="boolean">
+					<col data-type="text">
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="name" scope="col">Name</th>
+						<th class="wins" scope="col">Wins</th>
+						<th class="dob" scope="col">Date of birth</th>
+						<th class="is_living" scope="col">Living?</th>
+						<th class="bio" scope="col">Bio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">
+							<form action="/" id="form_001_name" method="POST">
+								<input data-type="id" form="form_001_name" name="row-id" type="hidden" value="001">
+								<label data-type="string" aria-label="name">
+									<input form="form_001_name" name="name" type="text" value="Alfred Bester">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</th>
+						<td>
+							<form action="/" id="form_001_wins" method="POST">
+								<input data-type="id" form="form_001_wins" name="row-id" type="hidden" value="001">
+								<label data-type="integer" aria-label="wins">
+									<input form="form_001_wins" min="1" name="wins" step="1" type="number" value="1">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_001_dob" method="POST">
+								<input data-type="id" form="form_001_dob" name="row-id" type="hidden" value="001">
+								<label data-type="date" aria-label="dob">
+									<input form="form_001_dob" name="dob" type="date" value="1913-12-18">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_001_living" method="POST">
+								<input data-type="id" form="form_001_living" name="row-id" type="hidden" value="001">
+								<label data-type="boolean" aria-label="living">
+									<input form="form_001_living" name="living" type="checkbox" value="true"> Yes
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_001_bio" method="POST">
+								<input data-type="id" form="form_001_bio" name="row-id" type="hidden" value="001">
+								<label data-type="text" aria-label="bio">
+									<textarea form="form_001_bio" name="bio">Alfred Bester was an American science fiction author, TV and radio scriptwriter, magazine editor and scripter for comic strips and comic books. He is best remembered for his science fiction, including The Demolished Man, winner of the inaugural Hugo Award in 1953.</textarea>
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<th id="_002_name" scope="row">
+							<form action="/" id="form_002_name" method="POST">
+								<input data-type="id" form="form_002_name" name="row-id" type="hidden" value="002">
+								<label data-type="string" aria-label="name">
+									<input form="form_002_name" name="name" type="text" value="Lois McMaster Bujold">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</th>
+						<td>
+							<form action="/" id="form_002_wins" method="POST">
+								<input data-type="id" form="form_002_wins" name="row-id" type="hidden" value="002">
+								<label data-type="integer" aria-label="wins">
+									<input form="form_002_wins" min="1" name="wins" step="1" type="number" value="4">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_002_dob" method="POST">
+								<input data-type="id" form="form_002_dob" name="row-id" type="hidden" value="002">
+								<label data-type="date" aria-label="dob">
+									<input form="form_002_dob" name="dob" type="date" value="1949-11-02">
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_002_living" method="POST">
+								<input data-type="id" form="form_002_living" name="row-id" type="hidden" value="002">
+								<label data-type="boolean" aria-label="living">
+									<input checked="checked" form="form_002_living" name="living" type="checkbox" value="false"> Yes
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="/" id="form_002_bio" method="POST">
+								<input data-type="id" form="form_002_bio" name="row-id" type="hidden" value="002">
+								<label data-type="text" aria-label="bio">
+									<textarea form="form_002_bio" name="bio">Lois McMaster Bujold is an American speculative fiction writer. She is an acclaimed writer, having won the Hugo Award for best novel four times, matching Robert A. Heinlein's record (not counting his Retro Hugos).&#13;&#10;&#13;&#10;Her novella The Mountains of Mourning won both the Hugo Award and Nebula Award. In the fantasy genre, The Curse of Chalion won the Mythopoeic Award for Adult Literature and was nominated for the 2002 World Fantasy Award for best novel, and both her fourth Hugo Award and second Nebula Award were for Paladin of Souls. In 2011 she was awarded the Skylark Award.&#13;&#10;&#13;&#10;She has won two Hugo Awards for Best Series, in 2017 for the Vorkosigan Saga and in 2018 for the World of the Five Gods. The Science Fiction Writers of America named her its 36th SFWA Grand Master in 2019.</textarea>
+								</label>
+								<button aria-label="Save to server">
+									<img alt="Save" height="32" src="/example/images/save.svg" width="32">
+								</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
