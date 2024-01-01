@@ -129,8 +129,6 @@
 					(event) => {
 						event.preventDefault()
 
-						console.log("publishing NAME_UPDATED")
-
 						globalThis._xx?.publish("NAME_UPDATED", {
 							id: event.target.elements.name.id,
 							name: event.target.elements.name.value,
@@ -167,8 +165,6 @@
 				const first = globalThis._xx?.subscribe(
 					"NAME_UPDATED",
 					(event) => {
-						console.log("Caught the NAME_UPDATED custom event", event.type, event.detail)
-
 						const pre = document.querySelector("pre#name-output")
 
 						pre.appendChild(document.createTextNode(JSON.stringify({
@@ -181,8 +177,6 @@
 				const second = globalThis._xx?.subscribe(
 					"EMAIL_UPDATED",
 					(event) => {
-						console.log("Caught the EMAIL_UPDATED custom event", event.type, event.detail)
-
 						const pre = document.querySelector("pre#email-output")
 
 						pre.appendChild(document.createTextNode(JSON.stringify({
@@ -195,8 +189,6 @@
 				const third = globalThis._xx?.subscribe(
 					"PHONE_UPDATED",
 					(event) => {
-						console.log("Caught the PHONE_UPDATED custom event", event.type, event.detail)
-
 						const pre = document.querySelector("pre#phone-output")
 
 						pre.appendChild(document.createTextNode(JSON.stringify({
