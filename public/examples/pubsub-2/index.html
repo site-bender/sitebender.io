@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <title>Simple PubSub, v2</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				font-family: sans-serif;
+				margin: 0;
+				padding: 0;
+				min-height: 100vh;
+			}
+
+			header {
+				align-items: flex-start;
+				background-color: darkslategray;
+				color: ghostwhite;
+				display: flex;
+				justify-content: flex-start;
+				padding: 1rem;
+			}
+
+			header h1 {
+				font-family: sans-serif;
+				font-size: 2.4rem;
+				font-weight: 400;
+			}
+
+			main {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				gap: 2rem;
+				justify-content: flex-start;
+				padding-top: 6rem;
+			}
+
+			form {
+				display: grid;
+				grid-template-areas:
+					"label label"
+					"input button";
+				grid-template-rows: 2rem 1fr;
+				grid-template-columns: 4fr 1fr;
+				width: min(36rem, 90vw);
+			}
+
+			label {
+				font-size: 1.25rem;
+				grid-area: label;
+			}
+
+			input {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border-right: none;
+				font-size: 1.25rem;
+				padding: 0 0.5rem;
+			}
+
+			button {
+				align-items: center;
+				background-color: ghostwhite;
+				border: 2px solid firebrick;
+				border-bottom-right-radius: 5px;
+				border-top-right-radius: 5px;
+				color: firebrick;
+				display: flex;
+				font-family: sans-serif;
+				font-size: 1.25rem;
+				justify-content: center;
+				padding: 0.5rem;
+				text-transform: uppercase
+			}
+
+			pre {
+				border: 2px solid gray;
+				border-radius: 5px;
+				font-size: 1.25rem;
+				min-height: 2rem;
+				padding: 1rem;
+				width: min(34rem, 90vw);
+			}
+
+			main div {
+				align-items: center;
+				display: flex;
+				gap: 2rem;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Simple PubSub, v2</h1>
+		</header>
+		<main>
+			<form id="name-editor">
+				<label for="name">Name</label>
+				<input id="name" name="name" type="text" />
+				<button type="submit">Update</button>
+			</form>
+			<form id="email-editor">
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email" />
+				<button type="submit">Update</button>
+			</form>
+			<form id="phone-editor">
+				<label for="phone">Phone</label>
+				<input id="phone" name="phone" type="tel" />
+				<button type="submit">Update</button>
+			</form>
+			<pre id="name-output"></pre>
+			<pre id="email-output"></pre>
+			<pre id="phone-output"></pre>
+		</main>
+		<script src="./index.js" type="module"></script>
+		<script type="module">
+			globalThis.addEventListener("DOMContentLoaded", async () => {
+				globalThis._xx?.register(
+					"submit",
+					"name-editor",
+					(event) => {
+						event.preventDefault()
+
+						console.log("publishing NAME_UPDATED")
+
+						globalThis._xx?.publish("NAME_UPDATED", {
+							id: event.target.elements.name.id,
+							name: event.target.elements.name.value,
+						})
+					},
+				)
+
+				globalThis._xx?.register(
+					"submit",
+					"email-editor",
+					(event) => {
+						event.preventDefault()
+
+						globalThis._xx?.publish("EMAIL_UPDATED", {
+							id: event.target.elements.email.id,
+							email: event.target.elements.email.value,
+						})
+					},
+				)
+
+				globalThis._xx?.register(
+					"submit",
+					"phone-editor",
+					(event) => {
+						event.preventDefault()
+
+						globalThis._xx?.publish("PHONE_UPDATED", {
+							id: event.target.elements.phone.id,
+							phone: event.target.elements.phone.value,
+						})
+					},
+				)
+
+				const first = globalThis._xx?.subscribe(
+					"NAME_UPDATED",
+					(event) => {
+						console.log("Caught the NAME_UPDATED custom event", event.type, event.detail)
+
+						const pre = document.querySelector("pre#name-output")
+
+						pre.appendChild(document.createTextNode(JSON.stringify({
+							type: event.type,
+							detail: event.detail,
+						 }, null, 2) + "\n\n"))
+					},
+				)
+
+				const second = globalThis._xx?.subscribe(
+					"EMAIL_UPDATED",
+					(event) => {
+						console.log("Caught the EMAIL_UPDATED custom event", event.type, event.detail)
+
+						const pre = document.querySelector("pre#email-output")
+
+						pre.appendChild(document.createTextNode(JSON.stringify({
+							type: event.type,
+							detail: event.detail,
+						}, null, 2) + "\n\n"))
+					},
+				)
+
+				const third = globalThis._xx?.subscribe(
+					"PHONE_UPDATED",
+					(event) => {
+						console.log("Caught the PHONE_UPDATED custom event", event.type, event.detail)
+
+						const pre = document.querySelector("pre#phone-output")
+
+						pre.appendChild(document.createTextNode(JSON.stringify({
+							type: event.type,
+							detail: event.detail,
+						}, null, 2) + "\n\n"))
+					},
+				)
+			})
+		</script>
+	</body>
+</html>

@@ -5,7 +5,7 @@
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-    <title>DOM from JSON</title>
+    <title>Simple PubSub</title>
 		<style>
 			body {
 				display: flex;
@@ -41,62 +41,39 @@
 				padding-top: 6rem;
 			}
 
-			form {
-				align-items: flex-start;
-				display: flex;
-				flex-direction: column;
-				gap: 1rem;
-				justify-content: center;
-			}
-
-			textarea {
-				border-radius: 12px;
-				font-family: monospace;
-				font-size: 1.2rem;
-				height: 24rem;
-				padding: 0.5rem;
-				width: 64rem;
-			}
-
 			button {
 				align-items: center;
 				background-color: ghostwhite;
-				border: 2px solid darkslateblue;
+				border: 2px solid firebrick;
 				border-radius: 5px;
-				color: darkslateblue;
+				color: firebrick;
 				display: flex;
 				font-family: sans-serif;
-				font-size: 1.25rem;
-				font-weight: 500;
+				font-size: 2rem;
+				font-variant: small-caps;
 				justify-content: center;
-				padding: 0.5rem 1rem;
-				text-transform: uppercase;
+				padding: 1rem;
+			}
+
+			main div {
+				align-items: center;
+				display: flex;
+				gap: 2rem;
+				justify-content: center;
 			}
 		</style>
 	</head>
 	<body>
 		<header>
-			<h1>DOM from JS (and back)</h1>
+			<h1>Simple PubSub</h1>
 		</header>
 		<main>
-			<form action="#" data-persist="true" name="form" id="form-id" method="POST">
-				<textarea id="json" data-type="json">{
-	"children": [
-		{
-			"tagName": "STRONG",
-			"children": [
-				"Bob's yer uncle."
-			]
-		}
-	],
-	"class": "sb-test",
-	"data-type": "string",
-	"id": "sb-test-id",
-	"tagName": "DIV"
-}</textarea>
-				<button type="submit" data-label="Run the jewels">Run</button>
+			<form action="#" name="pubsub_3" id="pubsub-3" method="POST">
+				<div class="xx-form-field">
+					<label class="xx-field-label" id=""
+				</div>
 			</form>
-			<div id="out"></div>
+			<output></output>
 		</main>
 		<script src="./index.js" type="module"></script>
 	</body>

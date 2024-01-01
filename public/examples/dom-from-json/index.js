@@ -58,6 +58,8 @@ export function enhanceForm() {
 
 		const newForm = domToJson(form)
 
+		console.log(JSON.stringify(newForm, null, 2))
+
 		document.querySelector("main").appendChild(jsonToDom(newForm))
 	})
 }
