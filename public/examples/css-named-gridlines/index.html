@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <title>CSS named gridlines</title>
+		<style media="all">
+			body,
+			html {
+				margin: 0;
+				min-height: 100vh;
+				padding: 0;
+			}
+
+			body {
+				display: grid;
+				grid-template-columns: [viewport-left] 4rem [content-left] 24rem [gutter-left] 2rem [gutter-right] 42rem [content-right] auto [viewport-right];
+				grid-template-rows: [viewport-top] 5rem [content-top] auto [content-bottom] 10rem [viewport-bottom];
+			}
+
+			div#cell-01 {
+				background-color: red;
+				grid-column: viewport-left / content-left;
+				grid-row: viewport-top / content-top;
+			}
+
+			div#cell-02 {
+				background-color: orange;
+				grid-column: content-left / gutter-left;
+				grid-row: viewport-top / content-top;
+			}
+
+			div#cell-03 {
+				background-color: yellow;
+				grid-column: gutter-left / gutter-right;
+				grid-row: viewport-top / content-top;
+			}
+
+			div#cell-04 {
+				background-color: green;
+				grid-column: gutter-right / content-right;
+				grid-row: viewport-top / content-top;
+			}
+
+			div#cell-05 {
+				background-color: cyan;
+				grid-column: content-right / viewport-right;
+				grid-row: viewport-top / content-top;
+			}
+
+			div#cell-06 {
+				background-color: blue;
+				grid-column: viewport-left / content-left;
+				grid-row: content-top / content-bottom;
+			}
+
+			div#cell-07 {
+				background-color: indigo;
+				grid-column: content-left / gutter-left;
+				grid-row: content-top / content-bottom;
+			}
+
+			div#cell-08 {
+				background-color: magenta;
+				grid-column: gutter-left / gutter-right;
+				grid-row: content-top / content-bottom;
+			}
+
+			div#cell-09 {
+				background-color: brown;
+				grid-column: gutter-right / viewport-right;
+				grid-row: content-top / content-bottom;
+			}
+
+			div#cell-11 {
+				background-color: red;
+				grid-column: viewport-left / content-left;
+				grid-row: content-bottom / viewport-bottom;
+			}
+
+			div#cell-12 {
+				background-color: orange;
+				grid-column: content-left / gutter-left;
+				grid-row: content-bottom / viewport-bottom;
+			}
+
+			div#cell-13 {
+				background-color: yellow;
+				grid-column: gutter-left / gutter-right;
+				grid-row: content-bottom / viewport-bottom;
+			}
+
+			div#cell-14 {
+				background-color: green;
+				grid-column: gutter-right / content-right;
+				grid-row: content-bottom / viewport-bottom;
+			}
+
+			div#cell-15 {
+				background-color: cyan;
+				grid-column: content-right / viewport-right;
+				grid-row: content-bottom / viewport-bottom;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="cell-01"></div>
+		<div id="cell-02"></div>
+		<div id="cell-03"></div>
+		<div id="cell-04"></div>
+		<div id="cell-05"></div>
+		<div id="cell-06"></div>
+		<div id="cell-07"></div>
+		<div id="cell-08"></div>
+		<div id="cell-09"></div>
+		<div id="cell-11"></div>
+		<div id="cell-12"></div>
+		<div id="cell-13"></div>
+		<div id="cell-14"></div>
+		<div id="cell-15"></div>
+	</body>
+</html>

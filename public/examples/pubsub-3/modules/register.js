@@ -6,8 +6,8 @@ export default function (eventType, id, callback) {
 
 	listeners[type] ??= {}
 
-	if (!listeners[type].length) {
-		document.body.addEventListener(type, function (event) {
+	if (!Object.keys(listeners[type]).length) {
+		document.body.addEventListener(type, (event) => {
 			const id = event.target?.id
 			const type = event.type
 

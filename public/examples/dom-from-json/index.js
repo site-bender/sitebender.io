@@ -1,67 +1,72 @@
-export function jsonToDom(json) {
-	const { attributes, children, tagName } = json
+import jsonToDom from "./modules/json-to-dom.js"
 
-	const elem = document.createElement(tagName)
+export async function enhanceForm() {
+	const main = document.querySelector("main")
 
-	for (const attr in attributes) {
-		elem.setAttribute(attr, attributes[attr])
-	}
-
-	if (Array.isArray(children)) {
-		for (const child of children) {
-			typeof child === "object"
-				? elem.appendChild(jsonToDom(child))
-				: elem.appendChild(document.createTextNode(child))
-		}
-	}
-
-	return elem
-}
-
-export function domToJson(dom) {
-	const { attributes, childNodes, tagName } = dom
-
-	const attrs = Object.entries(attributes).map(([_, k]) => k.localName)
-
-	console.log("dom", Object.entries(dom))
-
-	return {
-		attributes: attrs.reduce((out, attr) => {
-			out[attr] = dom.getAttribute(attr)
-
-			return out
-		}, {}),
-		children: new Array(childNodes.length).fill("").map((_, idx) => {
-			const child = childNodes[idx]
-
-			return child.nodeType === Node.TEXT_NODE
-				? child.nodeValue
-				: domToJson(child)
+	main.appendChild(
+		await jsonToDom({
+			attributes: {
+				id: "out",
+			},
+			tagName: "DIV",
 		}),
-		tagName,
-	}
-}
+	)
 
-export function enhanceForm() {
-	const form = document.querySelector("form")
-	const textarea = document.querySelector("textarea")
-	const out = document.querySelector("#out")
-
-	form.addEventListener("submit", (event) => {
-		event.preventDefault()
-
-		const json = JSON.parse(textarea.value)
-
-		out.appendChild(jsonToDom(json))
-
-		const form = document.querySelector("form")
-
-		const newForm = domToJson(form)
-
-		console.log(JSON.stringify(newForm, null, 2))
-
-		document.querySelector("main").appendChild(jsonToDom(newForm))
-	})
+	main.appendChild(
+		await jsonToDom({
+			attributes: {
+				action: "#",
+				name: "form",
+				id: "form-id",
+				method: "POST",
+			},
+			children: [
+				{
+					attributes: {
+						"data-type": "json",
+						id: "json",
+					},
+					children: [
+						JSON.stringify(
+							{
+								attributes: {
+									class: "sb-test",
+									"data-type": "string",
+									id: "sb-test-id",
+								},
+								children: [
+									{
+										tagName: "STRONG",
+										children: ["Bob's yer uncle."],
+									},
+								],
+								events: {
+									click: "log",
+								},
+								tagName: "DIV",
+							},
+							null,
+							2,
+						),
+					],
+					tagName: "TEXTAREA",
+				},
+				{
+					attributes: {
+						"aria-label": "Run this baby",
+						type: "submit",
+					},
+					children: ["Run"],
+					tagName: "BUTTON",
+				},
+			],
+			events: {
+				focusin: "log",
+				submit: "parse-submission",
+			},
+			tagName: "FORM",
+		}),
+	)
 }
 
 globalThis.addEventListener("DOMContentLoaded", enhanceForm)

@@ -53,7 +53,7 @@
 				border-radius: 12px;
 				font-family: monospace;
 				font-size: 1.2rem;
-				height: 24rem;
+				height: 28rem;
 				padding: 0.5rem;
 				width: 64rem;
 			}
@@ -76,27 +76,9 @@
 	</head>
 	<body>
 		<header>
-			<h1>DOM from JS (and back)</h1>
+			<h1>DOM from JSON (and back)</h1>
 		</header>
 		<main>
-			<form action="#" data-persist="true" name="form" id="form-id" method="POST">
-				<textarea id="json" data-type="json">{
-	"children": [
-		{
-			"tagName": "STRONG",
-			"children": [
-				"Bob's yer uncle."
-			]
-		}
-	],
-	"class": "sb-test",
-	"data-type": "string",
-	"id": "sb-test-id",
-	"tagName": "DIV"
-}</textarea>
-				<button type="submit" data-label="Run the jewels">Run</button>
-			</form>
-			<div id="out"></div>
 		</main>
 		<script src="./index.js" type="module"></script>
 	</body>
