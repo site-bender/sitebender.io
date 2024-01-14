@@ -10,7 +10,7 @@
 			"dist/*",
 			".astro/*",
 			".vercel/*",
-			"vscode/*",
+			".vscode/*",
 			"temp/*"
 		],
 		"indentStyle": "tab",
@@ -28,7 +28,7 @@
 			"dist/*",
 			".astro/*",
 			".vercel/*",
-			"vscode/*",
+			".vscode/*",
 			"temp/*"
 		],
 		"rules": {
@@ -42,7 +42,7 @@
 			"dist/*",
 			".astro/*",
 			".vercel/*",
-			"vscode/*",
+			".vscode/*",
 			"temp/*"
 		]
 	}
