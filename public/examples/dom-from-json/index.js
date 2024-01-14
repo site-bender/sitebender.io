@@ -1,72 +1,13 @@
-import jsonToDom from "./modules/json-to-dom.js"
+import formJson from "./modules/form-json.js"
+import jsToDom from "./modules/js-to-dom.js"
+import outJs from "./modules/out-js.js"
 
-export async function enhanceForm() {
+export async function injectForm() {
 	const main = document.querySelector("main")
 
-	main.appendChild(
-		await jsonToDom({
-			attributes: {
-				id: "out",
-			},
-			tagName: "DIV",
-		}),
-	)
+	main.appendChild(await jsToDom(outJs))
 
-	main.appendChild(
-		await jsonToDom({
-			attributes: {
-				action: "#",
-				name: "form",
-				id: "form-id",
-				method: "POST",
-			},
-			children: [
-				{
-					attributes: {
-						"data-type": "json",
-						id: "json",
-					},
-					children: [
-						JSON.stringify(
-							{
-								attributes: {
-									class: "sb-test",
-									"data-type": "string",
-									id: "sb-test-id",
-								},
-								children: [
-									{
-										tagName: "STRONG",
-										children: ["Bob's yer uncle."],
-									},
-								],
-								events: {
-									click: "log",
-								},
-								tagName: "DIV",
-							},
-							null,
-							2,
-						),
-					],
-					tagName: "TEXTAREA",
-				},
-				{
-					attributes: {
-						"aria-label": "Run this baby",
-						type: "submit",
-					},
-					children: ["Run"],
-					tagName: "BUTTON",
-				},
-			],
-			events: {
-				focusin: "log",
-				submit: "parse-submission",
-			},
-			tagName: "FORM",
-		}),
-	)
+	main.appendChild(await jsToDom(formJson))
 }
 
-globalThis.addEventListener("DOMContentLoaded", enhanceForm)
+globalThis.addEventListener("DOMContentLoaded", injectForm)

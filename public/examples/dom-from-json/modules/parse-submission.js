@@ -1,18 +1,18 @@
-import domToJson from "./dom-to-json.js"
-import jsonToDom from "./json-to-dom.js"
+import domToJs from "./dom-to-js.js"
+import jsToDom from "./js-to-dom.js"
 
 export default async function (event) {
 	event.preventDefault()
 
 	const form = event.target
 	const textarea = form.querySelector("textarea")
-	const out = document.querySelector("#out")
+	const out = document.querySelector(".out")
 
-	const json = JSON.parse(textarea.value)
+	const js = JSON.parse(textarea.value)
 
-	out.appendChild(await jsonToDom(json))
+	out.appendChild(await jsToDom(js))
 
-	const newForm = domToJson(form)
+	const newForm = domToJs(form)
 
-	document.querySelector("main").appendChild(await jsonToDom(newForm))
+	document.querySelector("main").appendChild(await jsToDom(newForm))
 }

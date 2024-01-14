@@ -1,4 +1,4 @@
-export default function domToJson(dom) {
+export default function domToJs(dom) {
 	const { attributes, childNodes, tagName } = dom
 
 	const eventList = dom.getAttribute("data-events")
@@ -13,24 +13,24 @@ export default function domToJson(dom) {
 		return out
 	}, {})
 
-	const attrs = Object.entries(attributes)
-		.map(([_, k]) => k.localName)
+	const attrs = Object.values(attributes)
+		.map((v) => v.localName)
 		.filter((name) => name !== "data-events")
 
 	return {
+		tagName,
 		attributes: attrs.reduce((out, attr) => {
 			out[attr] = dom.getAttribute(attr)
 
 			return out
 		}, {}),
-		children: new Array(childNodes.length).fill("").map((_, idx) => {
+		events,
+		children: Array.from(childNodes).map((_, idx) => {
 			const child = childNodes[idx]
 
 			return child.nodeType === Node.TEXT_NODE
 				? child.nodeValue
-				: domToJson(child)
+				: domToJs(child)
 		}),
-		events,
-		tagName,
 	}
 }
