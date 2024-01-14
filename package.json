@@ -12,7 +12,6 @@
   },
   "scripts": {
     "api": "vercel dev",
-    "api:dev": "vercel dev -A dev.vercel.json",
     "astro": "astro",
     "build": "astro build",
     "bump": "pnpm version patch --force",
@@ -30,9 +29,7 @@
     "preview": "astro preview",
     "push": "git add -A && pnpm bump && git push",
     "start": "astro dev",
-    "test": "pnpm test:int",
-    "test:cov": "vitest run --coverage",
-    "test:int": "vitest"
+    "test": "pnpm test:int"
   },
   "devDependencies": {
     "@astrojs/mdx": "^2.0.4",
@@ -41,10 +38,8 @@
     "@biomejs/biome": "1.5.1",
     "@js-temporal/polyfill": "^0.4.4",
     "@sitebender/components": "^0.1.89",
-    "@tgwf/co2": "^0.14.1",
     "@types/qrcode": "^1.5.5",
     "@vercel/node": "^3.0.16",
-    "@vitest/coverage-v8": "^1.2.0",
     "astro": "^4.1.2",
     "exifr": "^7.1.3",
     "exifreader": "^4.20.0",
@@ -55,7 +50,17 @@
     "typescript": "^5.3.3",
     "vercel": "^33.1.0",
     "vite": "^5.0.11",
-    "vite-plugin-compress": "^2.1.1",
-    "vitest": "^1.2.0"
+    "vite-plugin-compress": "^2.1.1"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "proseWrap": "always",
+    "semi": false,
+    "singleAttributePerLine": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "all"
   }
 }
