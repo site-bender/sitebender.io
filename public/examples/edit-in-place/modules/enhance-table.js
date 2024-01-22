@@ -19,8 +19,8 @@ export default function (table) {
 			dataType === "boolean"
 				? attrs.checked
 				: dataType === "text"
-				  ? input.innerHTML
-				  : attrs.value,
+					? input.innerHTML
+					: attrs.value,
 		)
 
 		cell.editable = {

@@ -114,7 +114,7 @@ const bodyJson = {
 							tagName: "TEXTAREA",
 							attributes: {
 								"data-type": "json",
-								name: "json",
+								"name": "json",
 							},
 							children: [
 								'{\n  "tagName": "DIV",\n  "attributes": {\n    "class": "sb-test",\n    "data-type": "string",\n    "id": "sb-test-id"\n  },\n  "events": {\n    "click": "log"\n  },\n  "children": [\n    {\n      "tagName": "STRONG",\n      "children": [\n        "Bob\'s yer uncle."\n      ]\n    }\n  ]\n}',
@@ -124,7 +124,7 @@ const bodyJson = {
 							tagName: "BUTTON",
 							attributes: {
 								"aria-label": "Run this baby",
-								type: "submit",
+								"type": "submit",
 							},
 							children: ["Run"],
 						},

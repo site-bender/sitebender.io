@@ -1,134 +1,147 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-    <title>DOM from JSON (and back)</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        font-family: sans-serif;
-        font-size: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-      }
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>DOM from JSON (and back)</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				font-family: sans-serif;
+				font-size: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
+				margin: 0;
+				padding: 0;
+				min-height: 100vh;
+			}
 
-      header {
-        align-content: start;
-        background-color: darkslategray;
-        color: ghostwhite;
-        display: grid;
-        padding: 1rem;
-      }
+			header {
+				align-content: start;
+				background-color: darkslategray;
+				color: ghostwhite;
+				display: grid;
+				padding: 1rem;
+			}
 
-      header h1 {
-        font-family: sans-serif;
-        font-size: 2.4rem;
-        font-weight: 400;
-      }
+			header h1 {
+				font-family: sans-serif;
+				font-size: 2.4rem;
+				font-weight: 400;
+			}
 
-      footer,
-      main {
-        align-items: center;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: flex-start;
-        padding-block: 3rem;
-      }
+			footer,
+			main {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				gap: 2rem;
+				justify-content: flex-start;
+				padding-block: 3rem;
+			}
 
-      footer {
-        margin: auto;
-        max-width: min(90vw, 64rem);
-      }
+			footer {
+				margin: auto;
+				max-width: min(90vw, 64rem);
+			}
 
-      form {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        justify-content: center;
-      }
+			form {
+				align-items: flex-start;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				justify-content: center;
+			}
 
-      textarea {
-        border-radius: 12px;
-        font-family: monospace;
-        font-size: 1.2rem;
-        height: 28rem;
-        padding: 0.5rem;
-        width: 64rem;
-      }
+			textarea {
+				border-radius: 12px;
+				font-family: monospace;
+				font-size: 1.2rem;
+				height: 28rem;
+				padding: 0.5rem;
+				width: 64rem;
+			}
 
-      button {
-        background-color: ghostwhite;
-        border: 2px solid darkslateblue;
-        border-radius: 5px;
-        color: darkslateblue;
-        display: block;
-        font-family: sans-serif;
-        font-size: 1.25rem;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        place-content: center;
-        text-transform: uppercase;
-      }
+			button {
+				background-color: ghostwhite;
+				border: 2px solid darkslateblue;
+				border-radius: 5px;
+				color: darkslateblue;
+				display: block;
+				font-family: sans-serif;
+				font-size: 1.25rem;
+				font-weight: 500;
+				padding: 0.5rem 1rem;
+				place-content: center;
+				text-transform: uppercase;
+			}
 
-      .form-field {
-        align-items: stretch;
-        display: flex;
-        gap: 0;
-        justify-content:space-between;
-        margin-block: 1rem;
-        width: min(90vw, 32rem);
-      }
+			.form-field {
+				align-items: stretch;
+				display: flex;
+				gap: 0;
+				justify-content: space-between;
+				margin-block: 1rem;
+				width: min(90vw, 32rem);
+			}
 
-      .form-field input {
-        border: 2px solid darkslateblue;
-        border-top-left-radius : 5px;
-        border-bottom-left-radius : 5px;
-        font-size: 1.2rem;
-        padding-inline: 0.5rem;
-        width: 100%;
-      }
+			.form-field input {
+				border: 2px solid darkslateblue;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				font-size: 1.2rem;
+				padding-inline: 0.5rem;
+				width: 100%;
+			}
 
-      .form-field button {
-        border-top-left-radius : 0;
-        border-bottom-left-radius : 0;
-        margin-inline-start: -2px;
-      }
+			.form-field button {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				margin-inline-start: -2px;
+			}
 
-      code > pre {
-        background-color: #eee;
-        font-size: 1.1rem;
-        padding: 1rem;
-      }
+			code > pre {
+				background-color: #eee;
+				font-size: 1.1rem;
+				padding: 1rem;
+			}
 
-      .out {
-        background-color: #eee;
-        border-radius: 5px;
-        min-height: 3rem;
-        min-width: 32rem;
-        padding: 0.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>DOM from JSON (and back)</h1>
-      <p>Have fun modifying the JSON to generate your own DOM elements.</p>
-    </header>
-    <main>
-    </main>
-    <footer>
-      <p>The above form was generated on-the-fly and injected into the
-        <code>main</code> element using the following JSON:
-      </p>
-      <code><pre>{
+			.out {
+				background-color: #eee;
+				border-radius: 5px;
+				min-height: 3rem;
+				min-width: 32rem;
+				padding: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>DOM from JSON (and back)</h1>
+			<p>Have fun modifying the JSON to generate your own DOM elements.</p>
+		</header>
+		<main></main>
+		<footer>
+			<p>
+				The above form was generated on-the-fly and injected into the
+				<code>main</code> element using the following JSON:
+			</p>
+			<code>
+				<pre>
+{
   "tagName": "FORM",
   "attributes": {
     "action": "#",
@@ -159,11 +172,16 @@
       ]
     }
   ]
-}</pre></code>
+}</pre
+				>
+			</code>
 			<p>
-				If you want to prefill the textarea as above, use JSON.stringify on the code below and replace "see below" with the resulting string.
+				If you want to prefill the textarea as above, use JSON.stringify on the
+				code below and replace "see below" with the resulting string.
 			</p>
-			<code><pre>{
+			<code>
+				<pre>
+{
   "tagName": "DIV",
   "attributes": {
     "class": "sb-test",
@@ -181,14 +199,20 @@
       ]
     }
   ]
-}</pre></code>
-      <p>
-        You can try the following example. Note that the <code>toggleVisibility</code>
-        function is already a <a href="./modules/toggle-visibility.js">available module.</a>
-        If you want to try something else, use the <code>log</code> module, e.g.,
-        <code>"events": { "click": "log" }</code>. Don&apos;t forget to escape the quotation marks (\").
-      </p>
-      <code><pre>{
+}</pre
+				>
+			</code>
+			<p>
+				You can try the following example. Note that the
+				<code>toggleVisibility</code> function is already a
+				<a href="./modules/toggle-visibility.js">available module.</a> If you
+				want to try something else, use the <code>log</code> module, e.g.,
+				<code>"events": { "click": "log" }</code>. Don&apos;t forget to escape
+				the quotation marks (\").
+			</p>
+			<code>
+				<pre>
+{
   "tagName": "DIV",
   "attributes": {
     "class": "form-field"
@@ -216,8 +240,13 @@
       "children": ["show"]
     }
   ]
-}</pre></code>
-    </footer>
-    <script src="./index.js" type="module"></script>
-  </body>
+}</pre
+				>
+			</code>
+		</footer>
+		<script
+			src="./index.js"
+			type="module"
+		></script>
+	</body>
 </html>

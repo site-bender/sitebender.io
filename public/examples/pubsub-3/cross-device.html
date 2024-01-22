@@ -1,11 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-    <title>Simple PubSub, v3: cross device</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>Simple PubSub, v3: cross device</title>
 		<style>
 			body {
 				display: flex;
@@ -81,7 +92,10 @@
 				<pre id="phone-output"></pre>
 			</div>
 		</main>
-		<script src="./index.js" type="module"></script>
+		<script
+			src="./index.js"
+			type="module"
+		></script>
 		<script type="module">
 			globalThis.addEventListener("DOMContentLoaded", (event) => {
 				const first = globalThis._xx?.subscribe(
@@ -89,10 +103,18 @@
 					(event) => {
 						const pre = document.querySelector("pre#name-output")
 
-						pre.appendChild(document.createTextNode(JSON.stringify({
-							type: event.type,
-							detail: event.detail,
-						 }, null, 2) + "\n\n"))
+						pre.appendChild(
+							document.createTextNode(
+								JSON.stringify(
+									{
+										type: event.type,
+										detail: event.detail,
+									},
+									null,
+									2,
+								) + "\n\n",
+							),
+						)
 					},
 					"channel-1",
 				)
@@ -102,10 +124,18 @@
 					(event) => {
 						const pre = document.querySelector("pre#email-output")
 
-						pre.appendChild(document.createTextNode(JSON.stringify({
-							type: event.type,
-							detail: event.detail,
-						 }, null, 2) + "\n\n"))
+						pre.appendChild(
+							document.createTextNode(
+								JSON.stringify(
+									{
+										type: event.type,
+										detail: event.detail,
+									},
+									null,
+									2,
+								) + "\n\n",
+							),
+						)
 					},
 					"channel-1",
 				)
@@ -115,10 +145,18 @@
 					(event) => {
 						const pre = document.querySelector("pre#phone-output")
 
-						pre.appendChild(document.createTextNode(JSON.stringify({
-							type: event.type,
-							detail: event.detail,
-						 }, null, 2) + "\n\n"))
+						pre.appendChild(
+							document.createTextNode(
+								JSON.stringify(
+									{
+										type: event.type,
+										detail: event.detail,
+									},
+									null,
+									2,
+								) + "\n\n",
+							),
+						)
 					},
 					"channel-1",
 				)

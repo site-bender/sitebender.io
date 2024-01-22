@@ -1,11 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-    <title>Module test</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>Module test</title>
 		<style>
 			body {
 				background-color: aliceblue;
@@ -72,8 +83,8 @@
 				width: 16rem;
 			}
 		</style>
-  </head>
-  <body>
+	</head>
+	<body>
 		<header>
 			<h1>Module test</h1>
 		</header>
@@ -86,7 +97,7 @@
 			<output></output>
 		</main>
 		<script type="module">
-			async function showIt (str) {
+			async function showIt(str) {
 				const output = document.querySelector("output")
 
 				return async () => {
@@ -96,9 +107,15 @@
 				}
 			}
 
-			document.querySelector("button.hi")?.addEventListener("click", await showIt("hi"))
-			document.querySelector("button.bye")?.addEventListener("click", await showIt("bye"))
-			document.querySelector("button.urk")?.addEventListener("click", await showIt("urk"))
+			document
+				.querySelector("button.hi")
+				?.addEventListener("click", await showIt("hi"))
+			document
+				.querySelector("button.bye")
+				?.addEventListener("click", await showIt("bye"))
+			document
+				.querySelector("button.urk")
+				?.addEventListener("click", await showIt("urk"))
 		</script>
-  </body>
+	</body>
 </html>

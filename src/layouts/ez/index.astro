@@ -1,5 +1,5 @@
 ---
-import "./styles/local.css"
+import "../styles/local.css"
 
 type Props = {
 	title: string
@@ -13,8 +13,8 @@ const { title } = Astro.props
 	<head>
 		<meta charset="UTF-8" />
 		<meta
-			name="description"
-			content="Astro description"
+			name="robots"
+			content="noindex"
 		/>
 		<meta
 			name="viewport"
@@ -26,18 +26,15 @@ const { title } = Astro.props
 			href="/favicon.svg"
 			sizes="any"
 		/>
-		<title>{title}</title>
+		<title>{title} :: EZIDOCS</title>
 	</head>
 	<body>
 		<header>
-			<img
-				alt=""
-				height="48"
-				src="/favicon.svg"
-				width="48"
-			/>
-			<h1>Sitebender</h1>
+			<div class="logo"><a href="/EivMZy4KioeRmeHDXyYiDM/">EZIDOCS</a></div>
+			<p class="warning">Please do not share these URLs outside of EZIDOCS</p>
 		</header>
-		<slot />
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>

@@ -1,11 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
-    <title>Simple PubSub</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>Simple PubSub</title>
 		<style>
 			body {
 				display: flex;
@@ -74,7 +85,10 @@
 				<button id="unsubscribe">Unsubscribe</button>
 			</div>
 		</main>
-		<script src="./index.js" type="module"></script>
+		<script
+			src="./index.js"
+			type="module"
+		></script>
 		<script>
 			globalThis.addEventListener("DOMContentLoaded", () => {
 				const subscribe = document.querySelector("#subscribe")
@@ -84,13 +98,12 @@
 					globalThis._xx?.subscribe(
 						"click",
 						"do-it",
-						(await import("./modules/click-test.js")).default
+						(await import("./modules/click-test.js")).default,
 					)
 				})
 
-				unsubscribe.addEventListener(
-					"click",
-					() => globalThis._xx.unsubscribe("click", "do-it")
+				unsubscribe.addEventListener("click", () =>
+					globalThis._xx.unsubscribe("click", "do-it"),
 				)
 
 				globalThis._xx.subscribe("focus", "subscribe", (event) => {

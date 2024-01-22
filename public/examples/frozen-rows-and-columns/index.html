@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>Frozen rows and columns</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				font-family: sans-serif;
+				font-size: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
+				margin: 0;
+				padding: 0;
+				min-height: 100vh;
+				max-width: 100vw;
+				overflow: hidden;
+			}
+
+			header {
+				align-content: start;
+				background-color: darkslategray;
+				color: ghostwhite;
+				display: grid;
+				padding: 1rem;
+			}
+
+			header h1 {
+				font-family: sans-serif;
+				font-size: 2.4rem;
+				font-weight: 400;
+			}
+
+			table {
+				border: 1px solid #eee;
+				display: block;
+				max-width: 80vw;
+				max-height: 60vh;
+				margin: 1rem;
+				overflow: auto;
+			}
+
+			thead {
+				background-color: white;
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+			}
+
+			thead th:first-child,
+			tbody th {
+				left: 0;
+				position: sticky;
+			}
+
+			td,
+			th {
+				background-color: white;
+				border: 1px solid #eee;
+				padding: 2rem 6rem;
+			}
+
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Frozen rows and columns in HTML tables with CSS</h1>
+		</header>
+		<main>
+			<table>
+				<thead>
+					<tr class="table-header">
+						<th>ID</th>
+						<th>A</th>
+						<th>B</th>
+						<th>C</th>
+						<th>D</th>
+						<th>E</th>
+						<th>F</th>
+						<th>G</th>
+						<th>H</th>
+						<th>I</th>
+						<th>J</th>
+						<th>K</th>
+						<th>L</th>
+						<th>M</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>01</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>02</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>03</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>04</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>05</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>06</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>07</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>08</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>09</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>10</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>11</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<th>12</th>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+						<td>xxx</td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+	</body>
+</html>
