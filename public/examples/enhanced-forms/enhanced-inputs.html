@@ -1,0 +1,264 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			content="width=device-width, initial-scale=1"
+			name="viewport"
+		/>
+		<meta
+			content="noindex"
+			name="robots"
+		/>
+		<meta
+			content="A simple plain HTML form."
+			name="description"
+		/>
+
+		<title>Simple form example</title>
+
+		<style>
+			body {
+				background-color: #fafafa;
+				color: #0e4e09;
+				font-family: sans-serif;
+				font-size: 1rem;
+				line-height: 1.6;
+				padding: 5vw 0;
+			}
+
+			.xx-remove {
+				display: none;
+			}
+
+			.xx-form {
+				margin: auto;
+				max-width: min(48rem, 92vw);
+			}
+
+			.xx-fieldset {
+				border: none;
+				padding: 0;
+			}
+
+			.xx-fieldset legend {
+				font-size: 1.5rem;
+				font-weight: 500;
+				padding: 0;
+			}
+
+			.xx-form-field {
+				margin: 1rem 0;
+			}
+
+			.xx-form-field br {
+				display: none;
+			}
+
+			.xx-field-label {
+				align-items: flex-start;
+				display: flex;
+				flex-direction: column;
+				gap: 0.25rem;
+				justify-content: flex-start;
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+
+			.xx-field-input {
+				background-color: #eafce8;
+				border: 2px solid #0e4e09;
+				border-radius: 5px;
+				color: #2c2c30;
+				font-size: 1.1rem;
+				line-height: 1.6;
+				padding: 0.3rem;
+			}
+
+			.xx-field-input:focus,
+			.xx-field-input:hover {
+				border-color: #4f3;
+			}
+
+			.xx-field-help {
+				font-size: 1rem;
+				margin: 0.5rem 0 0 0.1rem;
+			}
+
+			.xx-field-input:focus {
+				background-color: #fafafa;
+			}
+
+			.xx-submit-button {
+				background-color: #0e4e09;
+				border: 2px solid #0e4e09;
+				border-radius: 5px;
+				box-shadow: none;
+				color: #fafafa;
+				font-size: 1.2rem;
+				font-variant-caps: all-small-caps;
+				letter-spacing: 1px;
+				margin: 1rem 0;
+				padding: 0.3rem 0.5rem;
+			}
+
+			.xx-submit-button:focus,
+			.xx-submit-button:hover {
+				background-color: #fafafa;
+				color: #0e4e09;
+			}
+
+			.xx-datetime-local-output {
+				display: block;
+				margin: 0.25rem 0.5rem;
+			}
+
+			input:invalid {
+				border: 4px dashed mediumorchid;
+			}
+
+			.xx-invalid-icon,
+			.xx-valid-icon {
+				font-weight: 400;
+				font-size: 1rem;
+			}
+
+			.xx-invalid-icon {
+				display: none;
+			}
+
+			div:has(input:invalid) .xx-invalid-icon {
+				display: inline-block;
+			}
+
+			div:has(input:invalid) .xx-valid-icon {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<form
+				action="#"
+				class="xx-form"
+				method="GET"
+				name="simple-form"
+			>
+				<div class="xx-form-field">
+					<label
+						class="xx-field-label"
+						for="iq"
+						id="xx-iq-label"
+					>
+						<span>Your IQ (positive integer)</span>
+						<div class="xx-remove">&#128526; Looking good!</div>
+						<div class="xx-invalid-icon">&#129300; Please check this</div>
+					</label>
+					<br />
+					<div
+						class="xx-field-help"
+						id="xx-iq-help"
+					>
+						What is your intelligence quotient? Don't lie. (0-210)
+					</div>
+					<input
+						aria-labelledby="xx-iq-help xx-iq-label"
+						class="xx-field-input xx-number-field"
+						id="iq"
+						max="210"
+						min="0"
+						name="iq"
+						required
+						step="1"
+						type="number"
+						value="100"
+					/>
+				</div>
+				<div class="xx-form-field">
+					<label
+						class="xx-field-label"
+						for="balance"
+						id="xx-balance-label"
+						>Bank balance (currency)</label
+					>
+					<br />
+					<div
+						class="xx-field-help"
+						id="xx-balance-help"
+					>
+						How much money you got? (###.##)
+					</div>
+					<input
+						aria-labelledby="xx-balance-help xx-balance-label"
+						class="xx-field-input xx-number-field"
+						id="balance"
+						name="balance"
+						required
+						step="0.01"
+						type="number"
+						value="12345.67"
+					/>
+				</div>
+
+				<div class="xx-form-field">
+					<label
+						class="xx-field-label"
+						for="cc"
+						id="xx-cc-label"
+						>Credit card (text)</label
+					>
+					<br />
+					<div
+						class="xx-field-help"
+						id="xx-cc-help"
+					>
+						You can has credit. (#### #### #### ####)
+					</div>
+					<input
+						aria-labelledby="xx-cc-help xx-cc-label"
+						class="xx-field-input xx-cc-field"
+						id="cc"
+						name="cc"
+						pattern="(?:\d(\s|-)?){15}(\d)"
+						required
+						size="36"
+						type="text"
+						value="1234-5678-9012-3456"
+					/>
+				</div>
+				<div class="xx-form-field">
+					<label
+						class="xx-field-label"
+						for="datetime"
+						id="xx-datetime-label"
+						>Expiration (PlainDateTime)</label
+					>
+					<br />
+					<div
+						class="xx-field-help"
+						id="xx-datetime-help"
+					>
+						When will it end?
+					</div>
+					<input
+						aria-labelledby="xx-datetime-help xx-datetime-label"
+						class="xx-field-input xx-datetime-local-field"
+						id="datetime"
+						name="datetime"
+						required
+						type="datetime-local"
+						value="2023-12-25T01:30"
+					/>
+				</div>
+				<button
+					class="xx-submit-button"
+					type="submit"
+				>
+					Check &lsquo;em
+				</button>
+			</form>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			content="width=device-width, initial-scale=1"
+			name="viewport"
+		/>
+		<meta
+			content="noindex"
+			name="robots"
+		/>
+		<meta
+			content="A simple plain HTML form."
+			name="description"
+		/>
+
+		<title>Simple form example</title>
+
+		<style>
+			body {
+				background-color: #fafafa;
+				color: #0e4e09;
+				font-family: sans-serif;
+				font-size: 1rem;
+				line-height: 1.6;
+				padding: 5vw 0;
+			}
+
+			.xx-form {
+				margin: auto;
+				max-width: min(48rem, 92vw);
+			}
+
+			.xx-fieldset {
+				border: none;
+				padding: 0;
+			}
+
+			.xx-fieldset legend {
+				font-size: 1.5rem;
+				font-weight: 500;
+				padding: 0;
+			}
+
+			.xx-form-field {
+				margin: 1rem 0;
+			}
+
+			.xx-field-label {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+
+			.xx-field-input {
+				background-color: #eafce8;
+				border: 2px solid #0e4e09;
+				border-radius: 5px;
+				color: #2c2c30;
+				font-size: 1.1rem;
+				line-height: 1.6;
+				padding: 0.3rem;
+			}
+
+			.xx-field-input:focus,
+			.xx-field-input:hover {
+				border-color: #4f3;
+			}
+
+			.xx-field-help {
+				font-size: 1rem;
+				margin: 0.5rem 0 0 0.1rem;
+			}
+
+			.xx-field-input:focus {
+				background-color: #fafafa;
+			}
+
+			.xx-submit-button {
+				background-color: #0e4e09;
+				border: 2px solid #0e4e09;
+				border-radius: 5px;
+				box-shadow: none;
+				color: #fafafa;
+				font-size: 1.2rem;
+				font-variant-caps: all-small-caps;
+				letter-spacing: 1px;
+				margin: 1rem 0;
+				padding: 0.3rem 0.5rem;
+			}
+
+			.xx-submit-button:focus,
+			.xx-submit-button:hover {
+				background-color: #fafafa;
+				color: #0e4e09;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<form
+				action=""
+				class="xx-form"
+				method="GET"
+				name="simple-form"
+			>
+				<fieldset class="xx-fieldset">
+					<legend>Please sign in</legend>
+					<div class="xx-form-field">
+						<label
+							class="xx-field-label"
+							for="email"
+							id="xx-email-label"
+							>Email address</label
+						>
+						<br />
+						<div
+							class="xx-field-help"
+							id="xx-email-help"
+						>
+							The email address with which you signed up.
+						</div>
+						<input
+							aria-labelledby="xx-email-help xx-email-label"
+							class="xx-field-input xx-email-field"
+							id="email"
+							name="email"
+							required
+							size="36"
+							type="email"
+						/>
+					</div>
+					<div class="xx-form-field">
+						<label
+							class="xx-field-label"
+							for="password"
+							id="xx-password-label"
+							>Password</label
+						>
+						<br />
+						<div
+							class="xx-field-help"
+							id="xx-password-help"
+						>
+							Four or more space-separated words of 4+ characters.
+						</div>
+						<input
+							aria-labelledby="xx-password-help xx-password-label"
+							class="xx-field-input xx-password-field"
+							id="password"
+							name="password"
+							pattern="[a-zA-Z]{4,}( [a-zA-Z]{4,}){3,}"
+							required
+							size="36"
+							type="password"
+						/>
+					</div>
+				</fieldset>
+				<button
+					class="xx-submit-button"
+					type="submit"
+				>
+					Sign in
+				</button>
+			</form>
+		</main>
+	</body>
+</html>

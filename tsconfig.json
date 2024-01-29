@@ -26,11 +26,11 @@
 			"~metadata/*": ["src/metadata/*"],
 			"~snippets/*": ["src/snippets/*"],
 			"~types": ["src/types"],
-			"~utilities/*": ["src/utilities/*"]
+			"~utilities/*": ["src/utilities/*"],
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ESNext"
-	}
+		"target": "ESNext",
+	},
 }
