@@ -1,0 +1,127 @@
+---
+
+---
+
+<form
+	class="traffic-signal"
+	tabindex="0"
+>
+	<label class="bulb">
+		<input
+			checked
+			name="bulb"
+			tabindex="-1"
+			type="radio"
+			value="stop"
+		/>
+	</label>
+	<label class="bulb">
+		<input
+			name="bulb"
+			tabindex="-1"
+			type="radio"
+			value="caution"
+		/>
+	</label>
+	<label class="bulb">
+		<input
+			name="bulb"
+			tabindex="-1"
+			type="radio"
+			value="go"
+		/>
+	</label>
+</form>
+<div
+	id="alert"
+	aria-live="assertive"
+>
+	STOP
+</div>
+
+<style>
+	.traffic-signal {
+		align-items: center;
+		background-color: #666;
+		border: 0.3vh solid #222;
+		border-radius: 0.75vh;
+		box-sizing: content-box;
+		display: flex;
+		flex-direction: column;
+		gap: 1vh;
+		height: 66vh;
+		justify-content: space-between;
+		max-height: 66vh;
+		max-width: 24vh;
+		padding-block: 2vh;
+		width: 24vh;
+	}
+
+	.traffic-signal .bulb {
+		background-color: #444;
+		border: 0.3vh solid #222;
+		border-radius: 50%;
+		box-sizing: border-box;
+		display: flex;
+		flex: 1;
+		max-height: 20vh;
+		max-width: 20vh;
+		place-content: center;
+		height: 20vh;
+		width: 20vh;
+	}
+
+	.traffic-signal .bulb input[type="radio"] {
+		opacity: 0;
+	}
+
+	.traffic-signal .bulb:has(input[value="stop"]:checked) {
+		background: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
+	}
+
+	.traffic-signal .bulb:has(input[value="caution"]:checked) {
+		background: radial-gradient(hsl(44, 100%, 75%), hsl(44, 100%, 50%));
+	}
+
+	.traffic-signal .bulb:has(input[value="go"]:checked) {
+		background: radial-gradient(hsl(120, 100%, 50%), hsl(120, 100%, 30%));
+	}
+
+	#alert {
+		max-height: 0;
+		opacity: 0;
+	}
+</style>
+
+<script>
+	globalThis.addEventListener("DOMContentLoaded", () => {
+		const GO_DELAY = 2000
+		const CAUTION_DELAY = 1000
+		const STOP_DELAY = 3000
+
+		const form = document.querySelector("form")
+		const bulbs = form.elements.namedItem("bulb")
+		const alert = document.querySelector("#alert")
+
+		function runLights() {
+			switch (bulbs.value) {
+				case "go":
+					bulbs.value = "caution"
+					setTimeout(runLights, CAUTION_DELAY)
+					alert.innerText = "CAUTION"
+					break
+				case "caution":
+					bulbs.value = "stop"
+					setTimeout(runLights, STOP_DELAY)
+					alert.innerText = "STOP"
+					break
+				default:
+					bulbs.value = "go"
+					setTimeout(runLights, GO_DELAY)
+					alert.innerText = "GO"
+			}
+		}
+
+		runLights()
+	})
+</script>

@@ -1,0 +1,42 @@
+---
+import TrafficSignal from "../../components/TrafficSignal/index.astro"
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Astro description"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+			sizes="any"
+		/>
+		<title>Traffic Signal</title>
+		<style media="all">
+			html,
+			body {
+				min-height: 100vh;
+			}
+
+			main {
+				display: grid;
+				min-height: 100vh;
+				place-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<TrafficSignal />
+		</main>
+	</body>
+</html>
