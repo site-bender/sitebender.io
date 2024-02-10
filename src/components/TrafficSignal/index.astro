@@ -2,9 +2,7 @@
 
 ---
 
-<form
-	class="traffic-signal"
->
+<form class="traffic-signal">
 	<label class="bulb">
 		<input
 			checked
@@ -36,35 +34,53 @@
 </div>
 
 <style>
+	:root {
+		--bulb-lit-color-caution: radial-gradient(
+			hsl(44, 100%, 75%),
+			hsl(44, 100%, 50%)
+		);
+		--bulb-lit-color-go: radial-gradient(
+			hsl(120, 100%, 50%),
+			hsl(120, 100%, 30%)
+		);
+		--bulb-lit-color-stop: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
+		--bulb-rim-color: #222;
+		--bulb-unlit-color: #444;
+		--case-cover: #222;
+		--faceplate-color: #666;
+
+		--bulb-diameter: 20vh;
+		--bulb-spacing: 1vh;
+	}
+
 	.traffic-signal {
 		align-items: center;
-		background-color: #666;
-		border: 0.3vh solid #222;
+		background-color: var(--faceplate-color);
 		border-radius: 0.75vh;
+		border: 0.3vh solid var(--case-color);
 		box-sizing: content-box;
 		display: flex;
 		flex-direction: column;
-		gap: 1vh;
-		height: 66vh;
+		gap: var(--bulb-spacing);
+		height: calc(
+			calc(var(--bulb-diameter) * 3) + calc(var(--bulb-spacing) * 6)
+		);
 		justify-content: space-between;
-		max-height: 66vh;
-		max-width: 24vh;
-		padding-block: 2vh;
-		width: 24vh;
+		padding-block: calc(var(--bulb-spacing) * 2);
+		width: calc(var(--bulb-diameter) + calc(var(--bulb-spacing) * 4));
 	}
 
 	.traffic-signal .bulb {
-		background-color: #444;
-		border: 0.3vh solid #222;
+		aspect-ratio: 1;
+		background-color: var(--bulb-unlit-color);
 		border-radius: 50%;
+		border: 0.3vh solid var(--bulb-rim-color);
 		box-sizing: border-box;
 		display: flex;
 		flex: 1;
-		max-height: 20vh;
-		max-width: 20vh;
+		height: var(--bulb-diameter);
+		max-height: var(--bulb-diameter);
 		place-content: center;
-		height: 20vh;
-		width: 20vh;
 	}
 
 	.traffic-signal .bulb input[type="radio"] {
@@ -72,15 +88,15 @@
 	}
 
 	.traffic-signal .bulb:has(input[value="stop"]:checked) {
-		background: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
+		background: var(--bulb-lit-color-stop);
 	}
 
 	.traffic-signal .bulb:has(input[value="caution"]:checked) {
-		background: radial-gradient(hsl(44, 100%, 75%), hsl(44, 100%, 50%));
+		background: var(--bulb-lit-color-caution);
 	}
 
 	.traffic-signal .bulb:has(input[value="go"]:checked) {
-		background: radial-gradient(hsl(120, 100%, 50%), hsl(120, 100%, 30%));
+		background: var(--bulb-lit-color-go);
 	}
 
 	#alert {
