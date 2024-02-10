@@ -4,13 +4,11 @@
 
 <form
 	class="traffic-signal"
-	tabindex="0"
 >
 	<label class="bulb">
 		<input
 			checked
 			name="bulb"
-			tabindex="-1"
 			type="radio"
 			value="stop"
 		/>
@@ -18,7 +16,6 @@
 	<label class="bulb">
 		<input
 			name="bulb"
-			tabindex="-1"
 			type="radio"
 			value="caution"
 		/>
@@ -26,7 +23,6 @@
 	<label class="bulb">
 		<input
 			name="bulb"
-			tabindex="-1"
 			type="radio"
 			value="go"
 		/>
@@ -100,11 +96,11 @@
 		const STOP_DELAY = 3000
 
 		const form = document.querySelector("form")
-		const bulbs = form.elements.namedItem("bulb")
+		const bulbs = form?.elements.namedItem("bulb")
 		const alert = document.querySelector("#alert")
 
 		function runLights() {
-			switch (bulbs.value) {
+			switch (bulbs?.value) {
 				case "go":
 					bulbs.value = "caution"
 					setTimeout(runLights, CAUTION_DELAY)
@@ -115,10 +111,11 @@
 					setTimeout(runLights, STOP_DELAY)
 					alert.innerText = "STOP"
 					break
-				default:
+				case "stop":
 					bulbs.value = "go"
 					setTimeout(runLights, GO_DELAY)
 					alert.innerText = "GO"
+				default:
 			}
 		}
 
