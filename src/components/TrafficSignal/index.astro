@@ -5,12 +5,12 @@
 <form class="traffic-signal">
 	<label class="bulb">
 		<input
-			checked
 			name="bulb"
 			type="radio"
 			value="stop"
 		/>
 	</label>
+
 	<label class="bulb">
 		<input
 			name="bulb"
@@ -18,6 +18,7 @@
 			value="caution"
 		/>
 	</label>
+
 	<label class="bulb">
 		<input
 			name="bulb"
@@ -26,28 +27,26 @@
 		/>
 	</label>
 </form>
+
 <div
-	id="alert"
 	aria-live="assertive"
+	id="alert"
 >
 	STOP
 </div>
 
 <style>
 	:root {
-		--bulb-lit-color-caution: radial-gradient(
+		--bulb-color-caution: radial-gradient(
 			hsl(44, 100%, 75%),
 			hsl(44, 100%, 50%)
 		);
-		--bulb-lit-color-go: radial-gradient(
-			hsl(120, 100%, 50%),
-			hsl(120, 100%, 30%)
-		);
-		--bulb-lit-color-stop: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
-		--bulb-rim-color: #222;
-		--bulb-unlit-color: #444;
+		--bulb-color-go: radial-gradient(hsl(120, 100%, 50%), hsl(120, 100%, 30%));
+		--bulb-color-stop: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
+		--bulb-color-unlit: #444;
 		--case-cover: #222;
 		--faceplate-color: #666;
+		--rim-color: #222;
 
 		--bulb-diameter: 20vh;
 		--bulb-spacing: 1vh;
@@ -72,9 +71,9 @@
 
 	.traffic-signal .bulb {
 		aspect-ratio: 1;
-		background-color: var(--bulb-unlit-color);
+		background-color: var(--bulb-color-unlit);
 		border-radius: 50%;
-		border: 0.3vh solid var(--bulb-rim-color);
+		border: 0.3vh solid var(--rim-color);
 		box-sizing: border-box;
 		display: flex;
 		flex: 1;
@@ -88,15 +87,15 @@
 	}
 
 	.traffic-signal .bulb:has(input[value="stop"]:checked) {
-		background: var(--bulb-lit-color-stop);
+		background: var(--bulb-color-stop);
 	}
 
 	.traffic-signal .bulb:has(input[value="caution"]:checked) {
-		background: var(--bulb-lit-color-caution);
+		background: var(--bulb-color-caution);
 	}
 
 	.traffic-signal .bulb:has(input[value="go"]:checked) {
-		background: var(--bulb-lit-color-go);
+		background: var(--bulb-color-go);
 	}
 
 	#alert {
@@ -118,20 +117,24 @@
 		function runLights() {
 			switch (bulbs?.value) {
 				case "go":
-					bulbs.value = "caution"
-					setTimeout(runLights, CAUTION_DELAY)
 					alert.innerText = "CAUTION"
+					bulbs.value = "caution"
+
+					setTimeout(runLights, CAUTION_DELAY)
+
 					break
 				case "caution":
-					bulbs.value = "stop"
-					setTimeout(runLights, STOP_DELAY)
 					alert.innerText = "STOP"
+					bulbs.value = "stop"
+
+					setTimeout(runLights, STOP_DELAY)
+
 					break
-				case "stop":
-					bulbs.value = "go"
-					setTimeout(runLights, GO_DELAY)
-					alert.innerText = "GO"
 				default:
+					alert.innerText = "GO"
+					bulbs.value = "go"
+
+					setTimeout(runLights, GO_DELAY)
 			}
 		}
 
