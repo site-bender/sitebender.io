@@ -1,0 +1,48 @@
+---
+import "./index.css"
+
+import getLineNumberingWidth from "../../utilities/getLineNumberingWidth"
+
+export type MDXInstance<T> = {
+	compiledContent: () => string
+	file: string
+	frontmatter: T
+	publishedOn?: string | undefined | null
+	rawContent: () => string
+	title?: string | undefined | null
+	url: string | undefined
+}
+
+export type Props<T> = {
+	caption?: string | undefined | null
+	index?: number | undefined | null
+	isIndexed?: boolean | undefined | null
+	lineNumberingWidth?: number | undefined | null
+	snippet?: MDXInstance<T> | undefined | null
+}
+
+const { caption, index, isIndexed, lineNumberingWidth, snippet, ...attrs } =
+	Astro.props
+
+const cap =
+	snippet.frontmatter.caption ||
+	(await Astro.slots.render("caption")) ||
+	caption
+const digits = lineNumberingWidth || getLineNumberingWidth(snippet.rawContent())
+const style = `--sb-line-number-width: ${digits * 1.5}ch`
+---
+
+<figure
+	class="code-block"
+	{style}
+>
+	{
+		cap && (
+			<figcaption>
+				{index ? `Figure ${index}: ` : ""}
+				<Fragment set:html={cap} />
+			</figcaption>
+		)
+	}
+	<Fragment set:html={snippet.compiledContent()} />
+</figure>

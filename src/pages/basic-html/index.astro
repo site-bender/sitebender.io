@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/index.astro"
+import CodeBlock from "../../components/CodeBlock/index.astro"
+import * as whitespaceHtml from "../../snippets/html/whitespace.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Basic HTML</h1>
+			<p>
+				<abbr title="HyperText Markup Language">HTML</abbr> is a <strong
+					>markup language</strong
+				> used for marking up content of various types: text, images, multimedia,
+				etc. It is the fundamental language of the WWW: the <em
+					>World Wide Web.</em
+				>
+			</p>
+			<p>
+				These days, we refer to the WWW simply as &ldquo;the internet&rdquo;.
+			</p>
+			<p>
+				Every page you view in a web browser is structured with HTML. No
+				exceptions. Thus, the first skill to master when learning web
+				development is proper use of <em>semantic</em> HTML.
+			</p>
+			<section>
+				<h2>HTML is used to structure content</h2>
+				<p>
+					Let&rsquo;s start with structuring text. Our text needs to be
+					organized into paragraphs. You might think that you can simply add a
+					couple of line breaks in your text to accomplish this. But you&rsquo;d
+					be wrong.
+				</p>
+				<p>
+					Web pages are written in HTML, and HTML <strong
+						>collapses whitespace.</strong
+					> This actually makes it easier for us. We don't have to write our text
+					in the way we expect it to appear on the page. This also makes our content
+					&ldquo;responsive&rdquo;.
+				</p>
+				<p>
+					That means that if we make our browser window bigger, the text will
+					&ldquo;re-flow&rdquo; to fill the available space. It means that if we
+					write our code like this:
+				</p>
+				<CodeBlock snippet={whitespaceHtml} />
+				<p>Then it will appear on the page like this:</p>
+				<pre>This is a sentence.</pre>
+				<p>
+					The extra whitespace has been removed. Put five spaces between two
+					words in the code. On the page, you will see a single space.
+				</p>
+				<blockquote class="no-style">
+					A note about code examples: The line numbers are not part of the code,
+					but are there to make referring back to specific lines of code easier.
+				</blockquote>
+				<p>
+					This is very important to get straight. <strong
+						>The way your HTML code <em>looks</em> has <em>nothing</em> to do with
+						how it will look on the page.</strong
+					> How it will look on the page depends on the <strong>markup.</strong>
+					We add that markup as <strong>HTML.</strong>
+				</p>
+				<p>Got it? Don&rsquo;t move on until you do.</p>
+				<p>
+					When you&rsquo;re ready, follow each link in turn to learn the basics:
+				</p>
+				<ol>
+					<li>
+						<a href="/basic-html/elements">HTML elements</a>
+					</li>
+					<li>
+						<a href="/basic-html/block-vs-inline">Block vs. inline elements</a>
+					</li>
+					<li>
+						<a href="/basic-html/the-default-stylesheet"
+							>The default stylesheet</a
+						>
+					</li>
+					<li>
+						<a href="/basic-html/headings">Headings</a>
+					</li>
+					<li>
+						<a href="/basic-html/attributes-and-links">Attributes and links</a>
+					</li>
+					<li>
+						<a href="/basic-html/element-nesting">Element nesting</a>
+					</li>
+					<li>
+						<a href="/basic-html/empty-elements">Empty elements</a>
+					</li>
+				</ol>
+			</section>
+		</article>
+	</main>
+</Layout>

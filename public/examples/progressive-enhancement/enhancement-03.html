@@ -78,6 +78,13 @@
 							mechanics as a NASA employee were critical to the success of the
 							first and subsequent U.S. crewed spaceflights.
 						</p>
+						<p>
+							During her 33-year career at NASA and its predecessor, she earned
+							a reputation for mastering complex manual calculations and helped
+							pioneer the use of computers to perform the tasks. The space
+							agency noted her &ldquo;historical role as one of the first
+							African-American women to work as a NASA scientist&rdquo;.
+						</p>
 					</div>
 				</details>
 				<details class="xx-accordion">
@@ -92,6 +99,17 @@
 							was an American mathematician and human computer who worked for
 							the National Advisory Committee for Aeronautics (NACA), and NASA,
 							at Langley Research Center in Hampton, Virginia.
+						</p>
+						<p>
+							In 1949, she became acting supervisor of the West Area Computers,
+							the first African-American woman to receive a promotion and
+							supervise a group of staff at the center.
+						</p>
+						<p>
+							She later was promoted officially to the position of supervisor.
+							During her 28-year career, Vaughan prepared for the introduction
+							of computers in the early 1960s by teaching herself and her staff
+							the Fortran programming language.
 						</p>
 					</div>
 				</details>
@@ -109,6 +127,13 @@
 							was succeeded by the National Aeronautics and Space Administration
 							(NASA).
 						</p>
+						<p>
+							She worked at Langley Research Center in Hampton, Virginia, for
+							most of her career. She started as a computer at the segregated
+							West Area Computing division in 1951. In 1958, after taking
+							engineering classes, she became NASA&rsquo;s first black female
+							engineer.
+						</p>
 					</div>
 				</details>
 			</div>
@@ -117,47 +142,57 @@
 			function toggleAccordion(event) {
 				event.preventDefault()
 
+				const DELAY = 10
+				const OPEN_INCREMENT = 15
+				const SHUT_INCREMENT = 25
+
 				const summary = event.target
 				const accordion = summary.closest("details")
 				const content = accordion.querySelector(".xx-accordion-content")
 				const openHeight = summary.xxOpenHeight
 
+				if (!(summary && accordion && content)) {
+					return
+				}
+
+				function shutAccordion() {
+					const currentHeight = parseInt(content.style.maxHeight, 10)
+
+					if (currentHeight > 0) {
+						content.style.maxHeight =
+							currentHeight < SHUT_INCREMENT
+								? "0"
+								: `${currentHeight - SHUT_INCREMENT}px`
+
+						setTimeout(shutAccordion, DELAY)
+
+						return
+					}
+
+					accordion.open = false
+				}
+
 				if (accordion.open) {
 					content.style.maxHeight = `${openHeight}px`
-
-					function shutAccordion() {
-						const maxHeight = parseInt(content.style.maxHeight, 10)
-
-						if (maxHeight > 0) {
-							content.style.maxHeight =
-								maxHeight < 25 ? "0" : `${maxHeight - 25}px`
-
-							setTimeout(shutAccordion, 10)
-
-							return
-						}
-
-						accordion.open = false
-					}
 
 					shutAccordion()
 
 					return
 				}
 
-				content.style.maxHeight = "0px"
-
 				function openAccordion() {
-					const maxHeight = parseInt(content.style.maxHeight, 10)
-
 					accordion.open = true
 
-					if (maxHeight < openHeight) {
-						content.style.maxHeight = `${maxHeight + 15}px`
+					const currentHeight = parseInt(content.style.maxHeight, 10)
 
-						setTimeout(openAccordion, 10)
+					if (currentHeight < openHeight) {
+						content.style.maxHeight = `${currentHeight + OPEN_INCREMENT}px`
+
+						setTimeout(openAccordion, DELAY)
 					}
 				}
+
+				content.style.maxHeight = "0px"
 
 				openAccordion()
 			}

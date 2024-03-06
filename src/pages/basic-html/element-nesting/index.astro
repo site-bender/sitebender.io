@@ -1,0 +1,179 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as baseHtmlHtml from "../../../snippets/html/base-html.md"
+import * as badNestingHtml from "../../../snippets/html/bad-nesting.md"
+import * as goodNestingHtml from "../../../snippets/html/good-nesting.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Element nesting</h1>
+			<p>
+				I mentioned early on that we can think of HTML elements as
+				&ldquo;boxes&rdquo;. This is an excellent metaphor. Keep it in mind and
+				it will help to prevent the most common mistakes.
+			</p>
+			<p>
+				If I have two boxes, and one fits inside the other, then I can
+				&ldquo;nest&rdquo; the smaller box in the larger one. If you think of
+				your web page/document as a large element comprised of smaller elements
+				nested inside each other, then you can see that the page hierarchy <strong
+					>mirrors</strong
+				>
+				the HTML structure.
+			</p>
+			<p>You already know a few elements:</p>
+			<ul>
+				<li>
+					<code>h1</code>, <code>h2</code>, etc., <code>p</code>, and <code
+						>div</code
+					> are all <strong>block elements.</strong>
+				</li>
+				<li>
+					<code>span</code> and <code>a</code> (anchor) are <strong
+						>inline elements.</strong
+					>
+				</li>
+			</ul>
+			<p>
+				Now, let&rsquo;s add a few more. We will show a full page hierarchy, but
+				a simple one.
+			</p>
+			<section>
+				<h2>Structuring a web page</h2>
+				<p>
+					The outermost &ldquo;box&rdquo; of a web page is the top-level HTML
+					element. Unsurprisingly, that is the
+					<code>html</code> element itself.
+				</p>
+				<p>
+					Inside the <code>html</code> element, we can nest a <code>body</code> element.
+					This is the <strong>visible</strong> portion of the page. (We will learn
+					how to add hidden data to the page later.)
+				</p>
+				<p>
+					Inside the <code>body</code>, we might have an article. So we can use
+					the <code>article</code> element. Our article has a heading, so this is
+					a first-level heading element, <code>h1</code>, followed by a few
+					paragraphs (<code>p</code> elements).
+				</p>
+				<p>
+					We might even break our article into sections, each with its own
+					subheading. We can use the <code>section</code> element and the 2nd-level
+					heading element,
+					<code>h2</code>.
+				</p>
+				<p>
+					To keep this easy to understand, we need to organize our code <em
+						>very carefully.</em
+					>
+					It is a good idea to follow standard practices and good design principles,
+					such as
+					<a
+						href="https://craft-code.dev/essays/critique/use-the-proximity-principle"
+						rel="external"
+						>the proximity principle.</a
+					> We will indicate nesting with <strong>indentation</strong>.
+					Typically, we will set our tab width to two spaces.
+				</p>
+				<p>
+					So what does this look like in practice. Notice how nesting elements
+					properly and using indentation and whitespace makes our code easy to
+					understand and reason about.
+				</p>
+				<p>
+					Using the correct HTML elements also helps us to understand what each
+					bit of text <em>means.</em> Is it a paragraph? A link? An article? The
+					name of the element clues us in.
+				</p>
+				<CodeBlock snippet={baseHtmlHtml} />
+				<p>
+					Boxes in boxes in boxes. Labeled front and back with HTML tags.
+					Attributes in the opening tag, if needed.
+				</p>
+				<p>
+					We also use &lduqo;syntax highlighting&rdquo; to make it easier to
+					spot the tags and attributes. Line numbering (not part of the code) is
+					also common.
+				</p>
+				<p>
+					You can actually copy and paste this code into a text file, give it an <code
+						>.html</code
+					> extension, open it in a browser, and see the page.
+				</p>
+			</section>
+			<section>
+				<h2>The most important thing to know about nesting</h2>
+				<p>
+					HTML elements must be fully nested. That is an element cannot start
+					inside one box and end in another. Each element must be entirely
+					inside its &ldquo;parent&rdquo; element.
+				</p>
+				<p>So this is all wrong:</p>
+				<CodeBlock snippet={badNestingHtml} />
+				<p>
+					The <code>span</code> element must be entirely inside the <code
+						>p</code
+					> element:
+				</p>
+				<CodeBlock snippet={goodNestingHtml} />
+				<p>
+					Nesting makes this most clear, as the above syntax-highlighted example
+					shows. That example uses the design principle of <strong
+						>alignment.</strong
+					> Note how the opening and closing tags are aligned to the same indentation
+					with their content indented further.
+				</p>
+				<p>
+					What about empty elements? Is that a thing? Yes, it is. And it is
+					next.
+				</p>
+			</section>
+			<section>
+				<h2>The other most important thing to know</h2>
+				<p>
+					Even if you nest an element fully inside another, you might still be
+					doing it wrong.
+				</p>
+				<p>
+					Each element has a list of allowed child elements. The easiest way to
+					check is on
+					<a
+						href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+						rel="external"
+						>Mozilla Developer Network.</a
+					>
+				</p>
+				<p>
+					Look up the element and scroll down to the &ldquo;Technical
+					summary&rdquo;. There you will find &ldquo;Permitted content&rdquo;.
+					You may have to click through to a content type, such as
+					&ldquo;interactive content&rdquo;, to get to the list of actual
+					elements.
+				</p>
+				<p>
+					The simplest thing to remember is that inline elements can go inside
+					block and inline elements, but block elements cannot go inside inline
+					elements. Usually. And there are other examples, too. Such as that a
+					link cannot go inside another link. How would that work?
+				</p>
+				<p>
+					But learn these things <strong>as you go along:</strong> just in time.
+				</p>
+			</section>
+			<p>
+				Next: <a href="/basic-html/empty-elements">Empty elements</a>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/attributes-and-links"
+					>Attributes and links</a
+				>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

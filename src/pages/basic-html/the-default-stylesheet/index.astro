@@ -1,0 +1,94 @@
+---
+import Layout from "../../../layouts/index.astro"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>The default stylesheet</h1>
+			<p>
+				Remember that we said that HTML was invented well before <strong
+					>stylesheets</strong
+				> came around. Hmm. So how did browsers display content before there was
+				another way to style it?
+			</p>
+			<p>Simple. They had a built-in &ldquo;default&rdquo; stylesheet.</p>
+			<p>
+				One big drag about this. Each browser had its own idea about how to
+				style the page. This drove developers nuts.
+			</p>
+			<p>
+				Even today, browsers still have their own default stylesheets. So when
+				developers want to style the page with CSS (Cascading Style Sheets),
+				many will first add a &ldquo;reset&rdquo; stylesheet that un-sets all
+				the various browser styles. Now the dev can work from the same base in
+				every browser.
+			</p>
+			<p>
+				But that is well beyond the scope of this course. It is for context
+				only. And modern browsers have been converging on a fairly standard
+				stylesheet. So some devs are beginning to abandon the
+				&ldquo;reset&rdquo; stylesheet entirely.
+			</p>
+			<section>
+				<h2>Some default styles</h2>
+				<p>
+					We&rsquo;ll talk more about this further along, but for now this is
+					all you need to know about default styles.
+				</p>
+				<p>
+					First, the default <strong>style</strong>
+					<em>has nothing to do with the HTML element.</em>
+					HTML elements exists to define <strong>structure</strong> and <strong
+						>meaning</strong
+					>. This will become clearer shortly.
+				</p>
+				<p>
+					To give an example, nearly every browser default stylesheet will add
+					space above and below a <code>p</code> element. But an HTML <code
+						>p</code
+					>
+					element is <strong>not</strong> a block of text with space above and below
+					it. A <code>p</code> element is a <em>paragraph.</em> That gives the text
+					some meaning.
+				</p>
+				<p>
+					This is important: do <strong>not</strong> use the <code>p</code> element
+					because you want space above and below the output. That is a styling concern
+					and is properly handled in the stylesheet. Use the <code>p</code> element
+					when you are marking up a <strong>paragraph.</strong>
+				</p>
+			</section>
+			<section>
+				<h2>So what are <code>div</code> and <code>span</code> for?</h2>
+				<p>
+					Simple. These elements are for text <em
+						>to which you want to apply styles using a stylesheet.</em
+					>
+					Other than the block/inline aspect, they have no default style. The browser
+					will put a newline after the <code>div</code>.
+				</p>
+				<p>
+					The <code>span</code> element, minus a stylesheet, might as well not exist.
+					It does nothing.
+				</p>
+				<p>
+					Hence, until you get to styling with CSS, you won&rsquo;t use many <code
+						>div</code
+					> or <code>span</code> elements.
+				</p>
+			</section>
+			<p>
+				Next: <a href="/basic-html/headings">Headings</a>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/block-vs-inline"
+					>Block vs. inline elements</a
+				>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

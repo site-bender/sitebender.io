@@ -1,0 +1,61 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as poemHtml from "../../../snippets/html/poem.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Empty elements</h1>
+			<p>
+				Some HTML elements will never have content. Generally, these are
+				elements that insert something into the page, such as an image or a form
+				field.
+			</p>
+			<p>
+				Perhaps the simplest of the empty elements is the <code>br</code> or &ldquo;break&rdquo;
+				element. As an empty element, it has no closing tag. It looks like this:
+				<code>&lt;br&gt;</code>
+			</p>
+			<p>
+				The <code>br</code> element is a bad element. It is probably the most abused
+				element in all of HTML. Possible exception: headings. The <code>br</code
+				> element is used to add a line break. For example, when printing lines of
+				poetry. This:
+			</p>
+			<CodeBlock snippet={poemHtml} />
+			<p>Renders like this:</p>
+			<blockquote>
+				….the Cambridge ladies do not care, above<br />
+				Cambridge if sometimes in its box of<br />
+				sky lavender and cornerless,the<br />
+				moon rattles like a fragment of angry candy
+			</blockquote>
+			<p>
+				That seems reasonable. So what&rsquo;s so bad about the <code>br</code> element?
+			</p>
+			<p>
+				Simply this: devs often abuse it for <strong>spacing.</strong> They&rsquo;ll
+				use a string of <code>br</code> elements to push two bits of content apart.
+			</p>
+			<p>
+				<strong>Stylesheets are used for spacing; not HTML elements!</strong>
+				Use the <code>br</code> element sparingly, if at all.
+			</p>
+			<p>
+				There are a few other empty elements, but we will cover them as we need
+				them: just in time.
+			</p>
+			<p>
+				Next: <a href="/basic-html/"></a>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/element-nesting">Element nesting</a>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

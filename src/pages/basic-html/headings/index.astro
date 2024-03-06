@@ -1,0 +1,100 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as h1Html from "../../../snippets/html/h1.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Headings</h1>
+			<p>
+				Unfortunately, headings are where the inventor of HTML really screwed
+				up. (I&rsquo;m looking at <em>you,</em> Tim Berners-Lee.)
+			</p>
+			<p>HTML headings are a disaster. Just sayin&rsquo;.</p>
+			<p>
+				I won&rsquo;t confuse you by telling you how headings <em
+					>should have been implemented.</em
+				> Maybe later. But trust me when I say that more devs get headings wrong
+				than get them right. Way more.
+			</p>
+			<section>
+				<h2>It&rsquo;s a hierarchy!</h2>
+				<p>
+					HTML provides different elements for different <em>levels</em> of heading:
+				</p>
+				<ol>
+					<li>The main heading on a page.</li>
+					<li>Section headings.</li>
+					<li>Subsection headings.</li>
+					<li>Etc.</li>
+				</ol>
+				<p>
+					Instead of using the structure of the HTML document to determine which
+					headings were which, HTML decided to number the headings, 1 to 6. This
+					gives us six heading elements:
+					<code>h1</code>,
+					<code>h2</code>,
+					<code>h3</code>,
+					<code>h4</code>,
+					<code>h5</code>,
+					<code>h6</code>.
+				</p>
+				<p>
+					These correspond to their <strong
+						>position in the page hierarchy!</strong
+					>
+					The have <em
+						>nothing to do with how the heading elements is styled.</em
+					>
+				</p>
+				<p>
+					But, of course, the typical browser default stylesheet had to
+					distinguish between them, so it made <code>h1</code> big and bold, then
+					made each successive heading element a bit smaller.
+				</p>
+				<p>
+					A great many developers <em>do not understand this.</em> The do not think
+					that <code>h1</code>
+					means &ldquo;top-level heading&rdquo;. They think it means &ldquo;make
+					this content big and bold&rdquo;.
+				</p>
+				<p>
+					<strong
+						>The <code>h</code> elements have nothing to do with styling! They represent
+						the position of that heading in the page hierarchy.</strong
+					>
+				</p>
+				<p>
+					Have I stressed that enough yet? <strong
+						>Do not use the <code>h</code> elements for how they look on the page.</strong
+					> Just don&rsquo;t do it. Don&rsquo;t.
+				</p>
+				<p>
+					But if you look around online, you&rsquo;ll see these elements abused <em
+						>everywhere.</em
+					>
+				</p>
+				<p>
+					As we go along, we will learn more elements and will see how to
+					structure a page. Then the use of <code>h</code> elements will become much
+					clearer. Here is what one looks like:
+				</p>
+				<CodeBlock snippet={h1Html} />
+			</section>
+			<p>
+				Next: <a href="/basic-html/attributes-and-links">Attributes and links</a
+				>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/the-default-stylesheet"
+					>The default stylesheet</a
+				>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

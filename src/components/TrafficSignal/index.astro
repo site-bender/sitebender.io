@@ -37,16 +37,34 @@
 
 <style>
 	:root {
+		--amber: 83% 0.2 82.1; /* #feba00 */
+		--amber-tinted: 91% 0.1 90; /* #fbdf93 */
+		--green: 59% 0.3 142.5; /* #009800 */
+		--green-tinted: 87% 0.3 142.5; /* #2bff26 */
+		--red: 58% 0.2 30.1; /* #d73625 */
+		--red-tinted: 68% 0.2 28; /* #fb594d */
+
+		--gray-dark: 51% 0 0; /* #666666 */
+		--gray-darker: 39% 0 0; /* #454545 */
+		--gray-darkest: 25% 0 0; /* #222222 */
+
 		--bulb-color-caution: radial-gradient(
-			hsl(44, 100%, 75%),
-			hsl(44, 100%, 50%)
+			oklch(var(--amber-tinted)),
+			oklch(var(--amber))
 		);
-		--bulb-color-go: radial-gradient(hsl(120, 100%, 50%), hsl(120, 100%, 30%));
-		--bulb-color-stop: radial-gradient(hsl(5, 90%, 65%), hsl(5, 100%, 45%));
-		--bulb-color-unlit: #444;
-		--case-cover: #222;
-		--faceplate-color: #666;
-		--rim-color: #222;
+		--bulb-color-go: radial-gradient(
+			oklch(var(--green-tinted)),
+			oklch(var(--green))
+		);
+		--bulb-color-stop: radial-gradient(
+			oklch(var(--red-tinted)),
+			oklch(var(--red))
+		);
+
+		--bulb-color-unlit: oklch(var(--gray-darker));
+		--case-cover: oklch(var(--gray-darkest));
+		--faceplate-color: oklch(var(--gray-dark));
+		--rim-color: oklch(var(--gray-darkest));
 
 		--bulb-diameter: 20vh;
 		--bulb-spacing: 1vh;
@@ -106,38 +124,38 @@
 
 <script>
 	globalThis.addEventListener("DOMContentLoaded", () => {
-		const GO_DELAY = 2000
-		const CAUTION_DELAY = 1000
-		const STOP_DELAY = 3000
+		const GO_TIME_IN_MILLISECONDS = 2000
+		const CAUTION_TIME_IN_MILLISECONDS = 1000
+		const STOP_TIME_IN_MILLISECONDS = 3000
 
 		const form = document.querySelector("form")
 		const bulbs = form?.elements.namedItem("bulb")
 		const alert = document.querySelector("#alert")
 
-		function runLights() {
+		function energizeSignal() {
 			switch (bulbs?.value) {
 				case "go":
-					alert.innerText = "CAUTION"
+					alert && (alert.innerText = "CAUTION")
 					bulbs.value = "caution"
 
-					setTimeout(runLights, CAUTION_DELAY)
+					setTimeout(energizeSignal, CAUTION_TIME_IN_MILLISECONDS)
 
 					break
 				case "caution":
-					alert.innerText = "STOP"
+					alert && (alert.innerText = "STOP")
 					bulbs.value = "stop"
 
-					setTimeout(runLights, STOP_DELAY)
+					setTimeout(energizeSignal, STOP_TIME_IN_MILLISECONDS)
 
 					break
 				default:
-					alert.innerText = "GO"
+					alert && (alert.innerText = "GO")
 					bulbs.value = "go"
 
-					setTimeout(runLights, GO_DELAY)
+					setTimeout(energizeSignal, GO_TIME_IN_MILLISECONDS)
 			}
 		}
 
-		runLights()
+		energizeSignal()
 	})
 </script>

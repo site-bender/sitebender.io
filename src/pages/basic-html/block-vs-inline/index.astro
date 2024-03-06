@@ -1,0 +1,98 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as divsHtml from "../../../snippets/html/divs.md"
+import * as spansHtml from "../../../snippets/html/spans.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Block vs. inline elements</h1>
+			<p>
+				If you were paying close attention, you may have noticed that the two
+				paragraphs in the previous example were separated in the output by a
+				blank line. Where did that come from? Doesn&rsquo;t HTML collapse
+				whitespace?
+			</p>
+			<p>
+				Yes, it does. But we make a distinction between two basic types of HTML
+				elements:
+				<strong>block</strong> and <strong>inline</strong>.
+			</p>
+			<p>
+				<strong>Block</strong> elements are automatically followed by a newline.
+				In other words, they stand alone.
+			</p>
+			<p>
+				<strong>Inline</strong> elements, in contrast, flow with the text. We will
+				see this in action very soon.
+			</p>
+			<p>
+				The <code>p</code> element is a &ldquo;block&rdquo; element. So they sit
+				on different &ldquo;lines&rdquo; on the page.
+			</p>
+			<section>
+				<h2>Why the distinction?</h2>
+				<p>
+					This is actually a distinction without much meaning. We can use a
+					&ldquo;stylesheet&rdquo; to tell block elements to display inline, and
+					inline elements to display as blocks. Doh. So why bother to do this
+					with HTML?
+				</p>
+				<p>
+					Block vs. inline is a holdover from the earliest versions of HTML.
+					Cascading Style Sheets (CSS) were not added to the browsers until
+					almost a decade after HTML came along. So, in those early days, the
+					distinction was important.
+				</p>
+				<p>
+					Still, it is good to know and follow. Making block elements into
+					inline elements and vice versa makes for very confusing code. Spare
+					the next developer the pain. Use the right elements.
+				</p>
+			</section>
+			<section>
+				<h2>The generic block and inline elements</h2>
+				<p>
+					There are generic HTML elements for marking up content as
+					&ldquo;block&rdquo; or &ldquo;inline&rdquo;. For block content, this
+					is the &ldquo;division&rdquo; element: <code>div</code>. For inline
+					content, it is the <code>span</code> element.
+				</p>
+				<p>
+					So unless we mess with it using a stylesheet, the following examples
+					should make this clear. This code:
+				</p>
+				<CodeBlock snippet={divsHtml} />
+				<p>That gives you this output:</p>
+				<blockquote class="no-style">
+					<div>This</div>
+					<div>is</div>
+					<div>block</div>
+					<div>text.</div>
+				</blockquote>
+				<p>Contrast that with the inline <code>span</code> element:</p>
+				<CodeBlock snippet={spansHtml} />
+				<blockquote class="no-style">
+					<span>This</span>
+					<span>is</span>
+					<span>block</span>
+					<span>text.</span>
+				</blockquote>
+				<p>So when would we use these elements? That&rsquo;s coming up.</p>
+			</section>
+			<p>
+				Next: <a href="/basic-html/the-default-stylesheet"
+					>The default stylesheet</a
+				>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/elements">HTML elements</a>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

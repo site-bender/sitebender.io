@@ -1,0 +1,94 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as aHtml from "../../../snippets/html/a.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Attributes and links</h1>
+			<p>
+				HTML stands for <strong>HyperText Markup Language</strong>. We have
+				discussed what markup does&mdash;adds structure and meaning to
+				content&mdash;but what is hypertext?
+			</p>
+			<p>
+				<strong>HyperText</strong> is a system for linking one bit of text to another.
+				Each end is an &ldquo;anchor&rdquo; of the link. Originally, it was intended
+				to mark each end of the link so links worked both directions. As you may
+				have noticed, that didn&rsquo;t quite work out.
+			</p>
+			<p>
+				So now we mark the &ldquo;from&rdquo; end, but not the receiving end.
+			</p>
+			<p>
+				Content that is so linked is called a &ldquo;hyperlink&rdquo;. We can
+				hyperlink to text in the same document, to another document or part
+				thereof on the same website, or even to another website.
+			</p>
+			<p>
+				The element we use for this is the &ldquo;anchor&rdquo; element. We use
+				the <code>a</code> tag for it.
+			</p>
+			<p>
+				Between the opening and closing <code>a</code> tags we put the link label.
+				Typically, you will see this as underlined blue text, but thatk&rsquo; not
+				the <code>a</code> element, which <em>has no style</em>. That&rsquo;s
+				the default stylesheet at work.
+			</p>
+			<p>
+				Typically the pointer (or cursor) changes to a hand with one raised
+				finger (not the middle one) when you hover the pointer over a link.
+				That&rsquo;s a nice <a
+					href="https://en.wikipedia.org/wiki/Affordance"
+					rel="external"
+					>affordance.</a
+				>
+			</p>
+			<p>
+				OK, so we can mark up the link label. Now, how do we tell it what to
+				link to? That&rsquo;s next.
+			</p>
+			<section>
+				<h2>HTML attributes</h2>
+				<p>
+					Sometimes we want to add more information to an element than just its
+					content. The anchor tag (<code>a</code>) is one example. We need to
+					tell it what to link to. Put another way, we need to give it a <strong
+						>hypertext reference.</strong
+					>
+				</p>
+				<p>
+					So HTML includes the ability to add &ldquo;attributes&rdquo; to HTML
+					elements. These take the form of name-value pairs separated by an
+					equal sign and with the value in double quotation marks: <code
+						>name="value"</code
+					>.
+				</p>
+				<p>
+					We only need to define these once for each element, so we add the
+					attributes to the <strong>opening tag</strong> only. For our <code
+						>a</code
+					> element, we need a <strong>hypertext reference</strong>, abbreviated <code
+						>href</code
+					>:
+				</p>
+				<CodeBlock snippet={aHtml} />
+				<p>
+					Done! That is almost all there is to HTML. Now it is simply a matter
+					of learning the most common HTML elements and attributes.
+				</p>
+			</section>
+			<p>
+				Next: <a href="/basic-html/element-nesting">Element nesting</a>
+			</p>
+			<p>
+				Previous: <a href="/basic-html/headings">Headings</a>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>

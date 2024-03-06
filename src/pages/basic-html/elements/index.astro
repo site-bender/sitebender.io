@@ -1,0 +1,108 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as parasHtml from "../../../snippets/html/paras.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>HTML elements</h1>
+			<p>
+				To markup our page content, we take the text to which we want to apply
+				some structure and we insert it into an HTML <strong>element.</strong>
+				The element we use determines the structure and meaning of that content.
+			</p>
+			<p>There are different elements for each type of structural component.</p>
+			<p>
+				Let&rsquo;s start with the most obvious unit of structure: the
+				paragraph. The HTML element used to markup a paragraph of text is the <strong
+					>p</strong
+				> element.
+			</p>
+			<section>
+				<h2>Boxes nested in boxes</h2>
+				<p>
+					You can think of each HTML element as a sort of &ldquo;box&rdquo;. We
+					will create the &ldquo;box&rdquo; by marking the start and end of the
+					box and putting our content&mdash;the paragraph&rsquo;s
+					text&mdash;between these two &ldquo;tags&rdquo;.
+				</p>
+				<p>
+					We create these tags using a pair of angle brackets: <code
+						>&lt;&gt;</code
+					>. To make clear whether we are &ldquo;opening&rdquo; or
+					&ldquo;closing&rdquo; the element, we add a slash to the closing tag: <code
+						>&lt;&gt;&lt;/&gt;</code
+					>. Finally, we add the name of the element as a label to both tags:
+					<code>&lt;p&gt;&lt;/p&gt;</code>. Note that the label comes <em
+						>after</em
+					>
+					the slash in the closing tag.
+				</p>
+				<p>
+					And that&rsquo;s it! Most of the rest is just learning the various
+					element names. Easy peasy.
+				</p>
+				<p>So we can mark up a couple paragraphs of text like this:</p>
+				<CodeBlock snippet={parasHtml} />
+				<p>And here is how those paragraphs will appear on our page:</p>
+				<blockquote class="no-style">
+					<p>
+						Donec nisi sem, malesuada ut erat eu, placerat elementum sapien. Ut
+						euismod molestie sapien, eu luctus eros feugiat ut.
+					</p>
+					<p>
+						Sed ultrices leo vel ornare rutrum. Aliquam mollis erat sit amet
+						semper aliquam.
+					</p>
+				</blockquote>
+				<p>
+					<strong
+						>Note how the whitespace is collapsed! That&rsquo;s important.</strong
+					>
+				</p>
+				<p>
+					Final note: there are around 115 HTML elements, plus some old
+					&ldquo;deprecated&rdquo; ones. Deprecated means on the way out.
+					Don&rsquo;t use deprecated elements.
+				</p>
+				<p>
+					There are also a few experimental elements and attributes. It is a
+					good idea to wait until they are available in most browsers. You can
+					check availability on the <a
+						href="https://caniuse.com/"
+						rel="external"
+						>Can I use</a
+					>
+					website.
+				</p>
+				<p>
+					But whatever you do, <strong
+						>do not try to memorize all the HTML elements.</strong
+					>
+					There are many you will rarely if ever need. The ones you need regularly,
+					you will remember just through common use.
+				</p>
+				<p>
+					You can always look up elements from a list to find what you need. The
+					best source is <a
+						href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+						rel="external"
+						>Mozilla Developer Network</a
+					> (MDN).
+				</p>
+			</section>
+			<p>
+				Next: <a href="/basic-html/block-vs-inline">Block vs. inline elements</a
+				>
+			</p>
+			<p>
+				Previous: <a href="/basic-html">Basic HTML</a>
+			</p>
+			<p>
+				<a href="/basic-html">Table of contents</a>
+			</p>
+		</article>
+	</main>
+</Layout>
