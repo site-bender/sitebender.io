@@ -1,0 +1,818 @@
+---
+import Layout from "../../layouts/index.astro"
+// import CodeBlock from "../../components/CodeBlock/index.astro"
+// import * as aHtml from "../../snippets/html/a.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Style guide</h1>
+			<p>
+				Here are the rules synopsized. There are well-considered reasons for all
+				of these choices. None of it is whim or &ldquo;personal
+				preference&rdquo;. Just ask.
+			</p>
+			<section>
+				<h2>General style rules for JavaScript/TypeScript:</h2>
+				<ol>
+					<li>
+						<strong>Use double quotation marks</strong> (") rather than single ones
+						('). They are easier to spot.
+					</li>
+					<li>
+						Use the <code>not</code> utility function rather than the bang (<code
+							>!</code
+						>). The bang is too easy to miss.
+					</li>
+					<li>
+						Whenever possible, <strong>use positive conditionals</strong> rather
+						than negative ones: <code>if (isTall)</code> rather than <code
+							>if (not(isTall))</code
+						>, or, worse, <code>if (!isTall)</code>.
+					</li>
+					<li>
+						Use <code>Boolean()</code> to convert to a literal boolean, not the double-bang
+						(<code>!!</code>). This is rarely necessary.
+					</li>
+					<li>
+						Use <code>Number()</code>, <code>String()</code>, etc. to cast
+						values when necessary.
+					</li>
+					<li>
+						<strong>Always use strict equals</strong> (<code>===</code>) and
+						strict unequals (<code>!==</code>). Use <code>==</code> and <code
+							>!=</code
+						> only to check for <code>null</code> or <code>undefined</code>.
+					</li>
+					<li>
+						<strong
+							>Don&rsquo;t compare floating point numbers for equality.</strong
+						>
+					</li>
+					<li>
+						<strong>Avoid semicolons.</strong> They are nothing more than noise.
+						Automatic semicolon insertion works perfectly well. How do you think
+						the linter inserts semicolons?
+					</li>
+					<li>
+						In the rare instance that a semicolon is needed, use it at the start
+						of the line:<br />
+						<code>;[1, 2, 3].reduce((acc, item) =&gt; ...)</code>
+					</li>
+					<li>
+						Only <strong>one statement or expression</strong> per line. One.
+					</li>
+					<li>
+						<strong>Stack variable assignments,</strong> repeating the <code
+							>const</code
+						>, rather than separating them with commas. This vastly reduces
+						cognitive load.
+					</li>
+					<li>
+						In general, avoid terse and &ldquo;clever&rdquo; code, preferring
+						clarity and readability. Use
+						<a href="/style-guide/styles">design and content principles</a> when
+						writing code, just as you would when writing content.
+					</li>
+					<li>
+						Use <strong>commas after every term</strong> including the last one in
+						arrays, objects, parameters except when on a single line (&ldquo;ES5
+						style&rdquo;).
+					</li>
+					<li>
+						<strong>Space</strong> around operators, inside object literals, and
+						between items in an array or object. This improves readability and reduces
+						cognitive load. Prettier will handle this for you.
+					</li>
+					<li>
+						There is nothing wrong with the <strong>ternary operator,</strong> but
+						<strong>avoid nesting more than one.</strong> Let prettier format the
+						ternaries in its remarkably annoying way. What is it with those people?
+					</li>
+					<li>
+						When using <strong>if</strong> to return early from a function (as in
+						a guard), don&rsquo;t use an <code>else</code>. Because you returned
+						in the <code>if</code>, else is assumed.
+					</li>
+					<li>
+						Put the <strong>type</strong> imports at the very top of the file.
+					</li>
+					<li>
+						Put the <strong>remote</strong> imports (e.g., from npm) below the type
+						imports separated by a blank line.
+					</li>
+					<li>
+						Put the <strong>local</strong> imports below the remote imports separated
+						by a blank line.
+					</li>
+					<li>
+						Put file-scoped <strong>constant assignments</strong> below the local
+						imports separated by a blank line.
+					</li>
+					<li>
+						Put a blank line between the imports or constant assignments and the
+						<strong>type declaration for the function.</strong>
+					</li>
+					<li>
+						Do not use a blank line before or after the nested content in the
+						function block, but <strong
+							>do use blank lines to separate different actions within the
+							block.</strong
+						> For example, group constants at the top, then a blank line, then the
+						function body, then a blank line, then the return statement.
+					</li>
+					<li>
+						<strong
+							>Use a blank line between any blocks of code that span multiple
+							lines,</strong
+						> e.g., a conditional block. This aids with clarity.
+					</li>
+					<li>
+						All code must pass the linter. We use <a
+							href="https://oxc-project.github.io/docs/guide/usage/linter.html"
+							rel="external"
+							>oxlint.</a
+						>
+					</li>
+					<li>
+						All code must run through the formatter before committing. We use
+						<a
+							href="https://prettier.io/"
+							rel="external"
+							>prettier</a
+						> currently. Got a better idea? We&rsquo;re listening.
+					</li>
+					<li>
+						For consistency across these projects, use <a
+							href="https://pnpm.io/"
+							rel="external"
+							>pnpm</a
+						> rather than <code>npm</code> or <code>yarn</code>.
+					</li>
+					<li>
+						Run <code>npm-check</code> before committing to keep dependencies up
+						to date. We provide a command in <code>package.json</code> for this:
+						<code>pnpm check:packages</code>.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Use functional programming techniques</h2>
+				<ol>
+					<li>
+						<strong>Do not use loops</strong> unless absolutely necessary. You must
+						<strong>prove</strong> that performance is the bottleneck before using
+						a loop.
+					</li>
+					<li>
+						<strong>Avoid the built-in looping methods</strong> (e.g., <code
+							>map</code
+						>, <code>filter</code>, etc.) &ndash; use the provided <strong
+							>curried wrappers</strong
+						> instead, e.g., <code>map(x =&gt; x * x)([1, 2, 3])</code>
+						<strong>not</strong>
+						<code>[1, 2, 3].map(x =&gt; x * x)</code>.
+					</li>
+					<li>
+						<strong>Do not mutate variables.</strong> Once a variable has been assigned,
+						do not reassign it. Use <code>const</code>, never <code>let</code> and
+						<em>absolutely never</em>
+						<code>var</code>.
+					</li>
+					<li>
+						<strong>Do not reach into objects or arrays to mutate them.</strong>
+						There are rare exceptions to this one, such as avoiding the spread operator
+						inside, for example, a <code>reduce</code> loop. Ask if unsure.
+					</li>
+					<li>
+						<strong>Use recursion</strong> for all but looping over large sets. Make
+						it <strong>tail recursion.</strong>
+					</li>
+					<li>
+						<strong>Prefer lazy evaluation where it makes sense.</strong>
+					</li>
+					<li>
+						Keep all functions <strong
+							>pure and referentially transparent</strong
+						>. Separate IO functions into their own modules.
+					</li>
+					<li>
+						<strong
+							>Type functions on the line above the function definition,
+							Haskell-style.</strong
+						>
+						Use <code>const</code> and arrow functions to define the function. Use
+						PascalCase for the name of the type which must be the same as the function:
+						<code>type Add = (x: number) =&gt; (y: number) =&gt; number</code>
+					</li>
+					<li>
+						<strong>Curry all functions!</strong> Avoid variadic functions (use an
+						object or array). Never more than three parameters (use an options object).
+					</li>
+					<li>
+						As all functions are curried arrow functions and typed at the
+						function level,
+						<strong>leave off the parentheses around the parameters:</strong>
+						<code>const add = x =&gt; y =&gt; x + y </code>.
+					</li>
+					<li>
+						Avoid <code>null</code> and <code>undefined</code> where possible. Use
+						<strong>monads</strong> (<code>Option</code>, <code>Either</code>,
+						etc.) instead. <code>null</code> is the spawn of the devil.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Naming</h2>
+				<ol>
+					<li>
+						For consistency with <em>the vast majority of code</em> (and languages
+						such as HTML), <strong>use American spellings.</strong> Add a spell-checker
+						to your code editor and set it to &ldquo;en-US&rdquo;.
+					</li>
+					<li>
+						<strong>Name the item exactly what it is or does.</strong> If the function
+						gets the name, then call it
+						<code>getName</code>. If the component provides the header, then
+						call it <code>Header</code>.
+					</li>
+					<li>
+						<strong>Spell words out.</strong> Don&rsquo;t use abbreviations except
+						for universally-recognized ones (e.g., etc.). Abbreviations increase
+						cognitive load. Avoid as much as possible.
+					</li>
+					<li>
+						Don&rsquo;t be any more verbose in naming than necessary. Aim to
+						fully describe the action or item, but using as few words as
+						practicable.
+					</li>
+					<li>
+						<strong>Avoid jargon.</strong> Use commonly-understood words.
+					</li>
+					<li>
+						<strong>Name consistently!</strong> If getters start with &ldquo;get&rdquo;,
+						then <strong>all of them</strong> should start with &ldquo;get&rdquo;.
+					</li>
+					<li>
+						<strong
+							>Use verbs to describe actions; use nouns to describe objects.</strong
+						>
+						For example, <code>createMenu</code> but <code>Menu</code>.
+					</li>
+					<li>
+						<strong>Use the proper case!</strong>
+						<ul>
+							<li><code>camelCase</code> for function and variable names.</li>
+							<li>
+								<code>PascalCase</code> for types and classes, but don&rsquo;t use
+								classes!
+							</li>
+							<li>
+								<code>train-case</code> for path segments in URLs, as in <code
+									>/style-guide</code
+								>.
+							</li>
+							<li>
+								<code>SCREAMING_SNAKE_CASE</code> for constants.
+							</li>
+							<li>
+								For component folders, use the <code>PascalCase</code> name of the
+								component. For function folders, use the
+								<code>camelCase</code> name of the function.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Never use spaces in file names!</strong> Use hyphens (<code
+							>-</code
+						>) instead.
+					</li>
+					<li>
+						<strong>Avoid underscores (<code>_</code>):</strong>
+						<code>style-guide.pdf</code>, not <code>style_guide.pdf</code>.
+						Hyphens allow you to select individual segments by double-clicking.
+						Underscores kinda suck.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Types</h2>
+				<ol>
+					<li>
+						<strong
+							>Always use <code>import type</code> for imports only used as types.</strong
+						>
+					</li>
+					<li>
+						Do not use the <code>any</code> type. <strong>Ever.</strong> Use <code
+							>unknown</code
+						>
+						sparingly, and only initially. Find the right type or use a generic type
+						before deploying.
+					</li>
+					<li>
+						Prefer <code>type</code> over <code>interface</code> where practicable.
+					</li>
+					<li>
+						Avoid classes. Avoid TypeScript <code>enums</code>.
+					</li>
+					<li>
+						Keep <strong>polymorphism</strong> to a minimum.
+					</li>
+					<li>
+						<strong>Keep types as simple as practicable.</strong> Consider whether
+						you may be over-abstracting or trying to do too much with one piece of
+						code.
+					</li>
+					<li>
+						If the type is used in multiple files (or extended there), put it in
+						a <code>global.d.ts</code> file if possible <strong
+							>at the node in the folder tree where all the branches that use it
+							meet.</strong
+						> There will be multiple <code>global.d.ts</code> files.
+					</li>
+					<li>
+						If the type is used only in one file (module-scoped), put the type
+						declaration in that file. <strong>Don&rsquo;t export it.</strong> If
+						it needs to be exported, then it belongs in a <code
+							>global.d.ts</code
+						> file.
+					</li>
+					<li>
+						Make use of TypeScript capabilities such as <strong>Omit</strong>.
+						Use the <code>Override</code> type provided when useful.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>HTML</h2>
+				<ol>
+					<li>
+						<strong>Quote all attribute values (or props).</strong> Use double quotation
+						marks.
+					</li>
+					<li>
+						<strong>Stack attributes when there are more than two.</strong>
+						Put the closing <code>&gt;</code> of the opening tag on its own line
+						when attributes are stacked.
+					</li>
+					<li>
+						<strong>Always use the correct semantic element!</strong> Check the docs
+						(<a
+							href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+							rel="external"
+							>MDN</a
+						> is awesome for this).
+					</li>
+					<li>
+						<strong>Always nest elements properly!</strong> Again, use MDN to check
+						which elements may be nested in a given element. For example, <code
+							>div</code
+						> elements do not nest in <code>p</code> elements. Who knew? (We did.)
+					</li>
+					<li>
+						Use empty elements, e.g., <code>&lt;img /&gt;</code>, <strong
+							>only when they are allowed.</strong
+						> For example, <code>&lt;div /&gt;</code> is seen by most browsers as
+						<code>&lt;div&gt;</code>, which leaves the element <strong
+							>open.</strong
+						> This can produce ugly consequences. Use <code
+							>&lt;div&gt;&lt;/div&gt;</code
+						> instead, although empty elements such as this should be avoided.
+					</li>
+					<li>
+						<strong
+							>Use the <code>rel</code> attribute on links where appropriate.</strong
+						>
+						On links to external resources, use <code>rel="external"</code>. For
+						links to a glossary, use <code>rel="glossary"</code>. <a
+							href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel"
+							rel="external"
+							>See the full list.</a
+						>
+					</li>
+					<li>
+						Use <strong>JSON-LD</strong> and <strong>microdata</strong> where possible.
+						Mark up content to make it machine readable. We provide a set of components
+						for marking up titles of works, dates and times, durations, email addresses
+						and phone numbers, etc.
+					</li>
+					<li>
+						<strong
+							>Set the <code>lang</code> attribute on the <code
+								>&lt;html&gt;</code
+							> element</strong
+						>
+						and on any element containing content in a different language, e.g.,
+						<code
+							>&lt;span lang="fr"&gt;plus ça change, plus c'est la même
+							chose&lt;/span&gt;</code
+						>.
+					</li>
+					<li>
+						<strong
+							>Use the <code>&lt;abbr&gt;</code> element with the <code
+								>title</code
+							> attribute</strong
+						>
+						to mark up abbreviations. Put the expansion in the <code>title</code
+						> attribute:
+						<code
+							>&lt;abbr title="Culinary Institute of America"&gt;CIA&lt;/&gt;</code
+						>.
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>CSS</h2>
+			</section>
+			<section>
+				<h2>Content and documentation</h2>
+				<ol>
+					<li>
+						<strong>Document only what needs to be documented,</strong> but document
+						everything that needs to be.
+					</li>
+					<li>
+						<strong>Test your documentation on inexperienced users!</strong> We cannot
+						stress this enough. Do not assume that because it makes sense to you
+						or an expert user that it will make sense to a beginner. Test! Test!
+						Test!
+					</li>
+					<li>
+						<strong
+							>Use good <a
+								href="https://digital.gov/topics/usability/"
+								rel="external"
+								>information architecture</a
+							> principles and techniques</strong
+						> to organize your documentation. Test on real users!
+					</li>
+					<li>
+						<strong>Users cannot read your mind!</strong> They cannot guess what
+						you meant. Be absolutely clear about everything, and test to make sure
+						that you left nothing out. <strong
+							>One mistake on your part can lead to <em>thousands</em>
+							of lost developer hours.</strong
+						> Assume as little as possible.
+					</li>
+					<li>
+						<strong
+							>Follow the <a href="/style-guide/design-and-content"
+								>content principles!</a
+							></strong
+						>
+					</li>
+					<li>
+						Use <strong>old-style numerals</strong> in content, <strong
+							>tabular numerals</strong
+						> in tables and spreadsheets. Old-style numerals have ascenders and descenders,
+						increasing readability and reducing cognitive load. This should be set
+						in the CSS.
+					</li>
+					<li>
+						<strong
+							>Use proper &lsquo;single&rsquo; and &rdquo;double&ldquo;
+							quotation marks and the true apostrophe (&thinsp;&rsquo; or
+							&lsquo; before text)</strong
+						>
+						rather than the typewriter marks. Use the typewriter versions (&thinsp;&apos;
+						&amp; &quot;&thinsp;) in code.
+					</li>
+					<li>
+						Use the American style: <strong>double quotation marks</strong> first,
+						then single quotation marks for nested quotations: &ldquo;Bob said, &lsquo;Boo!&rsquo;&rdquo;.
+						Unless writing for a known audience. In the latter instance, use the
+						style preferred by that audience. For example, &laquo;guillemets&raquo;
+						for the Swiss.
+					</li>
+					<li>
+						<strong>Put punctuation outside the quotation marks</strong>
+						<em>unless it is part of the quotation.</em>
+						Note: this is <em>not</em> the American style, but the American style
+						is stupid.
+					</li>
+					<li>
+						<strong>Understand the proper uses of the dash</strong> and how it differs
+						from the hyphen. Use the em dash (<code>&amp;mdash;</code>) without
+						spaces&mdash;like this&mdash;or the en dash (<code>&amp;ndash;</code
+						>) with spaces &ndash; like this.
+					</li>
+					<li>
+						You can also use a <strong>thin space</strong> (<code
+							>&amp;thinsp;</code
+						>) on either side of the em dash&thinsp;&mdash;&thinsp;like
+						this&thinsp;&mdash;&thinsp;if you really want to impress. Or even
+						the
+						<a
+							href="https://www.htmlsymbols.xyz/punctuation-symbols/space-symbols"
+							rel="external"
+							>six-per-em space,</a
+						>
+						(<code>&amp;emsp14;</code>) if you are super cool. For our purposes,
+						<strong>use the em dash surrounded by six-per-em spaces.</strong> We
+						provide an <code>&lt;EmDash /&gt;</code> component. Use no spaces around
+						it.
+					</li>
+					<li>
+						If you cannot understand grammar, spelling, syntax, or style, then <strong
+							>find an editor who does</strong
+						> and run all your content past that person.
+					</li>
+					<li>
+						Use <strong>Sentence case</strong> rather than <strong
+							>Title Case</strong
+						> for titles. Reserve Title Case for proper names. The sad truth is that
+						no one can agree upon which words to capitalize in titles, so everyone
+						gets it wrong. Even the style guides.
+					</li>
+					<li>
+						<strong>Use the Oxford comma!</strong> It eliminates ambiguity, thus
+						reducing cognitive load. Compare &ldquo;top, bottom, left, and right&rdquo;
+						(correct) with &ldquo;top, bottom, left and right&rdquo; (incorrect).
+						In the latter, is &ldquo;left and right&rdquo; one item or two? No way
+						to tell but context.
+					</li>
+					<li>
+						When unsure of proper grammar, syntax, etc., consult <a
+							href="https://faculty.washington.edu/heagerty/Courses/b572/public/StrunkWhite.pdf"
+							rel="external"
+							>The Elements of Style</a
+						> by Strunk &amp; White. It remains the one by which all others are measured
+						(and found wanting).
+					</li>
+					<li>
+						<strong>Use tools such as</strong>
+						<a
+							href="https://www.grammarly.com/"
+							rel="external"
+							>Grammarly</a
+						> and
+						<a
+							href="https://hemingwayapp.com/"
+							rel="external"
+							>Hemingway</a
+						> to improve grammar, spelling, and comprehension. Write for your audience,
+						not yourself. But don&rsquo;t be too anally-retentive about it. The tools
+						are often wrong. &ldquo;AI&rdquo; is not <em>actually</em> intelligent.
+						Who knew?
+					</li>
+					<li>
+						<strong>Murder your darlings!</strong> Sir Arthur Quiller-Couch: &ldquo;If
+						you here require a practical rule of me, I will present you with this:
+						&lsquo;Whenever you feel an impulse to perpetrate a piece of <strong
+							>exceptionally fine writing,</strong
+						> obey it&mdash;whole-heartedly&mdash;and <strong>delete it</strong>
+						before sending your manuscript to press. Murder your darlings.&rsquo;&rdquo;
+						If you don&rsquo;t understand this, ask!
+					</li>
+					<li>
+						<strong>Less is more.</strong> Avoid unnecessary verbosity. As William
+						Strunk commands: &ldquo;Omit needless words!&rdquo; Use plain language.
+						Avoid showing off.
+					</li>
+					<li>
+						Use the <strong>typefaces</strong> we provide. Do not add new ones.
+					</li>
+					<li>
+						<strong>Keep paragraphs short!</strong> Remember the single responsibility
+						principle: <strong>one idea per paragraph.</strong> Choose paragraph
+						breaks carefully, not randomly. Consider how it <em>reads.</em> Read
+						it aloud to yourself to check.
+					</li>
+					<li>
+						<strong
+							>Put the key content at the top of the article, top of the
+							section, or top of the paragraph.</strong
+						> Readers scan content.
+					</li>
+					<li>
+						<strong
+							>Make liberal use of <code>&lt;strong&gt;</code> emphasis, emphasizing
+							the content you want users to see on a quick scan.</strong
+						>
+					</li>
+					<li>
+						<strong>Proofread, proofread, proofread.</strong> Proofread multiple
+						times. Come back after a break and proofread again. Check spellings.
+						Check anything and everything that you are unsure of.
+					</li>
+					<li>
+						<strong>Use the RIGHT word or phrase.</strong> Use the dictionary and
+						thesaurus religiously to find that right word. Make sure you understand
+						exactly what it means.
+					</li>
+					<li>
+						Dictionaries and thesauri vary widely. Look around for the best
+						ones.
+					</li>
+				</ol>
+				<section>
+					<h2>Accessibility</h2>
+					<ul>
+						<li>
+							<strong
+								>Use the correct <em>semantic</em> HTML elements and attributes.</strong
+							> Is it an article? Use the <code>&lt;article&gt;</code> element. Is
+							it an address? Use the <code>&lt;address&gt;</code> element. Is it
+							a quotation? Use the <code>&lt;q&gt;</code> or
+							<code>&lt;blockquote&gt;</code> element as appropriate.
+						</li>
+						<li>
+							<strong
+								>Nest headings properly! Nest headings properly! Nest headings
+								properly!</strong
+							> In the <code>h<em>n</em></code> heading elements, the <em>n</em>
+							refers to the heading&rsquo;s <strong
+								>depth in the tree of headings.</strong
+							>
+							<ol>
+								<li>
+									The top heading is <code>&lt;h1&gt;</code>. There should
+									almost always be only one.
+								</li>
+								<li>
+									Subsections of the content should use an <code
+										>&lt;h2&gt;</code
+									> heading. Use the <code>&lt;section&gt;</code> elements to delineate
+									sections.
+								</li>
+								<li>The <code>&lt;h3&gt;</code> is for sub-sub-headings!</li>
+							</ol>
+						</li>
+						<li>
+							<strong>The heading elements are not about type size!</strong> Do not
+							use them for their default styling!
+						</li>
+						<li>
+							Use the HTML landmark (<a
+								href="https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/HTML5.html"
+								rel="external"
+								>sectioning</a
+							>) elements properly: <code>&lt;aside&gt;</code>, <code
+								>&lt;footer&gt;</code
+							>, <code>&lt;form&gt;</code>, <code>&lt;header&gt;</code>, <code
+								>&lt;main&gt;</code
+							>, <code>&lt;nav&gt;</code>, and <code>&lt;section&gt;</code>.
+						</li>
+						<li>
+							Ensure that the <strong>HTML document outline</strong> makes sense.
+							Use headings invisible to viewers but visible to screen readers (using
+							CSS) to name sections, navigation elements, etc. Use the <a
+								href="https://chromewebstore.google.com/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo"
+								rel="external"
+								>HTML5 Outliner</a
+							> browser extension to check.
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Performance</h2>
+				</section>
+				<section>
+					<h2>Miscellaneous</h2>
+					<ol>
+						<li>
+							<strong>Code just-in-time!</strong> Never write a line of code until
+							you have to.
+						</li>
+						<li>
+							<strong>Always be refactoring!</strong> As your understanding of the
+							code grows, improve the code.
+						</li>
+						<li>
+							<strong>When you see tech debt, pay it off immediately.</strong>
+							Never let debt accumulate.
+						</li>
+						<li>
+							<strong>Avoid premature optimization.</strong> Write the code in the
+							manner that keeps cognitive load, bugs, etc. to a minimum. Then find
+							the <strong>bottlenecks</strong> and optimize only to the extent needed.
+						</li>
+						<li>
+							<strong>Use tabs for indentation</strong>, not spaces.
+						</li>
+						<li>
+							<strong>Keep line length to 80 characters</strong> unless absolutely
+							necessary. Stack rather than spreading out. Movement should be vertical,
+							not side-to-side.
+						</li>
+						<li>
+							<strong>Use only the <code>lf</code> as a line ending.</strong> If
+							you are on a Windows machine, install a plugin that converts back and
+							forth, but <strong
+								><em>do not commit</em>
+								<code>cr</code> or <code>crlf</code> line endings.</strong
+							>
+						</li>
+						<li>
+							<strong>Use UTF-8 as the character coding for everything.</strong>
+							No exceptions unless approved (and then only for UTF-16).
+						</li>
+						<li>
+							<strong>You are not a &ldquo;full stack&rdquo; engineer.</strong>
+							Front-end, back-end, API, cloud, pick one. Pick specific languages,
+							frameworks, paradigms.
+						</li>
+						<li>
+							Worthwhile guides from <a
+								href="https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style"
+								rel="external"
+								><em>The Elements of Coding Style</em></a
+							> not already coverd:
+							<ol>
+								<li>
+									<strong>Never sacrifice clarity for efficiency.</strong>
+								</li>
+								<li>
+									Parenthesize when useful to avoid ambiguity (e.g., don&rsquo;t
+									rely on precedence).
+								</li>
+								<li>
+									Avoid unnecessary branches. Use functions to organize complex
+									code in a <strong>declarative</strong> way.
+								</li>
+								<li>
+									Choose a data representation that makes the program simple.
+								</li>
+								<li>
+									<strong
+										>Use recursive functions for recursively-defined data
+										structures.</strong
+									>
+								</li>
+								<li>Always check for bad input.</li>
+								<li>
+									<strong>Make input easy to proofread.</strong> Proofread everything
+									repeatedly.
+								</li>
+								<li>Don&rsquo;t stop at one bug.</li>
+								<li>
+									Test programs at their <strong>boundary</strong> values.
+								</li>
+								<li>
+									Make it <strong>right</strong>, make it <strong
+										>fail-safe</strong
+									>, make it <strong>clear</strong>
+									<em>before</em> you make it faster.
+								</li>
+								<li>
+									Make it faster by <strong>keeping it simple.</strong> Don&rsquo;t
+									diddle code to make it faster&thinsp;&mdash;&thinsp;find a better
+									algorithm.
+								</li>
+								<li>
+									<strong>Let the compiler do the simple optimizations.</strong>
+								</li>
+								<li>Format a program to help the reader understand it.</li>
+							</ol>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Detailed information</h2>
+					<dl>
+						<dt><a href="/style-guide/design-and-content">Formatting</a></dt>
+						<dd>
+							How to format your files according to design principles such as
+							alignment, proximity, repetition, etc.
+						</dd>
+						<dt><a href="/style-guide/modules">Modules</a></dt>
+						<dd>
+							How to organize code into modules; how to import and export; etc.
+						</dd>
+						<dt><a href="/style-guide/naming">Naming</a></dt>
+						<dd>
+							Everything you need to know about naming files, functions, types,
+							constants, routes, etc.
+						</dd>
+						<dt><a href="/style-guide/paradigm">Paradigm</a></dt>
+						<dd>
+							Requirements for a functional approach: immutability, referential
+							transparency, avoidance of <code>null</code> and <code
+								>undefined</code
+							>, etc.
+						</dd>
+						<dt><a href="/style-guide/scripts">Scripts</a></dt>
+						<dd>
+							How to write and organize scripts in TypeScript or JavaScript;
+							what to do, what to avoid.
+						</dd>
+						<dt><a href="/style-guide/styles">Styles</a></dt>
+						<dd>
+							How to write CSS and organize the cascade. Hint: <strong
+								>no Tailwind</strong
+							> and very few utility classes. Rules for specificity and selectors.
+						</dd>
+						<dt><a href="/style-guide/testing">Testing</a></dt>
+						<dd>
+							When to use TDD/BDD, unit tests, integration tests, end-to-end
+							tests, static type checking, linting, etc.
+						</dd>
+					</dl>
+				</section>
+			</section>
+		</article>
+	</main>
+</Layout>

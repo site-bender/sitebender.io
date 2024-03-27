@@ -1,5 +1,5 @@
 export default function (config, candidates) {
-	return config.candidates.map((candidate) => {
+	return config.candidates.map(candidate => {
 		const fs = document.createElement("fieldset")
 		const legend = document.createElement("legend")
 		const div = document.createElement("div")

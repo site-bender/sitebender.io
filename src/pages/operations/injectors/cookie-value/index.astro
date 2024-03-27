@@ -1,0 +1,76 @@
+---
+import Layout from "../../../../layouts/index.astro"
+import CodeBlock from "../../../../components/CodeBlock/index.astro"
+import * as injectFromCookie from "./injectFromCookie.md"
+import * as getName from "./getName.md"
+import * as simpleValue from "./simpleValue.md"
+---
+
+<Layout title="cookieValue :: Injectors :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>cookieValue</h1>
+			</header>
+			<nav>
+				<a href="/operations/injectors">up &uarr;</a>
+			</nav>
+			<p>
+				<code>cookieValue</code> loads a value from a browser cookie. You provide
+				the name of the cookie, <code>cookie</code>. If the value of the cookie
+				contains multiple key-value pairs, you can use <code>name</code> to get a
+				specific value. See below.
+			</p>
+			<p>
+				Here is the <strong>type</strong> of the JSON configuration object to get
+				a value from a browser cookie:
+			</p>
+			<CodeBlock snippet={injectFromCookie} />
+			<p>
+				If you set <code>evaluateOnLoad</code> to <code>true</code>, then the
+				injector will fetch and return the value <strong
+					>when the page loads.</strong
+				> If not, the injector will return a function which will be used to get the
+				value when the operation is run (at <strong>runtime</strong>). The
+				default is to run it at runtime so the latest value is used.
+			</p>
+			<p>
+				The <code>operator</code> must be set to &ldquo;cookieValue&rdquo; for <code
+					>cookieValue</code
+				> operations.
+			</p>
+			<p>
+				The <code>name</code> is the optional name of the variable whose value we
+				want. If the cookie contains a single value, then leave this out. But if
+				the cookie contains multiple values, then provide the <code>name</code> to
+				set which value you want back.
+			</p>
+			<p>For the <code>precision</code> setting, see below about truncation.</p>
+			<p>
+				We can use the <code>returns</code> setting to decide what type of data to
+				return. This will automatically &ldquo;cast&rdquo; the returning value to
+				that type. For example, if our function returns the value as a string: "75",
+				but we&lsquo;ve set the <code>returns</code>
+				setting to &ldquo;number&rdquo;, then the string will be cast to a number
+				and the function will return <code>75</code> instead.
+			</p>
+			<p>
+				See the <code>ReturnType</code> type above to see all the different data
+				types we can return. Here is the <a href="/operations/docs/return-type"
+					>returnType documentation</a
+				> explaining how this works.
+			</p>
+			<p>
+				The <code>truncationType</code> is an optional setting we can use when we
+				want to round numbers up or down. Consult the <a
+					href="/operations/docs/truncation-type"
+					>truncationType documentation</a
+				> for details.
+			</p>
+			<p>Here is an example:</p>
+			<CodeBlock snippet={getName} />
+			<p>And another example:</p>
+			<CodeBlock snippet={simpleValue} />
+		</article>
+	</main>
+</Layout>

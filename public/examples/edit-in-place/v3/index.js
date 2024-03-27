@@ -142,7 +142,7 @@ function toggleCell(cell) {
 		form.appendChild(label)
 		form.appendChild(button)
 
-		form.addEventListener("submit", (event) => {
+		form.addEventListener("submit", event => {
 			event.preventDefault()
 
 			console.log("submit", new FormData(event.target).values)
@@ -182,11 +182,11 @@ function enhanceEditableTable(table) {
 
 		const value = getValue(dataType, attrs.value)
 		cell.innerHTML = Array.isArray(value)
-			? value.map((p) => `<p>${p}</p>`).join("")
+			? value.map(p => `<p>${p}</p>`).join("")
 			: value
 	}
 
-	table.addEventListener("click", (event) => {
+	table.addEventListener("click", event => {
 		const cell = event.target.closest("td") || event.target.closest("th")
 
 		if (cell) {

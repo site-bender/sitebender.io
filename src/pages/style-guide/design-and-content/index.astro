@@ -1,0 +1,619 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as blankLinesCss from "../../../snippets/css/blank-lines.md"
+import * as blankLinesHtml from "../../../snippets/html/blank-lines.md"
+import * as blankLinesTs from "../../../snippets/ts/blank-lines.md"
+import * as multiplyTs from "../../../snippets/ts/multiply.md"
+import * as repetitionTs from "../../../snippets/ts/repetition.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Design and content principles</h1>
+			<p>
+				The goal of code formatting and syntax highlighting is to <strong
+					>reduce cognitive load.</strong
+				>
+			</p>
+			<p>
+				There are a great many reasons to limit cognitive load. It makes life
+				easier for the devs and anyone else who looks at the code. The code is
+				easier to debug, refactor, and scale. Bugs in particular can be avoided.
+			</p>
+			<p>
+				Many of the style choices that are considered &ldquo;personal
+				preference&rdquo; (thus hotly argued) are, in truth, provably better or
+				worse. As the goal is reducing cognitive load, it is a simple matter of
+				testing various approaches with a large enough population.
+			</p>
+			<p>
+				If your &ldquo;personal preference&rdquo; results in greater cognitive
+				load, then you should change it. Most importantly, <em
+					>you should not force it upon others.</em
+				>
+			</p>
+			<p>
+				If there is no measurable difference, then pick one approach and be
+				<em>consistent.</em>
+			</p>
+			<p>
+				News flash: coding is <em>not about you.</em> Coding is a <strong
+					>team sport.</strong
+				> Shocking, we know. Who knew?
+			</p>
+			<section>
+				<h2>Key takeaways</h2>
+				<ol>
+					<li>
+						<strong
+							>Always bear in mind that the goal is to minimize cognitive load.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Use a syntax highlighter to make code easier to read.</strong
+						>
+					</li>
+					<li>
+						<strong>Maximum permitted line length is 80 characters.</strong>
+					</li>
+					<li>
+						<strong
+							>Follow the established patterns and styles in the code base.
+							Repetition and consistency are your friends.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Space around different elements, such as operators and operands,
+							to improve readability.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Use blank lines to separate different types of operations, e.g.,
+							variable assignment, loops, conditionals, return statements
+							(proximity principle).</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Indent code according to nesting, no more than one statement or
+							expression per line.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Always use tabs, not spaces, for indentation. Spaces are used for
+							alignment.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Stack code so that the viewer&rsquo;s eye movement is top to
+							bottom, not left to right. This also avoids horizontal scrolling.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Keep your code neat and proper. No sloppy or ambiguous code.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Choose a good, medium-width, monospace font, such as Menlo, for
+							your editor.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>There should be no comments in your code unless you have done
+							something hacky because you were forced to. In those instances, a
+							comment explaining why and when it might be fixed is <em
+								>required.</em
+							></strong
+						>
+					</li>
+					<li>
+						<strong
+							>Avoid the use of jargon and uncommon abbreviations. Murder your
+							darlings.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Proofread your code very carefully before committing it.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Avoid using numbers in your code. Set constants instead to give
+							those numbers meaning. It&rsquo;s not about reuse. It&rsquo;s
+							about naming.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Strive for consistency in your coding practice and adherence to
+							the style guide.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Be sensitive to and respectful of the needs of future devs,
+							testers, etc.</strong
+						>
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Use design principles to improve DevX</h2>
+				<p>
+					<abbr title="Developer eXperience">DevX</abbr> (or DX) is <strong
+						>developer experience.</strong
+					> Think
+					<abbr title="User eXperience">UX</abbr> or <abbr
+						title="Customer experience">CX</abbr
+					>. Good DevX greatly enhances the performance not only of the
+					developers, but of the team as a whole.
+				</p>
+				<p>
+					Design principles are not arbitrary. They are the fruit of centuries
+					of improvement in design. They are tested and <em>they work.</em> Why wouldn&lsquo;t
+					we apply them to our code?
+				</p>
+				<p>
+					Here we discuss the key principle and how they can be used to make
+					coding easier, faster, and painless.
+				</p>
+			</section>
+			<section>
+				<h2>Design principles as applied to coding</h2>
+				<dl>
+					<dt>Contrast</dt>
+					<dd>
+						Contrast means creating a significant difference in the <em
+							>appearance</em
+						> of different things while making like things look the same.
+					</dd>
+					<dd>
+						The primary method we use to contrast different elements is <strong
+							>syntax highlighting.
+						</strong>Typically, this relies on color.
+					</dd>
+					<dd>
+						If you are color blind, then your should choose your highlighting
+						theme with care (e.g., avoiding red and green contrasts if you have
+						a red-green color vision deficiency).
+					</dd>
+					<dd>
+						Syntax highlighters can also be configured to use different type
+						faces and fonts, including sizes, weights, and styles (e.g.,
+						italic), as well as underlining. Choose a syntax highlighter that
+						works best for you.
+					</dd>
+					<dd>
+						As syntax highlighting is unique to each developer, you are free to
+						choose whichever theme works for you. What is important is that you
+						can <strong>quickly distinguish</strong> strings, numbers, booleans,
+						keywords, function names, types, etc.
+					</dd>
+					<dt>Balance</dt>
+					<dd>
+						Balance has to do with the &ldquo;weight&rdquo; of the code. If you
+						squint at your code, you will see heavier and lighter areas. Balance
+						can be symmetrical (equal weights on either side of a vertical
+						center line) or asymmetrical.
+					</dd>
+					<dd>
+						In coding, our code is almost always <strong>asymmetrical,</strong> with
+						the heavier weight to the left (unless you&rsquo;re coding in an RTL
+						language).
+					</dd>
+					<dd>
+						With regard to balance, the key is to avoid long line lengths. It is
+						better to stack items on the left. To this end:
+					</dd>
+					<dd>
+						<strong
+							>The maximum line length in our code is 80 characters.</strong
+						> This is set using the formatter and the
+						<code>.editorconfig</code> file. <em
+							>Do not alter these files without permission.</em
+						>
+					</dd>
+					<dd>
+						It is easier to scroll vertically than horizontally. An 80 character
+						line length limit makes it possible to increase the font size
+						dramatically and still keep the code within the width of the
+						viewport. This is an accessibility issue.
+					</dd>
+					<dd>
+						It also makes putting files side-by-side on even a small display
+						easy. We will see the importance of this when we get to file size.
+					</dd>
+					<dd>
+						Sometimes it is impossible or impracticable to keep a line down to
+						80 characters or fewer. But these should be rare exceptions and
+						justifiable. But then the formatter will decide for you.
+						That&rsquo;s what it&rsquo;s there for.
+					</dd>
+					<dt>Emphasis</dt>
+					<dd>
+						Emphasis is used to make some parts of your code <strong
+							>stand out</strong
+						> and others less noticeable.
+					</dd>
+					<dd>
+						The primary method we use for emphasis is whitespace (see below) and
+						sometimes typography. For example, we can use <strong
+							>SCREAMING_SNAKE_CASE</strong
+						> to make constants stand out, or <strong>PascalCase</strong> for types
+						for the same reason.
+					</dd>
+					<dt>Proportion</dt>
+					<dd>
+						We can use differences in proportion to make some elements stick
+						out, generally by size. But this is difficult to do with code, and
+						unless done very carefully might make things worse.
+					</dd>
+					<dd>
+						But an example of this might be using comments with asterisks and
+						capital letters to delineate sections of, for example, CSS:
+					</dd>
+					<dd>
+						<code>/* ***** FONT SIZES ***** */</code>
+					</dd>
+					<dt>Hierarchy</dt>
+					<dd>
+						Hierarchy simply means that the apparent importance of elements
+						should match their actual importance.
+					</dd>
+					<dd>
+						One clear way we use this in coding is that syntax highlighters
+						generally <strong>render comments in a low-contrast gray.</strong> (Perhaps
+						too low contrast for some.)
+					</dd>
+					<dd>
+						Think about hierarchy as you write your code and try to organize
+						your code accordingly. More on this in <a
+							href="/style-guide/modules">modules,</a
+						>
+						<a href="/style-guide/scripts">scripts,</a> and <a
+							href="/style-guide/styles">styles.</a
+						>
+					</dd>
+				</dl>
+				<dt>Repetition</dt>
+				<dd>
+					Repetition is used to reinforce a perception. In coding, we use it to
+					make code easy to read.
+				</dd>
+				<dd>
+					If you keep changing up how you do things in your code, then each time
+					you read that code you have to <strong>context-switch</strong> in your
+					brain. That means cognitive load: the very thing we are trying hard to
+					avoid.
+				</dd>
+				<dd>
+					Choose <strong>one pattern</strong> that works well and use that pattern
+					every time. See Variety below for when to change it up. In this guide we
+					prescribe patterns for general approaches. If you are unsure how to code
+					something, ask.
+				</dd>
+				<dd>
+					<strong>Put each statement or expression on its own line:</strong>
+				</dd>
+				<CodeBlock snippet={repetitionTs} />
+				<dd>
+					In the example above, putting multiple variable assignments on the
+					same line makes it difficult to see them all at a glance, or even to
+					grasp what&rsquo;s happening. While the lower example is more verbose,
+					it is instantly obvious that we are setting three variables, <code
+						>a</code
+					>, <code>b</code>, and <code>c</code>.
+				</dd>
+				<dt>Rhythm</dt>
+				<dd>
+					Rhythm refers to the <strong>spacing between elements</strong>.
+					Irregular spacing destroys the rhythm of the code and makes reading
+					and mentally parsing it difficult.
+				</dd>
+				<dd>
+					We talk about <strong>whitespace</strong> below. This, after naming and
+					syntax highlighting, is perhaps the most important principle in good coding
+					practice. Chaotic code is horrible.
+				</dd>
+				<dd>
+					It is better to choose a suboptimal style and practice it
+					consistently, establishing a good rhythm, than to mix and match styles
+					arhythmically. Better still: choose the <em>most</em> optimal style and
+					stick to it.
+				</dd>
+				<dt>Pattern</dt>
+				<dd>
+					Patterns are the key to a good rhythm and low cognitive load. Find the
+					best pattern, then repeat it endlessly. Coding is all about patterns
+					and pattern recognition.
+				</dd>
+				<dt>Whitespace</dt>
+				<dd>
+					There are few design principles in coding more important than proper
+					use of whitespace.
+				</dd>
+				<dd>
+					Whitespace is all about proper use of the <strong
+						>proximity principle.</strong
+					>
+					The proximity principle is enormously important in all design and especially
+					coding.
+				</dd>
+				<dd>
+					The proximity principle says, <em
+						>group like things and separate them from unlike things.</em
+					> We will see this also in our guidelines for organizing <a
+						href="/style-guide/modules">modules.</a
+					>
+				</dd>
+				<dd>
+					Operators (e.g., +, -, ===) are very different from operands (e.g., 7,
+					"yes", true). For this reason, <strong
+						>separate operators from their operands by a single space:</strong
+					>
+				</dd>
+				<dd>
+					<code>5 + 7 === 12</code>
+					<em>not</em>
+					<code>5+7===12</code>
+				</dd>
+				<dd>
+					The former is <em>much</em> easier to read. Some devs act as if they are
+					being fined for every space.
+				</dd>
+				<dd>So it is with objects as well. This:</dd>
+				<dd>
+					<code>&#123; name: "Bob", age: 42 &#125;</code>
+				</dd>
+				<dd>Not this:</dd>
+				<dd>
+					<code>&#123;name:"Bob",age:42&#125;</code>
+				</dd>
+				<dd>
+					Another use of whitespace is to <strong>group like elements</strong> and
+					to separate them from unlike elements. This is done with blank lines.
+				</dd>
+				<dd>
+					If an element, e.g., a function definition, stretches across multiple
+					lines, then <strong
+						>separate it from the code preceding it and following it by blank
+						lines.</strong
+					> The exception is when code is nested: leading and trailing blank lines
+					<em>in the nested code</em> can be elided.
+				</dd>
+				<dd>Here is an example of proper use of whitespace in HTML:</dd>
+				<CodeBlock snippet={blankLinesHtml} />
+				<dd>Here is an example of proper use of whitespace in CSS:</dd>
+				<CodeBlock snippet={blankLinesCss} />
+				<dd>
+					Finally, here is an example of proper use of whitespace in TypeScript:
+				</dd>
+				<CodeBlock snippet={blankLinesTs} />
+				<dd>
+					Note also the use of <strong>indentation</strong> which uses nesting and
+					alignment to indicate to the dev what each line of code represents. Although
+					the indentation size can probably me tested to find which indent makes
+					code the easiest to read, the difference is probably not significant.
+				</dd>
+				<dd>
+					Two spaces, three spaces, four spaces &hellip; this is something the
+					dev can choose. To make choosing possible,
+					<strong>always use tabs for indentation, not spaces.</strong> This permits
+					each user to set their own tab size.
+				</dd>
+				<dt>Movement</dt>
+				<dd>
+					Movement refers to <strong
+						>the way the viewers eyes travel over the code.</strong
+					>
+				</dd>
+				<dd>
+					The key to movement is to simplify it. Long line lengths force the dev
+					to scan both left to right and top to bottom.
+				</dd>
+				<dd>
+					Keeping the line length to <strong>80 characters</strong> permits a good
+					dev to grasp entire lines at once. This allows simple vertical scanning.
+					Stack items; don&rsquo;t spread them horizontally.
+				</dd>
+				<dt>Variety</dt>
+				<dd>
+					We use variety to add <strong>visual interest</strong> to a design: to
+					stimulate the viewer. In coding, it is best to subordinate variety to other
+					considerations.
+				</dd>
+				<dd>
+					So it is that we use, for example, syntax highlighting to identify
+					elements, but also to add a bit of visual excitement. Choose a syntax
+					highlighting theme that keeps you glued to the code.
+				</dd>
+				<dt>Unity</dt>
+				<dd>
+					Unity refers to how all the elements of a design <strong
+						>work together</strong
+					> as a unified whole.
+				</dd>
+				<dd>
+					By following good design and coding practices, we can avoid chaotic or
+					sloppy code. This goes a long way toward minimizing cognitive load,
+					hence cognitive footprint.
+				</dd>
+				<dt>Color</dt>
+				<dd>
+					Color in coding is typically the job of the <strong
+						>syntax highlighter.</strong
+					> It is important to choose a theme that provides enough contrast for easy
+					reading, but not too much.
+				</dd>
+				<dd>
+					Colors also have a certain &ldquo;feel&rdquo; to them, which varies by
+					culture. Choose your highlighting theme accordingly. Constants are
+					solid and immutable. Maybe a bright blue? Functions represent change,
+					transformation. Maybe dark red?
+				</dd>
+				<dd>
+					Take the time to think through and tweak your DevX and it will pay you
+					back many times over.
+				</dd>
+				<dt>Typography</dt>
+				<dd>
+					Typography affects both legibility and &ldquo;feel&rdquo;. In coding,
+					we are also concerned with indentation, hence alignment.
+				</dd>
+				<dd>
+					For this reason, all code should use a monospace font rather than a
+					variable font. Choose one that is neither too narrow nor too wide. For
+					example, Courier is quite wide. Menlo is a much better choice.
+				</dd>
+			</section>
+			<section>
+				<h2>Content design for DevX</h2>
+				<p>
+					We can also use good <strong>content design principles</strong> to improve
+					our code. Here are examples:
+				</p>
+				<dl>
+					<dt>Clarity</dt>
+					<dd>
+						Code should be readable, just as if it were written in plain spoken
+						language. If you need to comment your code to make it
+						understandable, then your code is poorly written. Rewrite the code
+						and delete the comment.
+					</dd>
+					<dd>
+						<strong
+							>The only reason for a comment in code is if you were forced to do
+							something unusual because of circumstances beyond your control.</strong
+						>
+					</dd>
+					<dd>
+						If you had to use a workaround in your code, be sure to add a
+						comment explaining why. If you don&rsquo;t, then you are likely to
+						come back to the code, wonder what the hell you were on when you
+						wrote it, and re-write it the right way &ndash; only to discover too
+						late why it was written that way. Ouch.
+					</dd>
+					<dd>
+						Clarity depends on all the above design principles, but also on
+						proper
+						<a href="/style-guide/naming">naming.</a>
+						<strong>Avoid the use of jargon and uncommon abbreviations.</strong>
+						Never abbreviate unless you are certain that it is a commonly-recognized
+						abbreviation.
+					</dd>
+					<dd>
+						Strive to make your code so obvious that someone with zero coding
+						experience could figure out what it does. Luckily, we are using <abbr
+							title="functional programming">FP</abbr
+						>, which makes it much easier because it is a <strong
+							>declarative language.</strong
+						>
+					</dd>
+					<dd>
+						And avoid putting repetitive information in names. If a function
+						returns a string, for example, this is obvious from the return type.
+						Don&rsquo;t name the function <code>getNameAsString</code>.
+						<code>getName</code> is sufficient.
+					</dd>
+					<dt>Accuracy</dt>
+					<dd>
+						It should go without saying that <strong
+							>accuracy is imperative in coding.</strong
+						>
+						Computers still mostly can&rsquo;t guess what you meant. You have to
+						spell it out for them.
+					</dd>
+					<dd>
+						One spelling mistake, one wrong move grammar-wise, and your program
+						fails to run. Or, worse, runs but gives the wrong output.
+					</dd>
+					<dd>
+						Proofread your code <strong>carefully</strong> and test it well. Don&rsquo;t
+						commit bad code.
+					</dd>
+					<dd>Just don&rsquo;t.</dd>
+					<dt>Context</dt>
+					<dd>
+						Context is important to coding as it is in the creation of any other
+						content. Who is your audience? Obviously, other coders, but who are
+						they?
+					</dd>
+					<dd>
+						Are they likely to be seasoned veterans? Or rank beginners? Will
+						they understand the choices you&rsquo;ve made, or will they be
+						befuddled by them? How quickly can they come up to speed?
+					</dd>
+					<dd>
+						For that matter, how quickly will you come back up to speed if you
+						revisit this code in, say, six months or a year?
+					</dd>
+					<dd>
+						When you code, try to take into account the big picture. No one
+						codes in a vacuum.
+					</dd>
+					<dt>Transparency</dt>
+					<dd>
+						In content creation, transparency means, in addition to being
+						honest, being clear about your objectives. In writing code we should
+						do the same.
+					</dd>
+					<dd>
+						The names of our functions, variables, constants, etc. should
+						reflect their purpose and action. Constants are particularly useful. <strong
+							>Avoid using numbers without explanation in your code. Use
+							constants instead.</strong
+						>
+					</dd>
+					<dd>
+						Here is an example. Instead of having a 1 as the initial value when
+						using <code>reduce</code> to multiply number, give it a proper name:
+						<code>MULTIPLICATION_IDENTITY</code>. Example:
+					</dd>
+					<CodeBlock snippet={multiplyTs} />
+					<dt>Cohesiveness</dt>
+					<dd>
+						Cohesiveness makes your code <strong>flow</strong> logically from one
+						section to the next.
+					</dd>
+					<dd>
+						Make sure the organization of your code and your choices make it
+						easy for the next dev to follow along. That next dev might be you.
+					</dd>
+					<dd>
+						Another aspect of cohesiveness is <strong>consistency.</strong>
+						Ensure that your coding practices are consistent from line to line and
+						file to file.
+					</dd>
+					<dd>
+						When multiple devs work on the same code base, then it is important
+						that they <strong>follow the same style and practices.</strong> Hence
+						style guides such as this one.
+					</dd>
+					<dt>Inclusivity</dt>
+					<dd>
+						Inclusivity includes <strong>sensitivity</strong> to the feelings, beliefs,
+						etc. of others. Ensure that in your code you avoid choices that express
+						or suggest racist, sexist, or other bigoted tropes.
+					</dd>
+					<dd>
+						This is also true for <strong>cultural</strong> difference. As always,
+						remember that code is actually a conversation with the next developer
+						to set eyes on it. Be sure to be respectful and to speak a (coding) language
+						that they will understand.
+					</dd>
+				</dl>
+			</section>
+		</article>
+	</main>
+</Layout>

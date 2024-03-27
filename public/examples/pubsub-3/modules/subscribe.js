@@ -6,7 +6,7 @@ export default function (topic, callback, channel) {
 	if (Object.keys(subscriptions[topic]) < 1) {
 		document.body.addEventListener(
 			topic,
-			(event) => {
+			event => {
 				for (const cb of Object.values(subscriptions[topic])) {
 					cb(event)
 				}
@@ -18,7 +18,7 @@ export default function (topic, callback, channel) {
 	if (channel) {
 		const bc = new BroadcastChannel(channel)
 
-		bc.onmessage = (event) => {
+		bc.onmessage = event => {
 			const { topic: type, detail } = event.data
 
 			if (type === topic) {

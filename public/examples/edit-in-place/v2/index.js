@@ -19,7 +19,7 @@ function makeTablesEditable() {
 
 				console.log(editable, editable.innerHTML)
 			})
-			editable.addEventListener("blur", (event) => {
+			editable.addEventListener("blur", event => {
 				console.log(editable, "blurring")
 				console.log(
 					editable,

@@ -32,11 +32,11 @@ export default function (table) {
 
 		const value = getValue(dataType, attrs.value)
 		cell.innerHTML = Array.isArray(value)
-			? value.map((p) => `<p>${p}</p>`).join("")
+			? value.map(p => `<p>${p}</p>`).join("")
 			: value
 	}
 
-	table.addEventListener("click", (event) => {
+	table.addEventListener("click", event => {
 		const cell = event.target.closest("td") || event.target.closest("th")
 
 		if (cell) {

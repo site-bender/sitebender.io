@@ -5,7 +5,7 @@ export default function (event) {
 	const bestFit = document.querySelector("#best-fit")
 	const candidates = form.querySelectorAll("#candidates fieldset")
 	const baseline = Array.from(form.querySelectorAll("#baseline input")).map(
-		(input) => [
+		input => [
 			parseInt(input.max, 10),
 			parseInt(input.min, 10),
 			parseInt(input.value, 10),
@@ -24,7 +24,7 @@ export default function (event) {
 
 	const scores = {}
 
-	candidates.forEach((fieldset) => {
+	candidates.forEach(fieldset => {
 		const rangers = fieldset.querySelectorAll("input")
 		const output = fieldset.querySelector("output.distance")
 		const name = fieldset.querySelector("legend").innerText
@@ -44,7 +44,7 @@ export default function (event) {
 
 	const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1])
 	const bestScore = sorted?.[0]?.[1]
-	const winners = sorted.filter((candidate) => candidate[1] === bestScore)
+	const winners = sorted.filter(candidate => candidate[1] === bestScore)
 
-	bestFit.innerText = `Best fit: ${winners.map((winner) => winner[0]).join(", ")}`
+	bestFit.innerText = `Best fit: ${winners.map(winner => winner[0]).join(", ")}`
 }

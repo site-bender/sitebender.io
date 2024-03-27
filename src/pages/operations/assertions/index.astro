@@ -1,0 +1,189 @@
+---
+import Layout from "../../../layouts/index.astro"
+---
+
+<Layout title="Assertions :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>Assertions</h1>
+			</header>
+			<nav>
+				<a href="/operations">up &uarr;</a>
+			</nav>
+			<p>
+				Here are all the assertions we can make about a given value. These can
+				be used to perform &ldquo;Boolean algebra&rdquo;. See the <a
+					href="#combinatory">Combinatory Operators</a
+				> below.
+			</p>
+			<section>
+				<h2>Contents</h2>
+				<ul>
+					<li>
+						<a href="#alphabetical">Alphabetical</a>
+					</li>
+					<li>
+						<a href="#combinatory">Combinatory</a>
+					</li>
+					<li>
+						<a href="#linear">Linear</a>
+					</li>
+					<li>
+						<a href="#negation">Negation</a>
+					</li>
+					<li>
+						<a href="#numerical">Numerical</a>
+					</li>
+					<li>
+						<a href="#sequential">Sequential</a>
+					</li>
+					<li>
+						<a href="#set">Set</a>
+					</li>
+					<li>
+						<a href="#temporal">Temporal</a>
+					</li>
+					<li>
+						<a href="#textual">Textual</a>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2 id="alphabetical">Alphabetical</h2>
+				<p>
+					Alphabetical assertions assert whether the value comes before or after
+					the test value alphabetically.
+				</p>
+				<dl>
+					<dt><code>isAfter</code></dt>
+					<dd></dd>
+					<dt><code>isBefore</code></dt>
+					<dd></dd>
+					<dt><code>isNotAfter</code></dt>
+					<dd></dd>
+					<dt><code>isNotBefore</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="combinatory">Combinatory</h2>
+				<dl>
+					<dt><code>and</code></dt>
+					<dd></dd>
+					<dt><code>or</code></dt>
+					<dd></dd>
+					<dt><code>xor</code> (exclusive or)</dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="linear">Linear</h2>
+				<dl>
+					<dt><code>hasExactLength</code></dt>
+					<dd></dd>
+					<dt><code>hasFewerCharacters</code></dt>
+					<dd></dd>
+					<dt><code>hasMaxLength</code></dt>
+					<dd></dd>
+					<dt><code>hasMinLength</code></dt>
+					<dd></dd>
+					<dt><code>hasMoreCharacters</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="negation">Negation</h2>
+				<dl>
+					<dt><code>not</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="numerical">Numerical</h2>
+				<dl>
+					<dt><code>isEqualTo</code></dt>
+					<dd></dd>
+					<dt><code>isGreaterThan</code></dt>
+					<dd></dd>
+					<dt><code>isLessThan</code></dt>
+					<dd></dd>
+					<dt><code>isNoLessThan</code></dt>
+					<dd></dd>
+					<dt><code>isNoMoreThan</code></dt>
+					<dd></dd>
+					<dt><code>isNotEqualTo</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="sequential">Sequential</h2>
+				<dl>
+					<dt><code>isOrderedList</code></dt>
+					<dd></dd>
+					<dt><code>isPrecedent</code></dt>
+					<dd></dd>
+					<dt><code>isReversedList</code></dt>
+					<dd></dd>
+					<dt><code>isSubsequent</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="set">Set</h2>
+				<dl>
+					<dt><code>isDisjoint</code></dt>
+					<dd></dd>
+					<dt><code>isEqual</code></dt>
+					<dd></dd>
+					<dt><code>isEquivalent</code></dt>
+					<dd></dd>
+					<dt><code>isOverlapping</code></dt>
+					<dd></dd>
+					<dt><code>isSubset</code></dt>
+					<dd></dd>
+					<dt><code>isSuperset</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="temporal">Temporal</h2>
+				<dl>
+					<dt><code>isAfterDate</code></dt>
+					<dd></dd>
+					<dt><code>isAfterDateTime</code></dt>
+					<dd></dd>
+					<dt><code>isAfterTime</code></dt>
+					<dd></dd>
+					<dt><code>isBeforeDate</code></dt>
+					<dd></dd>
+					<dt><code>isBeforeDateTime</code></dt>
+					<dd></dd>
+					<dt><code>isBeforeTime</code></dt>
+					<dd></dd>
+					<dt><code>isOnOrAfterDate</code></dt>
+					<dd></dd>
+					<dt><code>isOnOrAfterTime</code></dt>
+					<dd></dd>
+					<dt><code>isOnOrBeforeDate</code></dt>
+					<dd></dd>
+					<dt><code>isOnOrBeforeTime</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+			<section>
+				<h2 id="textual">Textual</h2>
+				<dl>
+					<dt><code>doesNotInclude</code></dt>
+					<dd></dd>
+					<dt><code>doesNotMatch</code></dt>
+					<dd></dd>
+					<dt><code>includes</code></dt>
+					<dd></dd>
+					<dt><code>matches</code></dt>
+					<dd></dd>
+				</dl>
+			</section>
+		</article>
+	</main>
+</Layout>

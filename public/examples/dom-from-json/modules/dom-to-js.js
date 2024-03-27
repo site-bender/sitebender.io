@@ -14,8 +14,8 @@ export default function domToJs(dom) {
 	}, {})
 
 	const attrs = Object.values(attributes)
-		.map((v) => v.localName)
-		.filter((name) => name !== "data-events")
+		.map(v => v.localName)
+		.filter(name => name !== "data-events")
 
 	return {
 		tagName,

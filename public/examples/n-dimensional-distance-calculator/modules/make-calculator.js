@@ -10,7 +10,7 @@ export default function (event) {
 		candidates: [],
 	}
 
-	form.querySelectorAll("#axes fieldset").forEach((axis) => {
+	form.querySelectorAll("#axes fieldset").forEach(axis => {
 		const inputs = Array.from(axis.querySelectorAll("input"))
 
 		config.axes.push({
@@ -22,7 +22,7 @@ export default function (event) {
 		})
 	})
 
-	form.querySelectorAll("#candidates fieldset").forEach((candidate) => {
+	form.querySelectorAll("#candidates fieldset").forEach(candidate => {
 		const inputs = Array.from(candidate.querySelectorAll("input"))
 
 		config.candidates.push(inputs[0].value)

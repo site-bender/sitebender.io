@@ -45,7 +45,7 @@ export default function (cell) {
 		form.appendChild(label)
 		form.appendChild(button)
 
-		form.addEventListener("submit", (event) => {
+		form.addEventListener("submit", event => {
 			event.preventDefault()
 
 			console.log("submit", new FormData(event.target).values())

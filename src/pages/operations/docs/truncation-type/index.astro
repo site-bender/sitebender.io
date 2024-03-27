@@ -1,0 +1,53 @@
+---
+import Layout from "../../../../layouts/index.astro"
+import CodeBlock from "../../../../components/CodeBlock/index.astro"
+import * as truncationType from "./truncationType.md"
+---
+
+<Layout title="truncationType :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>truncationType</h1>
+			</header>
+			<p>
+				The <code>truncationType</code> setting is used to round decimal numbers
+				to integers, e.g., <code>3.5</code> to <code>4</code>.
+			</p>
+			<p>Here is the type declaration:</p>
+			<CodeBlock snippet={truncationType} />
+			<p>
+				When you set the <code>truncationType</code>, the operations module will
+				round the value accordingly:
+			</p>
+			<dl>
+				<dt><code>ceiling</code></dt>
+				<dd>
+					The value is rounded up, so <code>5.0001</code> becomes <code>6</code
+					>.
+				</dd>
+				<dt><code>floor</code></dt>
+				<dd>
+					The value is rounded down, so <code>5.9999</code> becomes <code
+						>5</code
+					>.
+				</dd>
+				<dt><code>round</code></dt>
+				<dd>
+					The value is rounded as expected, so <code>5.5</code> becomes <code
+						>6</code
+					>, but <code>5.4999</code> becomes <code>5</code>.
+				</dd>
+				<dt><code>truncate</code></dt>
+				<dd>
+					The decimal part is simply lopped off, so <code>5.xxx</code> becomes <code
+						>5</code
+					>. Effectively the same as <code>floor</code>.
+				</dd>
+			</dl>
+			<p>
+				Also, see <a href="/operations/docs/precision">precision.</a>
+			</p>
+		</article>
+	</main>
+</Layout>

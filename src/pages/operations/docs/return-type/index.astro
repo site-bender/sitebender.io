@@ -1,0 +1,33 @@
+---
+import Layout from "../../../../layouts/index.astro"
+import CodeBlock from "../../../../components/CodeBlock/index.astro"
+import * as returnType from "./returnType.md"
+---
+
+<Layout title="returnType :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>returnType</h1>
+			</header>
+			<p>
+				The <code>returnType</code> setting is used to set the datatype of the return
+				value. For example, &ldquo;number&rdquo;, &ldquo;boolean&rdquo; (true/false),
+				&ldquo;string&rdquo; (text).
+			</p>
+			<p>Here is the type declaration:</p>
+			<CodeBlock snippet={returnType} />
+			<p>
+				When you set the <code>returnType</code>, the operations module will
+				attempt to &ldquo;cast&rdquo; whatever is returned to that type.
+			</p>
+			<p>
+				For example, the function might return a numerical value, but as a
+				string, e.g., <code>"42"</code>. But you want it as a number. So you set <code
+					>"returnType": "number"</code
+				> in your configuration object. Now, what you get back from the function
+				will be <code>42</code>.
+			</p>
+		</article>
+	</main>
+</Layout>

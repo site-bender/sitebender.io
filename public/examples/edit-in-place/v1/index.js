@@ -133,7 +133,7 @@ function swapTextArea(cell) {
 	const content = cell.children
 
 	if (content) {
-		const value = [...content].map((child) => child.innerText).join("\n\n")
+		const value = [...content].map(child => child.innerText).join("\n\n")
 		console.log("value", value)
 
 		if (cell.firstChild.tagName !== "FORM") {
@@ -153,7 +153,7 @@ function swapTextArea(cell) {
 }
 
 function makeHandleClick(types) {
-	return (event) => {
+	return event => {
 		const target = event.target
 		const cell = target?.closest("td") || target?.closest("th")
 
@@ -173,7 +173,7 @@ function makeTableEditable(table) {
 	table.addEventListener("click", makeHandleClick(types))
 
 	// Handle the submit of a form
-	table.addEventListener("submit", (event) => {
+	table.addEventListener("submit", event => {
 		event.preventDefault()
 
 		if (event.target?.tagName === "FORM") {

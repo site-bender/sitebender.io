@@ -97,10 +97,10 @@
 			type="module"
 		></script>
 		<script type="module">
-			globalThis.addEventListener("DOMContentLoaded", (event) => {
+			globalThis.addEventListener("DOMContentLoaded", event => {
 				const first = globalThis._xx?.subscribe(
 					"NAME_UPDATED",
-					(event) => {
+					event => {
 						const pre = document.querySelector("pre#name-output")
 
 						pre.appendChild(
@@ -121,7 +121,7 @@
 
 				const second = globalThis._xx?.subscribe(
 					"EMAIL_UPDATED",
-					(event) => {
+					event => {
 						const pre = document.querySelector("pre#email-output")
 
 						pre.appendChild(
@@ -142,7 +142,7 @@
 
 				const third = globalThis._xx?.subscribe(
 					"PHONE_UPDATED",
-					(event) => {
+					event => {
 						const pre = document.querySelector("pre#phone-output")
 
 						pre.appendChild(

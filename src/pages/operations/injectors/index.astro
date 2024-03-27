@@ -1,0 +1,99 @@
+---
+import Layout from "../../../layouts/index.astro"
+---
+
+<Layout title="Injectors :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>Injectors</h1>
+			</header>
+			<nav>
+				<a href="/operations">up &uarr;</a>
+			</nav>
+			<p>
+				Injectors are used to inject <strong>values</strong>, either upon
+				loading or at runtime, from various sources.
+			</p>
+			<dl>
+				<dt>
+					<a href="/operations/injectors/api-value"><code>apiValue</code></a>
+				</dt>
+				<dd>Loads a value from an external API asynchronously.</dd>
+
+				<dt>
+					<a href="/operations/injectors/cookie-value"
+						><code>cookieValue</code></a
+					>
+				</dt>
+				<dd>Loads a value from a browser cookie with the name you provide.</dd>
+
+				<dt>
+					<a href="/operations/injectors/data-attribute-value"
+						><code>dataAttributeValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value from a <code>data-*</code> attribute on an HTML element in
+					the page. For example, <code>data-value="42"</code>.
+				</dd>
+
+				<dt>
+					<a href="/operations/injectors/form-input-value"
+						><code>formInputValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value from a form input on the page (an HTML input, textarea,
+					or select).
+				</dd>
+
+				<dt>
+					<a href="/operations/injectors/local-storage-value"
+						><code>localStorageValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value from <code>localStorage</code> (long-term browser storage).
+				</dd>
+
+				<dt>
+					<a href="/operations/injectors/query-string-value"
+						><code>queryStringValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value from the query string (<code>search</code> parameter) of
+					the URL of the page.
+				</dd>
+
+				<dt>
+					<a href="/operations/injectors/session-storage-value"
+						><code>sessionStorageValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value from <code>sessionStorage</code> (browser storage cleared
+					when the session expires).
+				</dd>
+
+				<dt>
+					<a href="/operations/injectors/state-value"><code>stateValue</code></a
+					>
+				</dt>
+				<dd>Not implmented.</dd>
+
+				<dt>
+					<a href="/operations/injectors/url-parameter-value"
+						><code>urlParameterValue</code></a
+					>
+				</dt>
+				<dd>
+					Loads a value provided in the page&lsquo;s URL path, e.g., <code
+						>123</code
+					> in <code>/profiles/123</code> or <code>/profiles/123/name</code>.
+				</dd>
+			</dl>
+		</article>
+	</main>
+</Layout>

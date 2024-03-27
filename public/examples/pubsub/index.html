@@ -106,11 +106,11 @@
 					globalThis._xx.unsubscribe("click", "do-it"),
 				)
 
-				globalThis._xx.subscribe("focus", "subscribe", (event) => {
+				globalThis._xx.subscribe("focus", "subscribe", event => {
 					console.log(`Caught ${event.type} on ${event.target.id} button.`)
 				})
 
-				globalThis._xx.subscribe("blur", "subscribe", (event) => {
+				globalThis._xx.subscribe("blur", "subscribe", event => {
 					console.log(`Caught ${event.type} on ${event.target.id} button.`)
 				})
 			})

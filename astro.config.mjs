@@ -9,7 +9,7 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			canonicalURL: "https://sitebender.io/",
-			filter: (page) => !ignore.includes(page),
+			filter: page => !ignore.includes(page),
 			lastmod: new Date(),
 		}),
 	],

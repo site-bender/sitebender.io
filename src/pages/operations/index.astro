@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/index.astro"
+---
+
+<Layout title="Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>Operations documentation</h1>
+			</header>
+			<p>What do you want to do?</p>
+			<ul>
+				<li>
+					<a href="#assertions">Assert</a> that something is true.
+				</li>
+				<li>
+					<a href="#guards">Guard</a> that a value is of a specified type (e.g.,
+					number).
+				</li>
+				<li>
+					<a href="#validation">Validate</a> user input.
+				</li>
+				<li>
+					<a href="#operators">Calculate</a> a value with arithmetic or mathematics.
+				</li>
+				<li>
+					<a href="#injectors">Inject</a> a value from some outside source.
+				</li>
+				<li>
+					<a href="#formatters">Format</a> output without changing the underlying
+					value.
+				</li>
+			</ul>
+			<section>
+				<h2 id="assertions">Assertions</h2>
+				<p>
+					Assertions take a value, assert something about that value, e.g., <code
+						>value &gt; 5</code
+					>, and return a Boolean value (<code>true</code> or <code>false</code
+					>).
+				</p>
+				<p>
+					<a href="/operations/assertions">List of assertions</a>
+				</p>
+			</section>
+			<section>
+				<h2 id="guards">Guards</h2>
+				<p>
+					Guards are used to ensure that a value is the datatype that it should
+					be. For example, that a Boolean value is actually <code>true</code> or
+					<code>false</code>
+					and not <code>7</code> or <code>"blue"</code>.
+				</p>
+				<p>
+					<a href="/operations/guards">List of guards</a>
+				</p>
+			</section>
+			<section>
+				<h2 id="validation">Validation</h2>
+				<p>
+					Vaidation takes an assertion (or set of assertions – see above) and
+					returns either <code>true</code>
+					or a list of <code>error</code> messages <em>in plain English</em>.
+				</p>
+				<p>
+					<a href="/operations/validation">How to wrap assertions</a>
+				</p>
+			</section>
+			<section>
+				<h2 id="operators">Operators (math)</h2>
+				<p>
+					Operators includes all the typical arithmetic operations performed on
+					one or more &ldquo;operands&rdquo; (numbers). Generally, they return a
+					number. We can use them to do complex calculations.
+				</p>
+				<p>
+					<a href="/operations/operators">List of operators</a>
+				</p>
+			</section>
+			<section>
+				<h2 id="injectors">Value injection</h2>
+				<p>
+					We can inject values into our code either upon loading or when the
+					code is run. These values can come from a variety of sources.
+				</p>
+				<p><a href="/operations/injectors">List of injectors</a></p>
+			</section>
+			<section>
+				<h2 id="formatters">Formatters</h2>
+				<p>
+					Formatters permit us to format values. For example, we might format
+					monetary amounts with a currency symbol, or put telephone or credit
+					card numbers into a specific format. We can also mask values or
+					substitute specific words or numbers.
+				</p>
+				<p><a href="/operations/formatters">List of formatters</a></p>
+			</section>
+		</article>
+	</main>
+</Layout>

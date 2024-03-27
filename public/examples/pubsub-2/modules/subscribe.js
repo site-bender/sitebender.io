@@ -6,7 +6,7 @@ export default function (topic, callback) {
 	if (Object.keys(subscriptions[topic]) < 1) {
 		document.body.addEventListener(
 			topic,
-			(event) => {
+			event => {
 				for (const cb of Object.values(subscriptions[topic])) {
 					cb(event)
 				}

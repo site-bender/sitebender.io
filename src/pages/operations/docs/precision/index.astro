@@ -1,0 +1,40 @@
+---
+import Layout from "../../../../layouts/index.astro"
+// import CodeBlock from "../../../../components/CodeBlock/index.astro"
+// import * as precision from "./precision.md"
+---
+
+<Layout title="precision :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>precision</h1>
+			</header>
+			<p>
+				The <code>precision</code> setting determined the number of decimal places
+				to allow when <a href="/operations/docs/truncation-type">truncating</a> values.
+				It defaults to
+				<code>0</code>.
+			</p>
+			<p>
+				For example, if <code>truncationType</code> is <code>"round"</code> and the
+				number to truncate is <code>5.76543</code>, then:
+			</p>
+			<ul>
+				<li><code>precision: 1</code> rounds up to <code>5.8</code>.</li>
+				<li>
+					<code>precision: 2</code> rounds up to <code>5.77</code>.
+				</li>
+				<li>
+					<code>precision: 3</code> rounds down to <code>5.765</code>.
+				</li>
+				<li>
+					<code>precision: 4</code> rounds down to <code>5.7654</code>.
+				</li>
+				<li>
+					<code>precision: 10</code> rounds down to <code>5.76543</code>.
+				</li>
+			</ul>
+		</article>
+	</main>
+</Layout>

@@ -1,0 +1,102 @@
+---
+import Layout from "../../../../layouts/index.astro"
+import CodeBlock from "../../../../components/CodeBlock/index.astro"
+import * as getEmail from "./getEmail.md"
+import * as injectFromAPI from "./injectFromAPI.md"
+---
+
+<Layout title="apiValue :: Injectors :: Operations documentation">
+	<main>
+		<article>
+			<header>
+				<h1>apiValue</h1>
+			</header>
+			<nav>
+				<a href="/operations/injectors">up &uarr;</a>
+			</nav>
+			<p>
+				<code>apiValue</code> loads a value <strong>asynchronously</strong> (i.e.,
+				it waits for a response) from an external API. You provide the URL of the
+				API. The API returns a JSON object. You also provide a <strong
+					>path</strong
+				> to the value you want from the object. See below.
+			</p>
+			<p>
+				Here is the <strong>type</strong> of the JSON configuration object to fetch
+				from an API:
+			</p>
+			<CodeBlock snippet={injectFromAPI} />
+			<p>
+				If you set <code>evaluateOnLoad</code> to <code>true</code>, then the
+				injector will fetch and return the value <strong
+					>when the page loads.</strong
+				> If not, the injector will return a function which will be used to get the
+				value when the operation is run (at <strong>runtime</strong>). The
+				default is to run it at runtime so the latest value is used.
+			</p>
+			<p>
+				As you can see the <code>method</code> is the HTTP method used to fetch the
+				data. Typically, this is <code>GET</code> or <code>POST</code>. The
+				default is <code>GET</code>. You only need include this setting if the
+				method is other than <code>GET</code>. Depends on the API.
+			</p>
+			<p>
+				The <code>operator</code> must be set to &ldquo;apiValue&rdquo; for <code
+					>apiValue</code
+				> operations.
+			</p>
+			<p>
+				The <code>options</code>
+				object is used to configure the <code>fetch</code> request. It is optional.
+				You can learn more at <a
+					href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+					rel="external"
+					>Using the Fetch API.</a
+				>
+			</p>
+			<p>
+				The <code>path</code> is the path to the value <em>inside</em> the JSON object
+				returned from the API. Separate the individual keys with dots: e.g., &ldquo;path.to.value&rdquo;.
+				See the example below.
+			</p>
+			<p>For the <code>precision</code> setting, see below about truncation.</p>
+			<p>
+				We can use the <code>returns</code> setting to decide what type of data to
+				return. This will automatically &ldquo;cast&rdquo; the returning value to
+				that type. For example, if our function returns the value as a string: "75",
+				but we&lsquo;ve set the <code>returns</code>
+				setting to &ldquo;number&rdquo;, then the string will be cast to a number
+				and the function will return <code>75</code> instead.
+			</p>
+			<p>
+				See the <code>ReturnType</code> type above to see all the different data
+				types we can return. Here is the <a href="/operations/docs/return-type"
+					>returnType documentation</a
+				> explaining how this works.
+			</p>
+			<p>
+				The <code>truncationType</code> is an optional setting we can use when we
+				want to round numbers up or down. Consult the <a
+					href="/operations/docs/truncation-type"
+					>truncationType documentation</a
+				> for details.
+			</p>
+			<p>
+				Finally, <a
+					href="https://reqres.in/api/users/2"
+					rel="external"
+					>an example.</a
+				> If we wanted to get User #2&lsquo;s email address from this API, we would
+				set the
+				<code>url</code>
+				to &ldquo;https://reqres.in/api/users/2&rdquo; and the <code>path</code>
+				to &ldquo;data.email&rdquo;:
+			</p>
+			<CodeBlock snippet={getEmail} />
+			<p>
+				This reaches down the path to <code>"data"</code> and then inside that object
+				to <code>"email"</code> and returns the email address found there.
+			</p>
+		</article>
+	</main>
+</Layout>

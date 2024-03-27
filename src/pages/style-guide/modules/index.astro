@@ -1,0 +1,271 @@
+---
+import Layout from "../../../layouts/index.astro"
+import CodeBlock from "../../../components/CodeBlock/index.astro"
+import * as functionTs from "../../../snippets/ts/function.md"
+---
+
+<Layout title="sitebender.io">
+	<main>
+		<article>
+			<h1>Modules</h1>
+			<p>
+				Modules are the key to good coding. Modularization of code makes
+				understanding the code much easier. Bite-size pieces! What&rsquo;s not
+				to like?
+			</p>
+			<p>
+				There are some simple rules to follow. They take a little practice, but
+				once proficient, they will make everyone&rsquo;s job easier.
+			</p>
+			<section>
+				<h2>Key takeaways</h2>
+				<ol>
+					<li>
+						<strong
+							>Group code into modules of various sizes, each with a single
+							responsibility.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Functions, features, components, and even the app itself are all
+							modules, just at different levels.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Pay close attention to the bounds of your modules and keep them
+							very loosely coupled, if at all.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Treat each module as a &ldquo;black box&rdquo; with a <em
+								>formal API.</em
+							></strong
+						>
+					</li>
+					<li>
+						<strong
+							>How things are done inside the module is irrelevant to the
+							consumers of the module.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Use <em>declarative language.</em> Name according to what the module
+							does, not how it does it.</strong
+						>
+					</li>
+					<li>
+						<strong>One function or component per file.</strong>
+					</li>
+					<li>
+						<strong
+							>The name of the module goes on the <em>folder</em>, not the file.
+							All files are called <code>index</code>.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Keep functions and components as short as practicable. Ideally,
+							the entire file should fit on one screen.</strong
+						>
+					</li>
+					<li>
+						<strong>Single-line files are perfectly acceptable.</strong>
+					</li>
+					<li>
+						<strong
+							>Constants and types, not being modules, can be put in files named <code
+								>constants.ts</code
+							>
+							and <code>types.ts</code>, respectively. Export them as named
+							exports.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Types used globally go in the <code>global.d.ts</code> file at the
+							top level of the module.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Whenever possible, functions should be written in Haskell style
+							as arrow functions with an arity of 1. All functions curried.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Define the type of the function directly above the function,
+							Haskell style.</strong
+						>
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Follow the single responsibility principle</h2>
+				<p>
+					As with classes in OOP, the best approach is to follow the <strong
+						>single responsibility principle.</strong
+					> This principle says that each module should have only a <em
+						>single</em
+					> responsibility.
+				</p>
+				<p>
+					When we refer to &ldquo;modules&rdquo;, we are not referring to a
+					specific quantity of code, but rather to a way of organizing code. In
+					this sense, an application, a module (e.g., a library), a component,
+					and even a function are all &ldquo;modules&rdquo;.
+				</p>
+				<p>
+					For example, you may build an application. That application should
+					serve a single purpose. If the purpose is to provide a spreadsheet
+					functionality, then it should not also pay your taxes. <strong
+						>Keep things simple:</strong
+					> just make more applications, etc.
+				</p>
+				<ul>
+					<li>
+						An application should serve <strong>one specific purpose.</strong>
+					</li>
+					<li>
+						The various features provided by the application should map to
+						modules within the application. These modules should also serve a
+						single purpose and should be <strong>very loosely coupled</strong> to
+						each other.
+					</li>
+					<li>
+						Similarly, components within an application, such as GUI components,
+						should do one thing well and nothing else. <strong
+							>Don&rsquo;t bloat your components or abstract them more than
+							absolutely necessary.</strong
+						> Make more components instead. Repetition is your friend.
+					</li>
+					<li>
+						Even <strong>functions</strong> are little &ldquo;modules&rdquo; of code.
+						And like all modules, they should have a single responsibility.
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Files, folders, import, and export</h2>
+				<p>
+					At the lowest level &ndash; functions and components &ndash; <strong
+						>put each in its own file.</strong
+					> Even if that function is a single line.
+				</p>
+				<p>
+					Keep all the files for a module, whether application, feature,
+					component, or whatever, in the same folder. Put the name of the module
+					on the <strong>folder,</strong> not the file. In general, all files are
+					called <code>index</code>.
+				</p>
+				<p>
+					Nest the folders containing sub-&ldquo;modules&rdquo; in the folder of
+					the parent module. Just as all the folders in your app belong in the
+					app folder, all the files and folders related to a function or
+					component or feature <strong
+						>belong in that module&rsquo;s folder.</strong
+					>
+				</p>
+				<p>
+					For example, say you have a widget, maybe a <code>Menu</code> component.
+					This menu component contains a <code>MenuList</code> subcomponent. So the
+					<code>MenuList</code>
+					<em>folder</em> should be in the <code>Menu</code>
+					folder.
+				</p>
+				<p>
+					Also in the <code>Menu</code> folder are <em>all</em> of the files associated
+					with the menu component. So there will be a file for the component, typically
+					<code>index.astro</code> or
+					<code>index.html</code>. Then perhaps CSS specific to that component, <code
+						>index.css</code
+					>. And the integration or unit tests for that component, <code
+						>index.test.ts</code
+					>.
+				</p>
+				<p>
+					And storybook files, scripts associated with that component (e.g.,
+					progressive enhancement), documentation (<code>README</code> files), etc.
+				</p>
+				<p>So the <code>Menu</code> folder might look like this:</p>
+				<code>
+					Menu/<br />
+					&nbsp;&nbsp;MenuList/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(subcomponents
+					are nested)<br />
+					&nbsp;&nbsp;utilities/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(utility functions
+					specific to Menu)<br />
+					&nbsp;&nbsp;index.astro&nbsp;&nbsp;&nbsp;&nbsp;(the component)<br />
+					&nbsp;&nbsp;index.css&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(CSS specific
+					to this component)<br />
+					&nbsp;&nbsp;index.test.ts&nbsp;&nbsp;(integration (or unit) tests)<br
+					/>
+					&nbsp;&nbsp;script.astro&nbsp;&nbsp;&nbsp;(associated script element)<br
+					/>
+					&nbsp;&nbsp;types.ts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(types only
+					used in this component)
+				</code>
+				<p>
+					Because the module is nested in this manner, it is easy to move it,
+					especially if we use absolute paths for imports. All we need to change
+					are the <strong>references</strong> to the component.
+				</p>
+				<p>
+					<strong
+						>As functions, components, etc. are reused, they are moved up the
+						folder tree to the node where the branches in which they are used
+						meet.
+					</strong>
+				</p>
+				<p>
+					So, for example, I might have utilities in the <code>utilities</code> folder
+					that are used both by <code>Menu</code> and by modules below the menu.
+					But the <code>utilities</code>
+					folder in the <code>MenuList</code> component will only be used by the
+					<code>MenuList</code> and modules below it.
+				</p>
+				<p>In short, imports reach up, but not down.</p>
+				<p>
+					As each file contains a single &ldquo;module&rdquo;, that module
+					should be exported as the <strong>default export.</strong>
+				</p>
+				<p>
+					Constants and types used in a module are not themselves modules, hence
+					they can be placed in named files. For example, constants in <code
+						>constants.ts</code
+					> and types in <code>types.ts</code>. Global types for the module can
+					go in a <code>global.d.ts</code> file at the top of the module.
+				</p>
+			</section>
+			<section>
+				<h2>Functions</h2>
+				<p>
+					Functions should be kept as simple as possible: one <strong
+						>single</strong
+					> responsibility. One-line functions are fine.
+				</p>
+				<p>
+					Each function gets its own folder with the name of the function and
+					its file is called <code>index.ts</code>. All files related to the
+					function belong in the same folder, e.g., <code>index.test.ts</code>.
+				</p>
+				<p>
+					The type of the function should be defined on the line above the
+					function. Create the function as <strong>a lambda with arity 1</strong
+					> and assign it to a <code>const</code> variable. Then export the variable
+					as <code>default</code>.
+				</p>
+				<p>
+					Yes, this means that all functions are curried (just like Haskell).
+					Yes, that means lots of parentheses. Just pretend you are writing
+					LISP.
+				</p>
+				<p>Here is an example:</p>
+				<CodeBlock snippet={functionTs} />
+			</section>
+		</article>
+	</main>
+</Layout>

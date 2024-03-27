@@ -57,7 +57,7 @@ main {
 	font-size: var(--step-0);
 	grid-template-columns:
 		[viewport-left] 5vw
-		[content-left] min(90vw, 48rem)
+		[content-left] min(90vw, 54rem)
 		[content-right] auto
 		[viewport-right];
 	grid-template-rows: auto;
@@ -79,16 +79,7 @@ h2 {
 .logo {
 	margin-block: 0;
 	padding-block: 0;
-}
-
-.logo a {
-	color: white;
-	text-decoration: none;
-}
-
-.logo a:focus,
-.logo a:hover {
-	color: var(--color-light-blue);
+	text-transform: lowercase;
 }
 
 blockquote:not(.no-style) {
@@ -96,12 +87,44 @@ blockquote:not(.no-style) {
 	font-family: serif;
 }
 
+code {
+	background-color: var(--color-light-blue);
+	border-radius: 3px;
+	font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+		"DejaVu Sans Mono", monospace;
+	padding: 0.2rem;
+}
+
 dt {
 	font-style: italic;
 }
 
+dt a {
+	font-style: normal;
+	text-decoration: none;
+}
+
+.logo a {
+	color: white;
+	text-decoration: none;
+}
+
+dt a:focus,
+dt a:hover {
+	text-decoration: underline;
+}
+
+dt code {
+	font-style: normal;
+}
+
 dd {
 	margin-bottom: var(--space-m);
+}
+
+.logo a:focus,
+.logo a:hover {
+	color: var(--color-light-blue);
 }
 
 article {
@@ -114,14 +137,6 @@ article > header {
 	flex-wrap: wrap;
 	gap: 1rem;
 	justify-content: space-between;
-}
-
-code {
-	background-color: var(--color-light-blue);
-	border-radius: 3px;
-	font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-		"DejaVu Sans Mono", monospace;
-	padding: 0.2rem;
 }
 
 p.label {
