@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/index.astro"
+import EmDash from "../../components/EmDash/index.astro"
 // import CodeBlock from "../../components/CodeBlock/index.astro"
 // import * as aHtml from "../../snippets/html/a.md"
 ---
@@ -13,6 +14,137 @@ import Layout from "../../layouts/index.astro"
 				of these choices. None of it is whim or &ldquo;personal
 				preference&rdquo;. Just ask.
 			</p>
+			<section>
+				<h2>Accessibility</h2>
+				<ul>
+					<li>
+						<strong>Accessibility is not optional.</strong>
+						<a
+							href="https://www.w3.org/TR/WCAG22/"
+							rel="external"
+							><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.2
+							AAA compliance</a
+						> (soon 2.3) must be <em>built-in</em> from the beginning. It is not
+						something we add later when we &ldquo;have time&rdquo;. It is not something
+						on which we compromise.
+					</li>
+					<li>
+						All public-facing web pages <strong>must</strong> pass <strong
+							>all</strong
+						>
+						<a
+							href=""
+							rel="external"
+							>axe DevTools WCAG 2.2 AAA</a
+						> automated tests
+						<strong>before merging code to main.</strong> No exceptions. Download
+						and install a copy in your browser of choice. If you can afford the pro
+						version, it is worth it.
+					</li>
+					<li>
+						<strong
+							>Test your pages with a <a
+								href="https://www.perkins.org/resource/screenreader-comparisons/"
+								rel="external"
+								>screen reader.</a
+							></strong
+						> VoiceOver is free and comes with Mac OS. For Windows,
+						<a
+							href="https://www.nvaccess.org/about-nvda/"
+							rel="external"
+							>NVDA</a
+						> is free and open source. If you can afford it, JAWS is the most popular.
+					</li>
+					<li>
+						All web pages must be <strong>fully responsive</strong>. They should
+						work on any viewport for any user.
+					</li>
+					<li>
+						<strong>HTML is responsive by default.</strong> Start with the HTML.
+						As you add CSS (or JS) to your page or site, do it incrementally, and
+						after each update, test on screens of all sizes and aspect ratios<EmDash
+						/>from tiny phones to huge gaming displays<EmDash />to ensure that
+						your changes <strong>have not broken responsiveness.</strong>
+					</li>
+					<li>
+						<strong
+							>Never merge code to main that is not fully responsive.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Test everything on real users following the best testing
+							practices.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Use the correct <em>semantic</em> HTML elements and attributes.</strong
+						> Is it an article? Use the <code>&lt;article&gt;</code> element. Is
+						it an address? Use the <code>&lt;address&gt;</code> element. Is it a
+						quotation? Use the <code>&lt;q&gt;</code> or
+						<code>&lt;blockquote&gt;</code> element as appropriate.
+					</li>
+					<li>
+						<strong
+							>Nest headings properly! Nest headings properly! Nest headings
+							properly!</strong
+						> In the <code>h<em>n</em></code> heading elements, the <em>n</em>
+						refers to the heading&rsquo;s <strong
+							>depth in the tree of headings.</strong
+						>
+						<ol>
+							<li>
+								The top heading is <code>&lt;h1&gt;</code>. There should almost
+								always be only one.
+							</li>
+							<li>
+								Subsections of the content should use an <code>&lt;h2&gt;</code>
+								heading. Use the <code>&lt;section&gt;</code> elements to delineate
+								sections.
+							</li>
+							<li>The <code>&lt;h3&gt;</code> is for sub-sub-headings!</li>
+						</ol>
+					</li>
+					<li>
+						<strong>The heading elements are not about type size!</strong> Do not
+						use them for their default styling!
+					</li>
+					<li>
+						<strong>Error messages are prohibited!</strong> Use <em>help</em>
+					</li>
+					<li>
+						Whenever possible, provide <strong>unlimited undo and redo</strong> in
+						forms.
+					</li>
+					<li>
+						Use event sourcing where practicable to track progress, permitting
+						resumption in a different session. Consider the use of <strong
+							>continuations.</strong
+						>
+					</li>
+					<li>
+						Use the HTML landmark (<a
+							href="https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/HTML5.html"
+							rel="external"
+							>sectioning</a
+						>) elements properly: <code>&lt;aside&gt;</code>, <code
+							>&lt;footer&gt;</code
+						>, <code>&lt;form&gt;</code>, <code>&lt;header&gt;</code>, <code
+							>&lt;main&gt;</code
+						>, <code>&lt;nav&gt;</code>, and <code>&lt;section&gt;</code>.
+					</li>
+					<li>
+						Ensure that the <strong>HTML document outline</strong> makes sense. Use
+						headings invisible to viewers but visible to screen readers (using CSS)
+						to name sections, navigation elements, etc. Use the <a
+							href="https://chromewebstore.google.com/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo"
+							rel="external"
+							>HTML5 Outliner</a
+						> browser extension to check.
+					</li>
+				</ul>
+			</section>
 			<section>
 				<h2>General style rules for JavaScript/TypeScript:</h2>
 				<ol>
@@ -159,6 +291,12 @@ import Layout from "../../layouts/index.astro"
 			</section>
 			<section>
 				<h2>Use functional programming techniques</h2>
+				<p>
+					We always start with pure <abbr title="functional programming"
+						>FP</abbr
+					>, then back off only to the minimum extent necessary<EmDash />if at
+					all.
+				</p>
 				<ol>
 					<li>
 						<strong>Do not use loops</strong> unless absolutely necessary. You must
@@ -168,7 +306,7 @@ import Layout from "../../layouts/index.astro"
 					<li>
 						<strong>Avoid the built-in looping methods</strong> (e.g., <code
 							>map</code
-						>, <code>filter</code>, etc.) &ndash; use the provided <strong
+						>, <code>filter</code>, etc.)<EmDash />use the provided <strong
 							>curried wrappers</strong
 						> instead, e.g., <code>map(x =&gt; x * x)([1, 2, 3])</code>
 						<strong>not</strong>
@@ -208,7 +346,8 @@ import Layout from "../../layouts/index.astro"
 					</li>
 					<li>
 						<strong>Curry all functions!</strong> Avoid variadic functions (use an
-						object or array). Never more than three parameters (use an options object).
+						object or array). <strong>Never more than three parameters</strong> (use
+						an options object).
 					</li>
 					<li>
 						As all functions are curried arrow functions and typed at the
@@ -422,10 +561,147 @@ import Layout from "../../layouts/index.astro"
 							>&lt;abbr title="Culinary Institute of America"&gt;CIA&lt;/&gt;</code
 						>.
 					</li>
+					<li>
+						<strong>Avoid modals as much as possible.</strong> If a modal <em
+							>must</em
+						> be used, then make sure it is dismissible via the <kbd>ESC</kbd> key.
+						Then don&rsquo;t use a modal.
+					</li>
+					<li>
+						The only permissible use for <strong>pop-ups</strong> is to confirm deletions
+						or other destructive actions that cannot be undone.
+					</li>
 				</ol>
 			</section>
 			<section>
 				<h2>CSS</h2>
+				<ol>
+					<li>No preprocessors.</li>
+					<li>We use a very minimal reset.</li>
+					<li>
+						<strong
+							>Put component stylesheets in the component&rsquo;s folder.</strong
+						>
+						Name the file <code>index.css</code>.
+					</li>
+					<li>
+						Break global stylesheets up as appropriate. For example, put all CSS
+						property assignments in a <code>theme.css</code> stylesheet. Put main
+						page layout styles (e.g. grids) in a
+						<code>layout.css</code> stylesheet. Handle fonts if necessary in a <code
+							>fonts.css</code
+						>
+						stylesheet.
+					</li>
+					<li>
+						<strong
+							>Always include a print stylesheet (<code>print.css</code>) to
+							make the page look right when printed.</strong
+						>
+					</li>
+					<li>
+						Keep <strong>specificity</strong> low to allow ease in overriding properties.
+					</li>
+					<li>
+						<strong>Use class names.</strong> Name them for the component. <strong
+							>Avoid utility classes.</strong
+						>
+					</li>
+					<li>
+						<strong
+							>Take advantage of <code>-inline</code> and <code>-block</code> for
+							<code>margin</code>
+							and <code>padding</code>.</strong
+						>
+					</li>
+					<li>
+						No Tailwind. No BEM or equivalent. No CSS-in-JS. No Emotion.
+						<strong>Just straightforward CSS.</strong>
+					</li>
+					<li>
+						In components, <strong>use CSS properties</strong> liberally to allow
+						easy theming.
+					</li>
+					<li>
+						To style elements globally, use the <strong>tag name</strong> as the
+						selector, for example: <code>main &#123; ... &#125;</code>.
+					</li>
+					<li>
+						To style the main element of a component, use the class name. All
+						components should have the name of the component (train-case) as the
+						class name, e.g., <code>.pull-quote &#123; ... &#125</code>.
+					</li>
+					<li>
+						To style elements inside a component, use the class name of the
+						component to &ldquo;namespace&rdquo; the selector:
+						<code>.accordion summary &#123; ... &#125</code>.
+					</li>
+					<li>
+						The above rules are similar to <a
+							href="https://en.wikipedia.org/wiki/OOCSS"
+							rel="external"
+							><abbr title="Object-oriented CSS">OOCSS</abbr>.</a
+						>
+					</li>
+					<li>
+						To select out specific elements by tag name, the immediate
+						descendent may be used. For example, to select the page header
+						rather than a header inside a component, use
+						<code>body > header &#123; ... &#125</code>.
+					</li>
+					<li>
+						<strong>Avoid <code>!important</code>.</strong>
+					</li>
+					<li>
+						<strong
+							>Use <a
+								href="https://oklch.com/#70,0.1,199,100"
+								rel="external"
+								>OKLCH</a
+							> for colors.</strong
+						> It takes a bit of getting used to. There is also a
+						<a
+							href="https://www.oddcontrast.com/#oklch__oklch(32.588~_0.13332_265.49)__oklch(82.41~_0.10609_0.84891)"
+							rel="external"
+							>color contrast analyzer.</a
+						>
+					</li>
+					<li>
+						We use <a
+							href="https://stylelint.io/"
+							rel="external"
+							>Stylelint</a
+						> for CSS linting.
+						<strong
+							>All code must pass the linter before merging to main.</strong
+						>
+					</li>
+					<li>
+						<strong>Use tabs for indentation.</strong>
+					</li>
+					<li>
+						<strong
+							>Put each property-value pair on its own line ending with a
+							semicolon.</strong
+						>
+					</li>
+					<li>
+						When using multiple selectors, put each <strong
+							>on its own line</strong
+						> (stack them). Combine elements where possible.
+					</li>
+					<li>
+						<strong>Separate blocks with a single blank line.</strong>
+						See our discussion of whitespace and design principles.
+					</li>
+					<li>
+						We will use <a
+							href="https://modernfontstacks.com/"
+							rel="external"
+							>system fonts</a
+						> whenever possible.
+					</li>
+				</ol>
 			</section>
 			<section>
 				<h2>Content and documentation</h2>
@@ -502,9 +778,8 @@ import Layout from "../../layouts/index.astro"
 					<li>
 						You can also use a <strong>thin space</strong> (<code
 							>&amp;thinsp;</code
-						>) on either side of the em dash&thinsp;&mdash;&thinsp;like
-						this&thinsp;&mdash;&thinsp;if you really want to impress. Or even
-						the
+						>) on either side of the em dash<EmDash />like this<EmDash />if you
+						really want to impress. Or even the
 						<a
 							href="https://www.htmlsymbols.xyz/punctuation-symbols/space-symbols"
 							rel="external"
@@ -563,7 +838,9 @@ import Layout from "../../layouts/index.astro"
 						you here require a practical rule of me, I will present you with this:
 						&lsquo;Whenever you feel an impulse to perpetrate a piece of <strong
 							>exceptionally fine writing,</strong
-						> obey it&mdash;whole-heartedly&mdash;and <strong>delete it</strong>
+						> obey it<EmDash />whole-heartedly<EmDash />and <strong
+							>delete it</strong
+						>
 						before sending your manuscript to press. Murder your darlings.&rsquo;&rdquo;
 						If you don&rsquo;t understand this, ask!
 					</li>
@@ -609,115 +886,14 @@ import Layout from "../../layouts/index.astro"
 					</li>
 				</ol>
 				<section>
-					<h2>Accessibility</h2>
-					<ul>
-						<li>
-							<strong>Accessibility is not optional.</strong>
-							<a
-								href="https://www.w3.org/TR/WCAG22/"
-								rel="external"
-								><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.2
-								AAA compliance</a
-							> (soon 2.3) must be <em>built-in</em> from the beginning. It is not
-							something we add later when we &ldquo;have time&rdquo;. It is not something
-							on which we compromise.
-						</li>
-						<li>
-							All public-facing web pages <strong>must</strong> pass <strong
-								>all</strong
-							>
-							<a
-								href=""
-								rel="external"
-								>axe DevTools WCAG 2.2 AAA</a
-							> automated tests
-							<strong>before merging code to main.</strong> No exceptions. Download
-							and install a copy in your browser of choice.
-						</li>
-						<li>
-							All web pages must be <strong>fully responsive</strong>. They
-							should work on any viewport for any user.
-						</li>
-						<li>
-							<strong>HTML is responsive by default.</strong> Start with the HTML.
-							As you add CSS (or JS) to your page or site, do it incrementally, and
-							after each update, test on screens of all sizes and aspect ratios&thinsp;&mdash;&thinsp;from
-							tiny phones to huge gaming displays&thinsp;&mdash;&thinsp;to ensure
-							that your changes <strong>have not broken responsiveness.</strong>
-						</li>
-						<li>
-							<strong
-								>Never merge code to main that is not fully responsive.</strong
-							>
-						</li>
-						<li>
-							<strong
-								>Test everything on real users following the best testing
-								practices.</strong
-							>
-						</li>
-						<li>
-							<strong
-								>Use the correct <em>semantic</em> HTML elements and attributes.</strong
-							> Is it an article? Use the <code>&lt;article&gt;</code> element. Is
-							it an address? Use the <code>&lt;address&gt;</code> element. Is it
-							a quotation? Use the <code>&lt;q&gt;</code> or
-							<code>&lt;blockquote&gt;</code> element as appropriate.
-						</li>
-						<li>
-							<strong
-								>Nest headings properly! Nest headings properly! Nest headings
-								properly!</strong
-							> In the <code>h<em>n</em></code> heading elements, the <em>n</em>
-							refers to the heading&rsquo;s <strong
-								>depth in the tree of headings.</strong
-							>
-							<ol>
-								<li>
-									The top heading is <code>&lt;h1&gt;</code>. There should
-									almost always be only one.
-								</li>
-								<li>
-									Subsections of the content should use an <code
-										>&lt;h2&gt;</code
-									> heading. Use the <code>&lt;section&gt;</code> elements to delineate
-									sections.
-								</li>
-								<li>The <code>&lt;h3&gt;</code> is for sub-sub-headings!</li>
-							</ol>
-						</li>
-						<li>
-							<strong>The heading elements are not about type size!</strong> Do not
-							use them for their default styling!
-						</li>
-						<li>
-							Use the HTML landmark (<a
-								href="https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/HTML5.html"
-								rel="external"
-								>sectioning</a
-							>) elements properly: <code>&lt;aside&gt;</code>, <code
-								>&lt;footer&gt;</code
-							>, <code>&lt;form&gt;</code>, <code>&lt;header&gt;</code>, <code
-								>&lt;main&gt;</code
-							>, <code>&lt;nav&gt;</code>, and <code>&lt;section&gt;</code>.
-						</li>
-						<li>
-							Ensure that the <strong>HTML document outline</strong> makes sense.
-							Use headings invisible to viewers but visible to screen readers (using
-							CSS) to name sections, navigation elements, etc. Use the <a
-								href="https://chromewebstore.google.com/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo"
-								rel="external"
-								>HTML5 Outliner</a
-							> browser extension to check.
-						</li>
-					</ul>
-				</section>
-				<section>
 					<h2>Performance</h2>
 				</section>
 				<section>
 					<h2>Miscellaneous</h2>
 					<ol>
+						<li>
+							<strong>Be consistent in everything you code!</strong>
+						</li>
 						<li>
 							<strong>Code just-in-time!</strong> Never write a line of code until
 							you have to.
@@ -754,6 +930,11 @@ import Layout from "../../layouts/index.astro"
 						<li>
 							<strong>Use UTF-8 as the character coding for everything.</strong>
 							No exceptions unless approved (and then only for UTF-16).
+						</li>
+						<li>
+							When possible, track state with the URL. If the view changes, that
+							should be reflected in the URL. This makes it easy for users to
+							bookmark state.
 						</li>
 						<li>
 							<strong>You are not a &ldquo;full stack&rdquo; engineer.</strong>
@@ -804,7 +985,7 @@ import Layout from "../../layouts/index.astro"
 								</li>
 								<li>
 									Make it faster by <strong>keeping it simple.</strong> Don&rsquo;t
-									diddle code to make it faster&thinsp;&mdash;&thinsp;find a better
+									diddle code to make it faster<EmDash />find a better
 									algorithm.
 								</li>
 								<li>
