@@ -612,6 +612,51 @@ import Layout from "../../layouts/index.astro"
 					<h2>Accessibility</h2>
 					<ul>
 						<li>
+							<strong>Accessibility is not optional.</strong>
+							<a
+								href="https://www.w3.org/TR/WCAG22/"
+								rel="external"
+								><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.2
+								AAA compliance</a
+							> (soon 2.3) must be <em>built-in</em> from the beginning. It is not
+							something we add later when we &ldquo;have time&rdquo;. It is not something
+							on which we compromise.
+						</li>
+						<li>
+							All public-facing web pages <strong>must</strong> pass <strong
+								>all</strong
+							>
+							<a
+								href=""
+								rel="external"
+								>axe DevTools WCAG 2.2 AAA</a
+							> automated tests
+							<strong>before merging code to main.</strong> No exceptions. Download
+							and install a copy in your browser of choice.
+						</li>
+						<li>
+							All web pages must be <strong>fully responsive</strong>. They
+							should work on any viewport for any user.
+						</li>
+						<li>
+							<strong>HTML is responsive by default.</strong> Start with the HTML.
+							As you add CSS (or JS) to your page or site, do it incrementally, and
+							after each update, test on screens of all sizes and aspect ratios&thinsp;&mdash;&thinsp;from
+							tiny phones to huge gaming displays&thinsp;&mdash;&thinsp;to ensure
+							that your changes <strong>have not broken responsiveness.</strong>
+						</li>
+						<li>
+							<strong
+								>Never merge code to main that is not fully responsive.</strong
+							>
+						</li>
+						<li>
+							<strong
+								>Test everything on real users following the best testing
+								practices.</strong
+							>
+						</li>
+						<li>
 							<strong
 								>Use the correct <em>semantic</em> HTML elements and attributes.</strong
 							> Is it an article? Use the <code>&lt;article&gt;</code> element. Is
