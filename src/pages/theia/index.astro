@@ -106,7 +106,7 @@ import Layout from "../../layouts/index.astro"
 					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/token"
 				const grant_type = "authorization_code"
 
-				const resp = fetch(postUrl, {
+				const resp = await fetch(postUrl, {
 					body: new URLSearchParams({
 						grant_type,
 						redirect_uri,
@@ -122,6 +122,7 @@ import Layout from "../../layouts/index.astro"
 				})
 
 				console.log("resp", resp)
+				console.log("json", await resp.json())
 			}
 		})
 	</script>
