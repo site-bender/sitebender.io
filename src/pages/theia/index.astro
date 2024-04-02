@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/index.astro"
+---
+
+<Layout title="Theia">
+	<main>
+		<article>
+			<h1>Home</h1>
+			<pre></pre>
+		</article>
+	</main>
+	<script>
+		globalThis.addEventListener("DOMContentLoaded", async () => {
+			const pre = document.querySelector("pre")
+			const params = new URLSearchParams(window.location.search)
+
+			if (params.has("code")) {
+				sessionStorage.setItem("code", params.get("code"))
+				params.delete("code")
+				history.replaceState({}, "", window.location.pathname)
+			}
+
+			console.log("has code?", params.has("code"))
+			console.log("code:", params.get("code"))
+
+			async function generateSHA256Hash(data) {
+				const encoder = new TextEncoder()
+				const dataBuffer = encoder.encode(data)
+
+				const hashBuffer = await window.crypto.subtle.digest(
+					"SHA-256",
+					dataBuffer,
+				)
+
+				const hashArray = Array.from(new Uint8Array(hashBuffer))
+				const hashHex = hashArray
+					.map(byte => byte.toString(16).padStart(2, "0"))
+					.join("")
+
+				return hashHex
+			}
+
+			function createRandomString(length) {
+				const chars =
+					"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+				let result = ""
+				for (let i = 0; i < length; i++) {
+					result += chars.charAt(Math.floor(Math.random() * chars.length))
+				}
+				return result
+			}
+
+			const verifier =
+				sessionStorage.getItem("verifier") ||
+				sessionStorage.setItem("verifier", createRandomString(128)) ||
+				sessionStorage.getItem("verifier")
+
+			const hashValue = await generateSHA256Hash(verifier)
+
+			const hash =
+				sessionStorage.getItem("hash") ||
+				sessionStorage.setItem("hash", hashValue) ||
+				sessionStorage.getItem("hash")
+
+			const client_id =
+				sessionStorage.getItem("client_id") ||
+				sessionStorage.setItem("client_id", "gpdqmuss89btgdn2mte1ncvj4") ||
+				sessionStorage.getItem("client_id")
+
+			const code = sessionStorage.getItem("code")
+			const token = sessionStorage.getItem("token")
+
+			console.log("client_id", client_id)
+			console.log("hash", hash)
+			console.log("verifier", verifier)
+			console.log("code", code)
+			console.log("token", token)
+
+			pre.innerHTML = `client_id: ${client_id}
+hash: ${hash}
+verifier: ${verifier}
+code: ${code}
+token: ${token}
+`
+
+			if (!token) {
+				console.log("Better get a token!")
+				const domain =
+					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/authorize?"
+				const responseType = "response_type=code"
+				const clientId = `client_id=${client_id}`
+				const redirectUrl = "redirect_uri=http://localhost:3014"
+				const codeChallenge = `code_challenge=${hash}`
+				const codeChallengeMethod = "code_challenge_method=S256"
+				const url =
+					domain +
+					[
+						responseType,
+						clientId,
+						redirectUrl,
+						codeChallenge,
+						codeChallengeMethod,
+					].join("&")
+				// const resp = await fetch(
+				// 	url,
+				// 	{ mode: "no-cors" },
+				// )
+
+				// console.log(resp)
+				console.log("url", url)
+			}
+		})
+	</script>
+</Layout>
