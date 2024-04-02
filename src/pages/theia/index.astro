@@ -20,10 +20,7 @@ import Layout from "../../layouts/index.astro"
 				history.replaceState({}, "", window.location.pathname)
 			}
 
-			console.log("has code?", params.has("code"))
-			console.log("code:", params.get("code"))
-
-			async function generateSHA256Hash(data) {
+			const generateSHA256Hash = async data => {
 				const encoder = new TextEncoder()
 				const dataBuffer = encoder.encode(data)
 
@@ -40,72 +37,91 @@ import Layout from "../../layouts/index.astro"
 				return hashHex
 			}
 
-			function createRandomString(length) {
+			const createRandomString = length => {
 				const chars =
 					"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-				let result = ""
-				for (let i = 0; i < length; i++) {
-					result += chars.charAt(Math.floor(Math.random() * chars.length))
-				}
-				return result
+
+				return Array.from({ length })
+					.map(() => chars.charAt(Math.floor(Math.random() * chars.length)))
+					.join("")
 			}
 
-			const verifier =
-				sessionStorage.getItem("verifier") ||
+			const code_verifier = (sessionStorage.getItem("verifier") ||
 				sessionStorage.setItem("verifier", createRandomString(128)) ||
-				sessionStorage.getItem("verifier")
+				sessionStorage.getItem("verifier")) as string
 
-			const hashValue = await generateSHA256Hash(verifier)
+			const hashValue = await generateSHA256Hash(code_verifier)
 
-			const hash =
-				sessionStorage.getItem("hash") ||
+			const code_challenge = (sessionStorage.getItem("hash") ||
 				sessionStorage.setItem("hash", hashValue) ||
-				sessionStorage.getItem("hash")
+				sessionStorage.getItem("hash")) as string
 
-			const client_id =
-				sessionStorage.getItem("client_id") ||
+			const client_id = (sessionStorage.getItem("client_id") ||
 				sessionStorage.setItem("client_id", "gpdqmuss89btgdn2mte1ncvj4") ||
-				sessionStorage.getItem("client_id")
+				sessionStorage.getItem("client_id")) as string
 
 			const code = sessionStorage.getItem("code")
 			const token = sessionStorage.getItem("token")
 
 			console.log("client_id", client_id)
-			console.log("hash", hash)
-			console.log("verifier", verifier)
+			console.log("code_challenge", code_challenge)
+			console.log("code_verifier", code_verifier)
 			console.log("code", code)
 			console.log("token", token)
 
 			if (codeBlock) {
 				codeBlock.innerHTML = `client_id: ${client_id}<br>
-				hash: ${hash}<br>
-				verifier: ${verifier}<br>
+				code_challenge: ${code_challenge}<br>
+				code_verifier: ${code_verifier}<br>
 				code: ${code}<br>
 				token: ${token}<br>`
 			}
 
+			const redirect_uri = "https://sitebender.io/theia"
+			const response_type = "code"
+			const code_challenge_method = "S256"
+
 			if (!code) {
 				console.log("Better get a code!")
-				const domain =
-					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/authorize?"
-				const responseType = "response_type=code"
-				const clientId = `client_id=${client_id}`
-				const redirectUrl = "redirect_uri=https://sitebender.io/theia"
-				const codeChallenge = `code_challenge=${hash}`
-				const codeChallengeMethod = "code_challenge_method=S256"
-				const url =
-					domain +
-					[
-						responseType,
-						clientId,
-						redirectUrl,
-						codeChallenge,
-						codeChallengeMethod,
-					].join("&")
+				const href =
+					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/authorize"
 
-				window.location.href = url
+				const searchParams = new URLSearchParams({
+					response_type,
+					client_id,
+					redirect_uri,
+					code_challenge,
+					code_challenge_method,
+				})
+
+				const url = new URL(`${href}?${searchParams.toString()}`)
+
+				window.location.href = url.href
 
 				console.log("url", url)
+			}
+
+			if (code && !token) {
+				const postUrl =
+					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/token"
+				const grant_type = "authorization_code"
+
+				const resp = fetch(postUrl, {
+					body: new URLSearchParams({
+						grant_type,
+						redirect_uri,
+						client_id,
+						code,
+						code_verifier,
+					}),
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					method: "POST",
+					mode: "no-cors",
+				})
+
+				console.log("resp", resp)
 			}
 		})
 	</script>
