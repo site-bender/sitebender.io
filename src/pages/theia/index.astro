@@ -101,7 +101,8 @@ token: ${token}
 						codeChallenge,
 						codeChallengeMethod,
 					].join("&")
-				const resp = await fetch(url, { mode: "no-cors" })
+				// const resp = await fetch(url, { mode: "no-cors" })
+				window.location.href = url
 
 				console.log(resp)
 				console.log("url", url)
