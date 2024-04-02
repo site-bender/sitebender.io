@@ -6,12 +6,12 @@ import Layout from "../../layouts/index.astro"
 	<main>
 		<article>
 			<h1>Home</h1>
-			<pre></pre>
+			<code></code>
 		</article>
 	</main>
 	<script>
 		globalThis.addEventListener("DOMContentLoaded", async () => {
-			const pre = document.querySelector("pre")
+			const codeBlock = document.querySelector("code")
 			const params = new URLSearchParams(window.location.search)
 
 			if (params.has("code")) {
@@ -76,15 +76,16 @@ import Layout from "../../layouts/index.astro"
 			console.log("code", code)
 			console.log("token", token)
 
-			pre.innerHTML = `client_id: ${client_id}
-hash: ${hash}
-verifier: ${verifier}
-code: ${code}
-token: ${token}
-`
+			if (codeBlock) {
+				codeBlock.innerHTML = `client_id: ${client_id}<br>
+				hash: ${hash}<br>
+				verifier: ${verifier}<br>
+				code: ${code}<br>
+				token: ${token}<br>`
+			}
 
-			if (!token) {
-				console.log("Better get a token!")
+			if (!code) {
+				console.log("Better get a code!")
 				const domain =
 					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/authorize?"
 				const responseType = "response_type=code"
@@ -101,10 +102,9 @@ token: ${token}
 						codeChallenge,
 						codeChallengeMethod,
 					].join("&")
-				// const resp = await fetch(url, { mode: "no-cors" })
+
 				window.location.href = url
 
-				// console.log(resp)
 				console.log("url", url)
 			}
 		})
