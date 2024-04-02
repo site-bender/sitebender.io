@@ -81,7 +81,7 @@ import Layout from "../../layouts/index.astro"
 			const response_type = "code"
 			const code_challenge_method = "S256"
 
-			if (!code) {
+			const getToken = event => {
 				console.log("Better get a code!")
 				const href =
 					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/authorize"
@@ -126,6 +126,12 @@ import Layout from "../../layouts/index.astro"
 				if (resp) {
 					console.log("json", await resp.json())
 				}
+			}
+
+			if (code) {
+				const button = document.createElement("BUTTON")
+				button.innerHTML = "Get token"
+				button.addEventListener("click", getToken)
 			}
 		})
 	</script>
