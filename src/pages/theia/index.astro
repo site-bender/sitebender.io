@@ -109,7 +109,7 @@ import Layout from "../../layouts/index.astro"
 				button.addEventListener("click", getToken)
 			}
 
-			const getToken = () => {
+			const getToken = async () => {
 				const postUrl =
 					"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/token"
 				const grant_type = "authorization_code"
