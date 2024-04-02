@@ -101,12 +101,9 @@ token: ${token}
 						codeChallenge,
 						codeChallengeMethod,
 					].join("&")
-				// const resp = await fetch(
-				// 	url,
-				// 	{ mode: "no-cors" },
-				// )
+				const resp = await fetch(url, { mode: "no-cors" })
 
-				// console.log(resp)
+				console.log(resp)
 				console.log("url", url)
 			}
 		})
