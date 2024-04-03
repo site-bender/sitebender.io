@@ -1,6 +1,6 @@
 {
 	"name": "sitebender.io",
-	"version": "0.0.42",
+	"version": "0.0.43",
 	"private": true,
 	"homepage": "https://sitebender.io/",
 	"license": "MIT",
@@ -13,6 +13,7 @@
 	"scripts": {
 		"api": "vercel dev",
 		"astro": "astro",
+		"b": "browserify ./public/scripts/theia.js > ./public/scripts/bundle.js",
 		"build": "astro build",
 		"bump": "pnpm version patch --force",
 		"bump:major": "pnpm version major --force",
@@ -41,6 +42,7 @@
 		"@vercel/edge-config": "^1.1.0",
 		"@vercel/node": "^3.0.25",
 		"astro": "^4.5.12",
+		"browserify": "^17.0.0",
 		"exifr": "^7.1.3",
 		"exifreader": "^4.21.1",
 		"prettier": "^3.2.4",
