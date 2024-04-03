@@ -2138,13 +2138,18 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 			mode: "no-cors",
 		})
 
-		console.log("resp", resp)
 		if (resp) {
-			console.log("json", await resp.json())
+			const json = await resp.json()
+
+			if (json) {
+				sessionStorage.setItem("id_token", json.id_token)
+				sessionStorage.setItem("access_token", json.access_token)
+				sessionStorage.setItem("refresh_token", json.refresh_token)
+			}
 		}
 	}
 
-	if (code) {
+	if (code && !token) {
 		const form = document.createElement("FORM")
 		form.setAttribute("action", postUrl)
 		form.setAttribute("method", "POST")
