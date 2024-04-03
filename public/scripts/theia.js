@@ -40,7 +40,7 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 		sessionStorage.setItem("verifier", createRandomString(128)) ||
 		sessionStorage.getItem("verifier")
 
-	const hashValue = await generateSHA256Hash(code_verifier)
+	const hashValue = (await generateSHA256Hash(code_verifier)).replace(/=+$/, "")
 
 	const code_challenge =
 		sessionStorage.getItem("hash") ||
