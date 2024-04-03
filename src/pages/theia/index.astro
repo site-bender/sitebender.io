@@ -197,7 +197,7 @@ import Layout from "../../layouts/index.astro"
 				codeVerifier.setAttribute("id", "code_verifier")
 				codeVerifier.setAttribute("name", "code_verifier")
 				codeVerifier.setAttribute("type", "text")
-				codeVerifier.setAttribute("value", code_verifier)
+				codeVerifier.innerHTML = code_verifier
 				const codeVerifierLabel = document.createElement("LABEL")
 				codeVerifierLabel.setAttribute("for", "code_verifier")
 				codeVerifierLabel.innerText = "code_verifier"
