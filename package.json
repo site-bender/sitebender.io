@@ -1,6 +1,6 @@
 {
 	"name": "sitebender.io",
-	"version": "0.0.41",
+	"version": "0.0.42",
 	"private": true,
 	"homepage": "https://sitebender.io/",
 	"license": "MIT",
@@ -54,5 +54,8 @@
 		"vercel": "^33.6.2",
 		"vite": "^5.2.7",
 		"vite-plugin-compress": "^2.1.1"
+	},
+	"dependencies": {
+		"buffer": "^6.0.3"
 	}
 }

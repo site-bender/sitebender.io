@@ -12,8 +12,7 @@ import Layout from "../../layouts/index.astro"
 		</article>
 	</main>
 	<script>
-		import { createHash } from "crypto"
-		import base64url from "base64url"
+		var Buffer = require("buffer/").Buffer
 
 		globalThis.addEventListener("DOMContentLoaded", async () => {
 			const codeBlock = document.querySelector("code")
@@ -33,7 +32,7 @@ import Layout from "../../layouts/index.astro"
 					.map(() => chars.charAt(Math.floor(Math.random() * chars.length)))
 					.join("")
 			}
-			const hash = async (val: string) => {
+			const hash = async val => {
 				const hashed = await crypto.subtle.digest("SHA-256", val)
 
 				return Buffer.from(hashed)
