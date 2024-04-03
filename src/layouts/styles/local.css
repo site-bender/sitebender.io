@@ -95,6 +95,23 @@ code {
 	padding: 0.2rem;
 }
 
+button,
+input,
+textarea {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 0.5rem;
+}
+
+input,
+textarea {
+	width: 24rem;
+}
+
+textarea: {
+	height: 6rem;
+}
+
 dt {
 	font-style: italic;
 }
