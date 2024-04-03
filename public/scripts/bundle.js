@@ -2121,7 +2121,9 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 		"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/token"
 	const grant_type = "authorization_code"
 
-	const getToken = async () => {
+	const getToken = async event => {
+		event.preventDefault()
+
 		const resp = await fetch(postUrl, {
 			body: new URLSearchParams({
 				grant_type,
