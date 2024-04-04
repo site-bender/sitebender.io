@@ -111,7 +111,6 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 				"Content-Type": "application/x-www-form-urlencoded",
 			},
 			method: "POST",
-			mode: "no-cors",
 		})
 
 		if (resp) {
