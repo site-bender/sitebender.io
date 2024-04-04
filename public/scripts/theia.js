@@ -100,7 +100,7 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 	const grant_type = "authorization_code"
 
 	const getToken = async event => {
-		// event.preventDefault()
+		event.preventDefault()
 
 		const resp = await fetch(postUrl, {
 			body: new URLSearchParams({
@@ -109,7 +109,7 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 				client_id,
 				code,
 				code_verifier,
-			}),
+			}).toString(),
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",
 			},
