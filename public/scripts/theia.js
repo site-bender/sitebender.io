@@ -1,4 +1,5 @@
 globalThis.addEventListener("DOMContentLoaded", async () => {
+	console.log("loaded")
 	const codeBlock = document.querySelector("code")
 	const params = new URLSearchParams(window.location.search)
 
