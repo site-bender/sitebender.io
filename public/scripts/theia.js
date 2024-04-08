@@ -118,7 +118,6 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 				"Content-Type": "application/json",
 			},
 			method: "POST",
-			mode: "no-cors",
 		})
 
 		if (resp) {
