@@ -1,0 +1,191 @@
+:root {
+	--color-dark-green: #0e4e09;
+	--color-light-blue: hsl(205deg, 90%, 92%);
+	--step-0: clamp(1rem, 0.822rem + 0.678vw, 1.5rem);
+	--step-1: clamp(1.2rem, 0.9597rem + 0.9153vw, 1.875rem);
+	--step-2: clamp(1.44rem, 1.1183rem + 1.2254vw, 2.3438rem);
+	--step-3: clamp(1.7281rem, 1.3003rem + 1.6297vw, 2.93rem);
+	--step-4: clamp(2.0738rem, 1.5085rem + 2.1534vw, 3.6619rem);
+	--step-5: clamp(2.4881rem, 1.7444rem + 2.8331vw, 4.5775rem);
+	--space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
+	--space-2xs: clamp(0.5rem, calc(0.45rem + 0.27vw), 0.69rem);
+	--space-xs: clamp(0.75rem, calc(0.68rem + 0.36vw), 1rem);
+	--space-s: clamp(1rem, calc(0.91rem + 0.45vw), 1.31rem);
+	--space-m: clamp(1.5rem, calc(1.36rem + 0.71vw), 2rem);
+	--space-l: clamp(2rem, calc(1.82rem + 0.89vw), 2.63rem);
+	--space-xl: clamp(3rem, calc(2.73rem + 1.34vw), 3.94rem);
+	--space-2xl: clamp(4rem, calc(3.64rem + 1.79vw), 5.25rem);
+	--space-3xl: clamp(6rem, calc(5.46rem + 2.68vw), 7.88rem);
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro,
+		sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+}
+
+body > header {
+	align-items: center;
+	background-color: black;
+	color: white;
+	display: flex;
+	font-size: var(--step-2);
+	gap: 1rem;
+	justify-content: flex-start;
+	padding: var(--space-xs) 5vw;
+}
+
+p.warning {
+	color: #ff0;
+	font-size: var(--step-0);
+}
+
+strong {
+	color: firebrick;
+	font-weight: 600;
+}
+
+main {
+	align-content: start;
+	display: grid;
+	font-size: var(--step-0);
+	grid-template-columns:
+		[viewport-left] 5vw
+		[content-left] min(90vw, 54rem)
+		[content-right] auto
+		[viewport-right];
+	grid-template-rows: auto;
+	padding-bottom: var(--space-xl);
+}
+
+h1 {
+	font-size: var(--step-2);
+	font-weight: 400;
+	margin: var(--space-m) 0 0;
+	padding: 0;
+}
+
+h2 {
+	font-size: var(--step-1);
+	font-weight: 600;
+}
+
+.logo {
+	margin-block: 0;
+	padding-block: 0;
+	text-transform: lowercase;
+}
+
+blockquote:not(.no-style) {
+	color: var(--color-dark-green);
+	font-family: serif;
+}
+
+code {
+	background-color: var(--color-light-blue);
+	border-radius: 3px;
+	font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+		"DejaVu Sans Mono", monospace;
+	padding: 0.2rem;
+}
+
+button,
+input,
+textarea {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 0.5rem;
+}
+
+input,
+textarea {
+	width: 24rem;
+}
+
+textarea {
+	height: 6rem;
+}
+
+dt {
+	font-style: italic;
+}
+
+dt a {
+	font-style: normal;
+	text-decoration: none;
+}
+
+.logo a {
+	color: white;
+	text-decoration: none;
+}
+
+dt a:focus,
+dt a:hover {
+	text-decoration: underline;
+}
+
+dt code {
+	font-style: normal;
+}
+
+dd {
+	margin-bottom: var(--space-m);
+}
+
+.logo a:focus,
+.logo a:hover {
+	color: var(--color-light-blue);
+}
+
+article {
+	grid-column: content-left / content-right;
+}
+
+article > header {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+p.label {
+	background-color: #eee;
+	border-radius: 5px;
+	display: inline-block;
+	font-weight: bold;
+	padding: 0.5rem;
+	place-content: center;
+	text-transform: uppercase;
+}
+
+p.label.draft {
+	color: #48094e;
+}
+
+p.label.draft::after {
+	content: "draft";
+}
+
+p.label.approved {
+	color: #0e4e09;
+}
+
+p.label.approved::after {
+	content: "approved";
+}
+
+p.label.info {
+	color: #0d4872;
+}
+
+p.label.info::after {
+	content: "info";
+}
