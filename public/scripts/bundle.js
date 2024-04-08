@@ -2118,9 +2118,16 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 	}
 
 	const postUrl =
-		"https://ariadne.auth.us-west-2.amazoncognito.com/oauth2/token"
+		"https://gcls2cd4s5.execute-api.us-west-2.amazonaws.com/oauth/tokenProxy"
 	const grant_type = "authorization_code"
-	const body = `grant_type=${grant_type}&client_id=${client_id}&code=${code}&code_verifier=${code_verifier}&redirect_uri=${redirect_uri}`
+
+	const body = JSON.stringify({
+		grant_type,
+		redirect_uri,
+		client_id,
+		code,
+		code_verifier,
+	})
 
 	console.log("body", body)
 
@@ -2130,13 +2137,15 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 		const resp = await fetch(postUrl, {
 			body,
 			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Type": "application/json",
 			},
 			method: "POST",
 		})
 
 		if (resp) {
 			const json = await resp.json()
+
+			console.log("json", json)
 
 			if (json) {
 				sessionStorage.setItem("id_token", json.id_token)
