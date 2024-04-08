@@ -1,6 +1,6 @@
 {
 	"name": "sitebender.io",
-	"version": "0.0.59",
+	"version": "0.0.60",
 	"private": true,
 	"homepage": "https://sitebender.io/",
 	"license": "MIT",
@@ -13,7 +13,7 @@
 	"scripts": {
 		"api": "vercel dev",
 		"astro": "astro",
-		"b": "browserify ./public/scripts/theia.js > ./public/scripts/bundle.js",
+		"b": "browserify ./public/scripts/theia.js > ./public/scripts/main.js",
 		"build": "astro build",
 		"bump": "pnpm version patch --force",
 		"bump:major": "pnpm version major --force",
