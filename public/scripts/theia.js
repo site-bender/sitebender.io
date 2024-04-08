@@ -107,10 +107,10 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 		code_verifier,
 	})
 
-	console.log("body", body)
-
 	const getToken = async event => {
 		event.preventDefault()
+
+		console.log("body", body)
 
 		const resp = await fetch(postUrl, {
 			body,
@@ -118,6 +118,7 @@ globalThis.addEventListener("DOMContentLoaded", async () => {
 				"Content-Type": "application/json",
 			},
 			method: "POST",
+			mode: "no-cors",
 		})
 
 		if (resp) {
